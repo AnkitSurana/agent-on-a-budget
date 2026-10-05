@@ -112,3 +112,35 @@ def test_big_refund_is_marked_as_escalated(shop):
         openai_text("A manager will approve this refund."),
     ], shop)
     assert agent.run("refund NM10003").escalated is True
+
+
+# ---------- setup problems become short, plain-English messages ----------
+
+def failing_client(error):
+    def create(**request):
+        raise error
+    from types import SimpleNamespace
+    return SimpleNamespace(chat=SimpleNamespace(completions=SimpleNamespace(create=create)))
+
+
+def test_wrong_key_gives_a_plain_message():
+    import httpx2
+    import openai
+    from budget_agent.llm import LLMSetupError
+
+    request = httpx2.Request("POST", "https://api.openai.com/v1/chat/completions")
+    error = openai.AuthenticationError("bad key", response=httpx2.Response(401, request=request), body=None)
+    llm = OpenAIChat("openai", client=failing_client(error))
+    with pytest.raises(LLMSetupError, match="OPENAI_API_KEY"):
+        llm.chat("system", [{"role": "user", "content": "hi"}])
+
+
+def test_ollama_not_running_gives_a_plain_message():
+    import httpx2
+    import openai
+    from budget_agent.llm import LLMSetupError
+
+    error = openai.APIConnectionError(request=httpx2.Request("POST", "http://localhost:11434/v1/chat/completions"))
+    llm = OpenAIChat("ollama", client=failing_client(error))
+    with pytest.raises(LLMSetupError, match="ollama serve"):
+        llm.chat("system", [{"role": "user", "content": "hi"}])

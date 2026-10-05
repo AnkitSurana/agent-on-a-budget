@@ -9,5 +9,5 @@ pandas>=2.2
 python-dotenv>=1.0
 requests>=2.31
 scikit-learn>=1.5
-streamlit>=1.40
+streamlit>=1.50
 pytest>=8.0

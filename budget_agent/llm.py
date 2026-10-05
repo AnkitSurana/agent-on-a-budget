@@ -46,6 +46,36 @@ class Reply:
     raw: object = None            # the provider's own message, sent back unchanged in the next request
 
 
+class LLMSetupError(Exception):
+    """A setup problem (missing key, wrong model, Ollama not running), explained in plain English."""
+
+
+MODEL_SETTING = {"openai": "OPENAI_MODEL", "anthropic": "ANTHROPIC_MODEL",
+                 "gemini": "GEMINI_MODEL", "ollama": "OLLAMA_AGENT_MODEL"}
+
+
+def explain(provider, model, sdk, error):
+    """Turn the most common API errors into a short message a beginner can act on."""
+    key = config.PROVIDERS[provider]["key"]
+    bad_key = isinstance(error, sdk.BadRequestError) and "api key" in str(error).lower()   # how Gemini says it
+    if bad_key or isinstance(error, (sdk.AuthenticationError, sdk.PermissionDeniedError)):
+        return LLMSetupError(f"Your {provider} API key was not accepted. Check {key} in the .env file.")
+    if isinstance(error, sdk.NotFoundError):
+        if provider == "ollama":
+            return LLMSetupError(f"Ollama doesn't have the model '{model}' yet. Run: ollama pull {model}")
+        return LLMSetupError(f"The model '{model}' is not available on your {provider} account. "
+                             f"Choose another one with {MODEL_SETTING[provider]}=... in the .env file.")
+    if isinstance(error, sdk.RateLimitError):
+        return LLMSetupError(f"{provider} says: too many requests, or no credit left. "
+                             "Wait a minute, or check your account's billing page.")
+    if isinstance(error, sdk.APIConnectionError):
+        if provider == "ollama":
+            return LLMSetupError("Could not reach Ollama, the free local model. Start it with: ollama serve "
+                                 "(and once: ollama pull llama3.2:3b). Or put an API key in the .env file.")
+        return LLMSetupError(f"Could not reach {provider}. Check your internet connection.")
+    return None
+
+
 def cost_usd(model, input_tokens, output_tokens):
     """Dollars for one call. Unknown and local models count as free."""
     if model not in config.PRICES_PER_MILLION:
@@ -95,8 +125,12 @@ class OpenAIChat:
             request["response_format"] = {"type": "json_schema",
                                           "json_schema": {"name": "answer", "schema": json_schema, "strict": True}}
 
+        import openai
         start = time.perf_counter()
-        response = self.client.chat.completions.create(**request)
+        try:
+            response = self.client.chat.completions.create(**request)
+        except openai.APIError as error:
+            raise (explain(self.provider, self.model, openai, error) or error) from error
         seconds = time.perf_counter() - start
 
         choice = response.choices[0]
@@ -147,18 +181,22 @@ class Claude:
             output_config["format"] = {"type": "json_schema", "schema": json_schema}
         extra = {"tools": tools} if tools else {}
 
+        import anthropic
         start = time.perf_counter()
-        response = self.client.beta.messages.create(
-            model=self.model,
-            max_tokens=max_tokens,
-            system=system,
-            messages=messages,
-            output_config=output_config,
-            # If Claude declines a request for safety reasons, the API retries it on a fallback model.
-            betas=["server-side-fallback-2026-07-01"],
-            fallbacks="default",
-            **extra,
-        )
+        try:
+            response = self.client.beta.messages.create(
+                model=self.model,
+                max_tokens=max_tokens,
+                system=system,
+                messages=messages,
+                output_config=output_config,
+                # If Claude declines a request for safety reasons, the API retries it on a fallback model.
+                betas=["server-side-fallback-2026-07-01"],
+                fallbacks="default",
+                **extra,
+            )
+        except anthropic.APIError as error:
+            raise (explain(self.provider, self.model, anthropic, error) or error) from error
         seconds = time.perf_counter() - start
 
         tool_calls = [ToolCall(b.id, b.name, b.input) for b in response.content if b.type == "tool_use"]

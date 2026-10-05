@@ -281,7 +281,7 @@ Each chapter adds one idea from this guide. Read the files in this order.
 Two more places hold everything together:
 
 - `budget_agent/config.py`: every setting in one place: providers, model names, prices, confidence thresholds, which intents count as actions, the helper names and the demo messages.
-- `tests/`: 33 tests that use fake LLMs, so they are free and run offline. Run them with `pytest`.
+- `tests/`: 35 tests that use fake LLMs, so they are free and run offline. Run them with `pytest`.
 
 ## Glossary
 

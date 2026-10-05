@@ -4,6 +4,7 @@ import pandas as pd
 import streamlit as st
 
 from budget_agent import config
+from budget_agent.llm import LLMSetupError
 
 st.set_page_config(page_title="Agent on a Budget", page_icon="🛒", layout="wide")
 st.title("🛒 NovaMart support: agent on a budget")
@@ -32,7 +33,7 @@ with chat_tab:
     st.caption("Try one example per helper:")
     clicked = None
     for column, (layer, message) in zip(st.columns(4), config.DEMO_MESSAGES.items()):
-        if column.button(LAYER_LABEL[layer], help=message, use_container_width=True):
+        if column.button(LAYER_LABEL[layer], help=message, width="stretch"):
             clicked = message
 
     if "history" not in st.session_state:
@@ -47,19 +48,23 @@ with chat_tab:
     if text:
         st.session_state.history.append({"role": "user", "text": text})
         bot = get_bot(version)
-        with st.spinner("Thinking..."):
-            if version == 4:
-                r = bot.handle(text)
-                helper = LAYER_LABEL[r.layer]
-                if r.escalated:
-                    helper += f" → {LAYER_LABEL['human']}"
-                info = (f"{helper} · intent: {r.intent} ({r.confidence:.0%}) · "
-                        f"{r.seconds:.2f}s · ${r.cost_usd:.4f}")
-            else:
-                r = bot.run(text)
-                tools = ", ".join(name for name, _, _ in r.tool_calls) or "none"
-                info = f"tools used: {tools} · {r.seconds:.2f}s · ${r.cost_usd:.4f}"
-        st.session_state.history.append({"role": "assistant", "text": r.reply, "info": info})
+        try:
+            with st.spinner("Thinking..."):
+                if version == 4:
+                    r = bot.handle(text)
+                    helper = LAYER_LABEL[r.layer]
+                    if r.escalated:
+                        helper += f" → {LAYER_LABEL['human']}"
+                    info = (f"{helper} · intent: {r.intent} ({r.confidence:.0%}) · "
+                            f"{r.seconds:.2f}s · ${r.cost_usd:.4f}")
+                else:
+                    r = bot.run(text)
+                    tools = ", ".join(name for name, _, _ in r.tool_calls) or "none"
+                    info = f"tools used: {tools} · {r.seconds:.2f}s · ${r.cost_usd:.4f}"
+            reply = r.reply
+        except LLMSetupError as problem:
+            reply, info = f"⚠️ {problem}", "setup problem: see the README's Setup section"
+        st.session_state.history.append({"role": "assistant", "text": reply, "info": info})
         st.rerun()
 
 with compare_tab:
@@ -83,4 +88,4 @@ with compare_tab:
 
         st.subheader("Every message")
         st.dataframe(results[["message", "v4_layer", "v2_seconds", "v4_seconds", "v2_cost", "v4_cost",
-                              "v2_reply", "v4_reply"]], use_container_width=True)
+                              "v2_reply", "v4_reply"]], width="stretch")

@@ -9,11 +9,11 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# Read ANTHROPIC_API_KEY (and any other settings) from a .env file if there is one.
-load_dotenv()
-
 # ---------- Folders and files ----------
 ROOT = Path(__file__).resolve().parent.parent
+
+# Read the API keys and settings from THIS project's .env file only (never from a parent folder).
+load_dotenv(ROOT / ".env")
 DATA_DIR = ROOT / "data"
 MODELS_DIR = ROOT / "models"
 

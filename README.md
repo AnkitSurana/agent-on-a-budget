@@ -191,6 +191,19 @@ pytest
 The tests use fake LLMs, so they're free and run offline. They check the tools and their rules,
 the agent loop, labelling, the ML model, and the router's decisions.
 
+## If something goes wrong
+
+The project explains common setup problems in one line instead of a long error:
+
+| Message starts with | What to do |
+|---|---|
+| "Your ... API key was not accepted" | Check the key in `.env` (no spaces or quotes) |
+| "Could not reach Ollama" | No key was found, so it tried the free local model. Run `ollama serve`, or add a key to `.env` |
+| "The model ... is not available" | Pick another model in `.env`, for example `OPENAI_MODEL=gpt-5-mini` |
+| "too many requests, or no credit left" | Wait a minute, or add credit on your provider's billing page |
+
+Only the project's own `.env` file is read, never one from a parent folder.
+
 ## Safety rules built in
 
 - The LLM can only *ask* for tools. Our Python code decides what really happens.

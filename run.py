@@ -17,10 +17,12 @@
 """
 
 import argparse
+import sys
 
 import pandas as pd
 
 from budget_agent import classifier, config, data
+from budget_agent.llm import LLMSetupError
 
 
 def cmd_data(args):
@@ -38,15 +40,18 @@ def cmd_chat(args):
 
     print(f"NovaMart support, version {args.version}. Type 'quit' to stop.\n")
     while (text := input("You: ").strip()).lower() not in {"quit", "exit", "q"}:
-        if args.version == 4:
-            r = bot.handle(text)
-            who = config.HELPERS[r.layer] + (f" → {config.HELPERS['human']}" if r.escalated else "")
-            print(f"Bot: {r.reply}\n     [{who}  intent={r.intent} ({r.confidence:.0%})  "
-                  f"{r.seconds:.2f}s  ${r.cost_usd:.4f}]\n")
-        else:
-            r = bot.run(text)
-            tools = ", ".join(name for name, _, _ in r.tool_calls) or "none"
-            print(f"Bot: {r.reply}\n     [tools={tools}  {r.seconds:.2f}s  ${r.cost_usd:.4f}]\n")
+        try:
+            if args.version == 4:
+                r = bot.handle(text)
+                who = config.HELPERS[r.layer] + (f" → {config.HELPERS['human']}" if r.escalated else "")
+                print(f"Bot: {r.reply}\n     [{who}  intent={r.intent} ({r.confidence:.0%})  "
+                      f"{r.seconds:.2f}s  ${r.cost_usd:.4f}]\n")
+            else:
+                r = bot.run(text)
+                tools = ", ".join(name for name, _, _ in r.tool_calls) or "none"
+                print(f"Bot: {r.reply}\n     [tools={tools}  {r.seconds:.2f}s  ${r.cost_usd:.4f}]\n")
+        except LLMSetupError as problem:
+            print(f"⚠️  {problem}\n")
 
 
 def cmd_label(args):
@@ -151,7 +156,10 @@ def main():
     bench.add_argument("--n", type=int, default=30)
     bench.set_defaults(func=cmd_benchmark)
     args = parser.parse_args()
-    args.func(args)
+    try:
+        args.func(args)
+    except LLMSetupError as problem:   # a setup problem: show a short message, not a long error
+        sys.exit(f"⚠️  {problem}")
 
 
 if __name__ == "__main__":

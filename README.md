@@ -92,19 +92,20 @@ Real runs with OpenAI `gpt-5.4-mini`, October 2026. Your numbers will vary a lit
 | When it is at least 80% sure (72% of a mixed inbox) | **98.3%** right |
 | Time per message | about **0.05 milliseconds**, for $0 |
 
-**Chapter 3: expert only vs the whole office** (30 messages, a third of them messy; no junior assistant yet)
+**Chapter 3: expert only vs the whole office** (60 messages, a third of them messy; all four helpers running)
 
 | | Expert only | Whole office |
 |---|---|---|
-| Cost for 30 messages | $0.036 | **$0.020** |
-| Cost per 1,000 messages | $1.20 | **$0.66** |
-| Average time per message | 1.86 s | **1.15 s** |
-| Answered by the receptionist for $0 | 0% | **40%** |
+| Cost for 60 messages | $0.061 | **$0.031** |
+| Cost per 1,000 messages | $1.02 | **$0.51** |
+| Average time per message | 1.64 s | **1.09 s** |
+| Answered for $0 | 0% | **55%** (receptionist 43%, junior assistant 12%) |
 
-The whole office was **1.8× cheaper and 1.6× faster**, with answers of similar quality.
+The whole office was **2.0× cheaper and 1.5× faster**.
+The receptionist's answers were as good as the expert's. The junior assistant (a 3B model on the laptop, about 55 tokens a second) was right on simple policy questions but sometimes made up details, which is why it only gets low-risk questions, and why `LOCAL_LLM_CONFIDENCE` is a dial you can turn up.
 The saving grows as more messages are simple: refunds, cancels and complaints always go to the expert, on purpose.
 
-The LLM's labels (`data/llm_labels.csv`) and the benchmark results (`data/benchmark_results.csv`) are included, so everything works even without an API key. To redo them yourself, delete those files and run `uv run python run.py label`, `uv run python run.py train` and `uv run python run.py benchmark --n 30`.
+The LLM's labels (`data/llm_labels.csv`) and the benchmark results (`data/benchmark_results.csv`) are included, so everything works even without an API key. To redo them yourself, delete those files and run `uv run python run.py label`, `uv run python run.py train` and `uv run python run.py benchmark --n 60`.
 
 ---|---|
 | Clean test messages | **98.3%** |

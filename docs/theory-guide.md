@@ -256,6 +256,8 @@ Two settings in `budget_agent/config.py` control it: `ML_CONFIDENCE = 0.80` and 
 
 Open models such as Llama can run on your own laptop with **Ollama**: free per request, private, and offline. The catch is that they are smaller and less smart than the big cloud models.
 
+In our runs, the 3B junior assistant answered at about 55 tokens a second on a laptop. It was right on simple policy questions, but sometimes invented details (for example, steps for an account upgrade that does not exist). That is why it only gets low-risk questions, and never anything that changes an order.
+
 They fit on a laptop thanks to **quantization**: storing each of the model's numbers with fewer bits. A 3-billion-parameter model at 16 bits per number needs about 6 GB. At about 4 bits it needs about 2 GB, and it runs faster, with a small loss in quality.
 
 ### Other techniques worth knowing
@@ -266,7 +268,7 @@ They fit on a laptop thanks to **quantization**: storing each of the model's num
 - **Streaming:** show the answer word by word, so it *feels* faster.
 - **Speculative decoding:** a small model drafts tokens and the big model checks them in one go. Mention only; it happens inside model servers.
 
-In our test run (30 messages, a third of them messy, no junior assistant yet), the whole office was **1.8× cheaper and 1.6× faster** than sending everything to the expert: $0.66 instead of $1.20 per 1,000 messages. The receptionist answered 40% of messages for $0.
+In our test run (60 messages, a third of them messy), the whole office was **2.0× cheaper and 1.5× faster** than sending everything to the expert: $0.51 instead of $1.02 per 1,000 messages. 55% of messages were answered for $0: 43% by the receptionist and 12% by the junior assistant.
 
 **In the repo:** `budget_agent/router.py`, `uv run python run.py route`, `uv run python run.py benchmark`, notebooks 04 and 05.
 

@@ -1,0 +1,13 @@
+anthropic>=1.0
+openai>=1.50
+datasets>=3.0
+ipykernel>=6.29
+joblib>=1.4
+matplotlib>=3.8
+nbconvert>=7.10
+pandas>=2.2
+python-dotenv>=1.0
+requests>=2.31
+scikit-learn>=1.5
+streamlit>=1.40
+pytest>=8.0

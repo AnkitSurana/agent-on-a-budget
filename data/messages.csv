@@ -1,0 +1,1621 @@
+id,text,true_intent,split
+0,help with a shipping address modification,change_shipping_address,train
+1,how do I make a reclamation?,complaint,test
+2,where can i see if there are any news on the reimbursement,track_refund,train
+3,I don't know what I have to do to speak to somebody,contact_human_agent,train
+4,I don't know how I can track my rebate,track_refund,train
+5,I do not know how to acquire some of your article,place_order,train
+6,I cannot check if there are any news on my rebate,track_refund,train
+7,how do I check when my shipment is going to arrive?,delivery_period,train
+8,I don't know how to download the invoice from Rahul,get_invoice,train
+9,assistance to see the invoice from Rahul,check_invoice,train
+10,I want to open a standard account,create_account,train
+11,how to update the info on my user profile?,edit_account,train
+12,I do not know how to cancel my premium account,delete_account,train
+13,I want assistance to cancel purchase NM10057,cancel_order,train
+14,i dont know how i can talk to an operator,contact_human_agent,train
+15,deliverids to India,delivery_options,train
+16,can uhelp me to see in which cases can i ask to be refunded,check_refund_policy,test
+17,"I want to check the bill from Rahul, could you help me?",check_invoice,train
+18,I want assisance to check when my product is going to arrive,delivery_period,train
+19,I want assistance to look for invoice #85632,check_invoice,test
+20,i want assistance to list the payment methods,check_payment_methods,train
+21,I don't know what to do ti see my invoice from Rahul,check_invoice,train
+22,I need assistance to take a quick look at bill #85632,check_invoice,train
+23,help to make a customer complaint,complaint,train
+24,i want help submitting a different delivery address,set_up_shipping_address,train
+25,i dont know what to doto check ur money back policy,check_refund_policy,train
+26,I want assistance buying some of your product,place_order,train
+27,how do I see at what time customer assistance available is?,contact_customer_service,train
+28,i need help to change an item of purchase NM10012,change_order,train
+29,"I'm waiting for a restitution of ₹1,499 dollars",track_refund,train
+30,can ya help me see how soon can i expect my item,delivery_period,train
+31,"I have to list the payment modalities, I need assistance",check_payment_methods,train
+32,do you edliver to India?,delivery_options,train
+33,need assistance contacting an operator,contact_human_agent,train
+34,help cancelling purchase NM10140,cancel_order,train
+35,"I entered a wrong delivery address, help me editing it",change_shipping_address,train
+36,I would like to submit the delivery address,set_up_shipping_address,train
+37,need help seeing the eta of the purchase NM10125,track_order,test
+38,I am trying to cancel my subscription to your newsletter,newsletter_subscription,train
+39,I am trying to lodge a customer reclamation,complaint,train
+40,lodging customer complaint against your company,complaint,train
+41,I don't know how to delete my premium account,delete_account,test
+42,wanna know about the delivery period,delivery_period,test
+43,I do not know how to get in touch with customer assistance,contact_customer_service,train
+44,I want to know if there are any news on my refund,track_refund,train
+45,I don't know how I can order some of your article,place_order,train
+46,change information on premium account,edit_account,test
+47,see purchase NM10114 current status,track_order,train
+48,"I have got to cancel purchase NM10071, help me",cancel_order,train
+49,i cannot find invoiced #00108,check_invoice,train
+50,i do not want purchase NM10052,cancel_order,train
+51,leave review for a service,review,train
+52,assistance seeing in what cases can I ask to be reimbursed,check_refund_policy,test
+53,what do i need to do to obtain reimbursements of my money,get_refund,train
+54,i have to use the premium account how todo it,switch_account,train
+55,how can I contact customer service?,contact_customer_service,train
+56,i need information about correcting purchase NM10279,change_order,train
+57,"I would like to subscribe to your newsletter, how to do it?",newsletter_subscription,train
+58,I need to recover my user account access key,recover_password,test
+59,"I need to use the gold profile, how can I do it?",switch_account,train
+60,new premium acount,create_account,train
+61,i have an issue trying to correct the shipping address,change_shipping_address,test
+62,I'm trying to get in touch with bloody customer service,contact_customer_service,test
+63,"I have to enter the shipping address, how do I do it?",set_up_shipping_address,train
+64,closing pro account,delete_account,train
+65,remove premium account,delete_account,train
+66,i do not know what i need to do to request a compensation,get_refund,train
+67,I have got to ask for rebates,get_refund,train
+68,i need help with canceling purchase NM10044,cancel_order,test
+69,why I cannot enter my seocndary shipping address valid,set_up_shipping_address,test
+70,editing order NM10216,change_order,train
+71,using premium accouny,switch_account,train
+72,"I am trying to find the shipping methods, I need help",delivery_options,test
+73,"I entered a wrong address, help me editing it",change_shipping_address,test
+74,I need assistance to change to the gold account,switch_account,train
+75,support submitting a new delivery address,set_up_shipping_address,test
+76,I have to make a consumer reclamation against your company,complaint,train
+77,"refund  ₹₹1,499",get_refund,train
+78,"I have got to open a new bloody premium account, I need help",create_account,train
+79,I want to leave an opniion for your company,review,test
+80,"I need to see your available payment methods, how to do it?",check_payment_methods,test
+81,I have got to retrieve my PIN code,recover_password,train
+82,I want assistance to swap some items of order NM10016,change_order,train
+83,find bill #00108,check_invoice,train
+84,i want my rebate of money,get_refund,train
+85,where to lodge a complaint?,complaint,train
+86,where do I locate my invoice #12588?,check_invoice,train
+87,modify premium account,edit_account,test
+88,want assistance to inform of troubles with payments,payment_issue,test
+89,need assistance retrievign my user password,recover_password,train
+90,can you help me to report an issue with signup?,registration_problems,train
+91,need to submit a new shipping adress,set_up_shipping_address,test
+92,how to use tye premium account?,switch_account,train
+93,updating information on standard account,edit_account,test
+94,"I need to send some feedback for a service, how to do it?",review,train
+95,need to get my bill #12588,get_invoice,test
+96,can you give me information about a pro account termination?,delete_account,test
+97,"rebating ₹₹1,499",get_refund,train
+98,need to chek my bill #85632 how to do it,check_invoice,train
+99,need to write a comment about ur serfices how could i do it,review,test
+100,I do not know how I can create a gold account,create_account,train
+101,"I have got to check how long the shipping takes, I need help",delivery_period,test
+102,where to see the methods for shipment?,delivery_options,test
+103,would it be possible to cancel purchase NM10015?,cancel_order,test
+104,problems submitting a delivery address,set_up_shipping_address,test
+105,show me what shipping options you offer,delivery_options,train
+106,want assistance to check how long refunds take,check_refund_policy,test
+107,in which cases can i request to be refunded,check_refund_policy,train
+108,wanna download my invoices from Rahul help me,get_invoice,test
+109,can ya help me seieng ur allowed payment methods,check_payment_methods,test
+110,is there an e-mail to send my feedbakc for ur products,review,train
+111,is there an address to send feedback for ur products,review,train
+112,help me  see what hours customer support available is,contact_customer_service,test
+113,I do not know what I have to do to remove a damn premium account,delete_account,test
+114,I'm trying to check what hours i can reach customer suport,contact_customer_service,train
+115,opening standard account for wife,create_account,train
+116,problems with standard account deletions,delete_account,train
+117,where do I check the current status of order NM10047?,track_order,test
+118,do you have a mail to get in touch with customer assistance?,contact_customer_service,test
+119,"I want to see what payment options are accepted, help me",check_payment_methods,train
+120,i have a question about creating a freemium account,create_account,test
+121,"i expect a rebate of ₹₹1,499",track_refund,train
+122,can I see how long the shipping takes?,delivery_period,train
+123,"rebate  ₹₹1,499",get_refund,train
+124,I need help adding an article to purchase NM10111,change_order,train
+125,I can't delete some products from order NM10119,change_order,test
+126,need assistance to create a standard account for my fiance,create_account,train
+127,i want help talking with a human agent,contact_human_agent,train
+128,is it possible to see the early exit fees?,check_cancellation_fee,test
+129,"i have paid ₹₹1,499 for na article i need to get a rebate",get_refund,test
+130,have a question about opening premium accounts,create_account,train
+131,assistance informing of an error with a signup,registration_problems,train
+132,is it possible to seeur money back policy,check_refund_policy,train
+133,I need help cancelling my company newsletter subscription,newsletter_subscription,train
+134,where can I report issues with sign-up?,registration_problems,train
+135,i cant afford order NM10258,cancel_order,test
+136,wanna add several products to order NM10013 how can i do it,change_order,train
+137,I need assistance to change the delivery address,change_shipping_address,test
+138,show me bill #12588,check_invoice,test
+139,is it possible to contact a human agent?,contact_human_agent,train
+140,where do i notify of issuse with signup,registration_problems,train
+141,I need assistance retrieving the PIN of my account,recover_password,train
+142,how can i see order NM10287 status,track_order,train
+143,i want information about correcting the shiping address,change_shipping_address,train
+144,I cannot unsubscribe to your newslettewr,newsletter_subscription,test
+145,I'd like to see the withdrwaal fee how can i do it,check_cancellation_fee,test
+146,I don't know how I can create a premium account for my dad,create_account,test
+147,help submitting some feedback for ur products,review,train
+148,I am trying to check what delivery methods you offer,delivery_options,train
+149,I want assistance to file a fucking claim,complaint,test
+150,I have got to see the cancellation charge,check_cancellation_fee,test
+151,I need help to call customer support,contact_customer_service,test
+152,I need help locating my bill #85632,check_invoice,test
+153,have a questoon about creating user profiles,registration_problems,test
+154,need help filing a claim against your organization,complaint,test
+155,help switching something of purchase NM10101,change_order,train
+156,assistance to shop several articles,place_order,test
+157,I have entered a wrong delivery address,change_shipping_address,train
+158,i dont know how i can see how soon can i expect my order,delivery_period,train
+159,send me my bill from Rahul,get_invoice,train
+160,would it be possible to speak with customer support?,contact_customer_service,test
+161,where do I check what hours I can reach customer service?,contact_customer_service,train
+162,want assistance seeing what payment optionsare available,check_payment_methods,test
+163,is it possible to check when my shipment is going to arrive?,delivery_period,train
+164,I want assistance to set the goddamn delivery address up,set_up_shipping_address,test
+165,I try to submit a ne delivery address,set_up_shipping_address,train
+166,I'm calling to gt the bloody bills from Rahul,get_invoice,train
+167,i have to check the cancellation penalty,check_cancellation_fee,train
+168,need to reoprt problems with online payment,payment_issue,train
+169,help me subscribing to the newsletter,newsletter_subscription,train
+170,where to earn several of your product?,place_order,train
+171,changing data on standard  account,edit_account,train
+172,I need assistance to set up a different delivery address,set_up_shipping_address,train
+173,i want assistance to get  in touch with customer service,contact_customer_service,test
+174,notifying of issues with sign-up,registration_problems,train
+175,I call to lodge a fucking claim,complaint,train
+176,where do I know if there is anything wrong with my rebate?,track_refund,train
+177,help to check the ETA of order NM10279,track_order,test
+178,need assistance to check ur reimbursement policy,check_refund_policy,train
+179,help me to see if there is anything new on the reimbursement,track_refund,test
+180,checking early exit fee,check_cancellation_fee,train
+181,could you show me in what situations can I request refunds?,check_refund_policy,test
+182,i dont know how to report issues with online payments,payment_issue,train
+183,help to report a registration problem,registration_problems,train
+184,switch to premium account,switch_account,train
+185,I have a problem with the deletion of a premium account,delete_account,train
+186,help me switch to the freemium  account,switch_account,test
+187,I want assistance downloading invoice #00108,get_invoice,train
+188,wanna check in which cases can i ask for a refund,check_refund_policy,test
+189,wanna check how long it takes for my delivery to arrive,delivery_period,train
+190,help me seeing what hours customer assistance available is,contact_customer_service,train
+191,how to correct some of the details on my user profile,edit_account,train
+192,I am trying to report signup problems,registration_problems,test
+193,can you help me recover the key of my profile?,recover_password,train
+194,where  do i check the withdrawal penalties,check_cancellation_fee,train
+195,where do I see when my package is going to arrive?,delivery_period,train
+196,"I need to earn several items, help me",place_order,train
+197,i have errors changing mydelivery address,change_shipping_address,test
+198,i want assistance reporting a problem with payment,payment_issue,train
+199,"I want  to list your payment options, can you help me?",check_payment_methods,train
+200,what do i need to do to get my invoices from Rahul,get_invoice,train
+201,I need helpto cancel order NM10214,cancel_order,test
+202,"I need to check your reimbursement policy, will you help me?",check_refund_policy,train
+203,where do I notify of an error with signup?,registration_problems,test
+204,need assistance talking to someone,contact_human_agent,test
+205,I want to unsubscribe from your company newsletter,newsletter_subscription,test
+206,can i order frrom India,delivery_options,test
+207,could you help me to locate the bills from Rahul?,check_invoice,train
+208,i want help to change the info on my user,edit_account,train
+209,i need help to download the damn bill from Rahul,get_invoice,test
+210,check if there is anything wrong with my damn restitution,track_refund,train
+211,information about cancel the sbscription to the newsletter,newsletter_subscription,test
+212,how do ii modify order NM10112,change_order,test
+213,are charges for services reimbursable,check_refund_policy,train
+214,notifying of error opening user profile,registration_problems,train
+215,i need information about a pwd recovery,recover_password,train
+216,supports trying to update my address,change_shipping_address,test
+217,need help to see in which situations can I request a refund,check_refund_policy,train
+218,help checking if there is anything new on the bloody rebate,track_refund,train
+219,I need help seeing your money back guarantee,check_refund_policy,train
+220,can i check ur aailable payment methods,check_payment_methods,train
+221,how do i delet some items from order NM10229,change_order,train
+222,i need help checking what payment options are accepted,check_payment_methods,test
+223,use premium account,switch_account,test
+224,is it possible to ordet from India,delivery_options,train
+225,want help norifying of a payment issue,payment_issue,train
+226,how to see the payment modalities?,check_payment_methods,test
+227,assistance filing a consumer reclamation against ur business,complaint,train
+228,I want assistance talking with an person,contact_human_agent,test
+229,i cannot find the early termination chaarges,check_cancellation_fee,train
+230,I need assistancde cancelling order NM10142,cancel_order,train
+231,correcting info on premium aqccount,edit_account,train
+232,can I download bill #37777?,get_invoice,train
+233,I don't know how to contact a person,contact_human_agent,train
+234,where do i see when my product is gonna arrive,delivery_period,train
+235,is it possible to shop an item,place_order,train
+236,checking current status of order NM10003,track_order,train
+237,help me inform of a problem withpayment,payment_issue,train
+238,help me to leave feedback for ur services,review,test
+239,want help to speak with an person,contact_human_agent,test
+240,I have to buy some of yout item,place_order,train
+241,how do i download my bill #37777,get_invoice,train
+242,how can i find information about my standard account removal,delete_account,test
+243,how can I inform of a  payment issue?,payment_issue,train
+244,I want assistance to check the early exit penalty,check_cancellation_fee,train
+245,where could I buy several articles?,place_order,test
+246,i try to leave my feedback,review,train
+247,I need assistance to contact a live agent,contact_human_agent,test
+248,can I see what payment methods are available?,check_payment_methods,train
+249,help me unsubscribe from ur corporate newsletter,newsletter_subscription,train
+250,help checking what hours i can reach customer support,contact_customer_service,test
+251,"I'm waiting for a rebateof ₹₹1,499",track_refund,test
+252,"I can't make payments, assistance informing of problems",payment_issue,train
+253,create new premium account for daughter,create_account,train
+254,I need to retrieve my PIN,recover_password,test
+255,"I have got to talk to a person, how can I do it?",contact_human_agent,train
+256,can uhelp me subscribe to ur newsletter,newsletter_subscription,train
+257,where do i switch to the pro account,switch_account,train
+258,i dont know what to do to cancel order NM10081,cancel_order,test
+259,i dont know how i can locate invoice #85632,check_invoice,train
+260,what do i need to do to cancel order NM10216,cancel_order,test
+261,I can't delete an article from order NM10174,change_order,test
+262,want help to see purchase NM10142 status,track_order,train
+263,want assistance to switch something of purchase NM10079,change_order,test
+264,i have a question about opening a premium account,create_account,test
+265,how can I swap a product of order NM10110?,change_order,test
+266,I have to see in which cases can I sak for reimbursements,check_refund_policy,test
+267,want help to make a complaint,complaint,train
+268,checking status of order NM10172,track_order,train
+269,I want assistance to contact an operator,contact_human_agent,test
+270,I want assistance to list your accetped payment modalities,check_payment_methods,train
+271,reporting issue opening user,registration_problems,test
+272,needto do a purchase can i get some help,place_order,train
+273,I am trying to request compensations of money,get_refund,train
+274,"I want to modify the address, how can I do it?",change_shipping_address,train
+275,help to check what methods for delivery i have,delivery_options,train
+276,i have to check the shipment methods i need assistance,delivery_options,train
+277,help to check how soon can I expect my shipment,delivery_period,train
+278,"I want to check the payment options, I need assistance",check_payment_methods,test
+279,what do I need to do to get refunds of money?,get_refund,test
+280,how can I find information about a premium account termination?,delete_account,test
+281,I do not know how I can send some feedback for your company,review,train
+282,can I file a claim against your company?,complaint,test
+283,"rebate ₹₹1,499",get_refund,train
+284,"I need to call customer assistance, how could I do it?",contact_customer_service,train
+285,change information on premium account,edit_account,test
+286,can you help me speaking with a live agent?,contact_human_agent,train
+287,I do not know how to leave an opinion for a service,review,train
+288,i want help to talk to customer assistance,contact_customer_service,train
+289,problem with premium acount deletions,delete_account,test
+290,how can I get in touch with customer support?,contact_customer_service,train
+291,i dont know how to contact customer support,contact_customer_service,test
+292,there is an issue submitting the new delivery address,set_up_shipping_address,train
+293,need assistance seeing the withdrawal penalty,check_cancellation_fee,test
+294,i have a problem with opening a premium account,create_account,train
+295,i cant enter the shipping address,set_up_shipping_address,test
+296,i want assistance to solve issues with payment,payment_issue,test
+297,i want assistance trying to change ym shipping address,change_shipping_address,test
+298,help me filing a consumer reclamation,complaint,test
+299,I want assistance to shop several articles,place_order,test
+300,"I have got to see the bills from Rahul, help me",check_invoice,train
+301,I acn't unsubscribe to your company newsletter,newsletter_subscription,train
+302,i want help to check in what cases can i request refunds,check_refund_policy,train
+303,correcting details on premium account,edit_account,train
+304,i need assistance switching to the premium account,switch_account,train
+305,where to report an error with a signup?,registration_problems,train
+306,see your payment modalities,check_payment_methods,train
+307,see early exit penalties,check_cancellation_fee,train
+308,I don't know how I can order a few of your article,place_order,test
+309,I want assistance editing purchase  NM10052,change_order,train
+310,is it possible to check how soon can I expect the item?,delivery_period,train
+311,when am i ovtaining my money back,get_refund,train
+312,I want help unsubscribing from the newsletter,newsletter_subscription,train
+313,assistance to see my compensation status,track_refund,train
+314,creatingnew premium account,create_account,train
+315,can you help me changing to the standard account?,switch_account,test
+316,mldifying premium account,edit_account,train
+317,wanna check what payment methods uaccept,check_payment_methods,train
+318,can i submit my new delivery address,set_up_shipping_address,train
+319,I need assistance checking the early exit charges,check_cancellation_fee,train
+320,I'd like to unsubscrie to the corporate newsletter help me,newsletter_subscription,test
+321,i want help giving a quick look at the bill #12588,check_invoice,test
+322,I'd like to soeak with customer assistance could uhelp me,contact_customer_service,test
+323,i cannot sign up help me reporting sign-up errors,registration_problems,test
+324,I don't know what I need to do to speak to a live agent,contact_human_agent,train
+325,"I need to make a damn consumer complaint, how could I do it?",complaint,train
+326,"the payment failed, how to report an error with payment?",payment_issue,train
+327,is there a e-mail to send my feedback for your products?,review,train
+328,see in whnich situations can I request my money back,check_refund_policy,train
+329,what do i have to do to locate purchase NM10047,track_order,test
+330,clsoe freemium account,delete_account,test
+331,i do not know how i can get a compensation of money,get_refund,train
+332,help me to report an issue with signup,registration_problems,test
+333,how can I ask for a rebate ?,get_refund,train
+334,how do I notify of an issue with payment?,payment_issue,train
+335,I want assistance removing my goddamn platinum account,delete_account,train
+336,help me see at what time customer support available is,contact_customer_service,train
+337,i try to demand a reimbursement of my money,get_refund,train
+338,"I need to shop a few of your product, how can I do it?",place_order,train
+339,I need help seeing if there are any news on the compensation,track_refund,train
+340,need to submit a secondary shipping address how to do it,set_up_shipping_address,train
+341,"I am trying to find shipping periods, could you help me?",delivery_period,train
+342,do you have a section to send a comment for a product?,review,test
+343,can you help me canceling the goddamn platinum account?,delete_account,train
+344,I am trying to sign up to your newsletter,newsletter_subscription,test
+345,seebills from Rahul,check_invoice,train
+346,what do i need to do to restore my account pin,recover_password,test
+347,could you help me obtain rebates of money?,get_refund,train
+348,I want assistance to see how soon can I expect my purchase,delivery_period,train
+349,"I have got to see the cancellation charge, how to do it?",check_cancellation_fee,test
+350,have a problem with the deletion of my premium account,delete_account,train
+351,help leaving feedback for your products,review,train
+352,"i expect a rebate of ₹₹1,499",track_refund,train
+353,how do I use the standard profile?,switch_account,train
+354,want assistance to report a payment problem,payment_issue,train
+355,i cannot find the cancellation fees,check_cancellation_fee,train
+356,want help to check what hours i cancall customer service,contact_customer_service,train
+357,do you ship to Pune?,delivery_options,train
+358,I want help to check the current status of the reimbursement,track_refund,test
+359,i can no longer pay for order NM10194,cancel_order,test
+360,"I have got to use the pro profile, how can I do it?",switch_account,train
+361,I don't know how to see when my item is going to arrive,delivery_period,test
+362,how long does it take for a shipment to arrive,delivery_period,train
+363,i have a problem entering a secondary shipping address,set_up_shipping_address,train
+364,how do i inform of a problem with a signup,registration_problems,train
+365,can you help me sign up to the company newsletter?,newsletter_subscription,train
+366,could you help me inform of an issue with a signup?,registration_problems,train
+367,how to see the available payment modalities?,check_payment_methods,test
+368,I want assistance downloading the invoice from Rahul,get_invoice,test
+369,i have an error with my signup,registration_problems,test
+370,help to reset my user account pin,recover_password,train
+371,i dont know how to ask for restitutions of my money,get_refund,train
+372,what do I need to do to give a quick look at invoice #12588?,check_invoice,test
+373,I want assistance entering the new delivery address,set_up_shipping_address,train
+374,where to change to the goddamn premium account?,switch_account,train
+375,I do not knowwhat I need to do to get invoice #85632,get_invoice,test
+376,I need assistance to edit the personal details,edit_account,train
+377,where could I see the early exit penalties?,check_cancellation_fee,test
+378,modifying information on standard account,edit_account,train
+379,i have got to check the early exit fee can uhelp me,check_cancellation_fee,train
+380,i do not know how to download my bill #00108,get_invoice,train
+381,I want assistance to leave feedback about a product,review,train
+382,can you help me adding an itm to order NM10049?,change_order,train
+383,"I'm waiting for a refund of ₹1,499 dollrs",track_refund,train
+384,I need help to create a standard account,create_account,train
+385,I do not know what to do to inform of a signup problem,registration_problems,train
+386,I have to see your refund policy,check_refund_policy,train
+387,help switching some products of order NM10183,change_order,test
+388,write comment about your services,review,test
+389,i have got to get bill #37777 how to do it,get_invoice,train
+390,I do not know how I can change to the premium account,switch_account,train
+391,can uhelp me to talk to customer assistance,contact_customer_service,train
+392,I do not know how to send feedback about your services,review,test
+393,"I have to see how soon can I expect my product, help me",delivery_period,test
+394,I'm waiting for a reimbursement of 160dollars,track_refund,train
+395,need assistance seeing ur accepted payment modalities,check_payment_methods,train
+396,problem with premium account deletions,delete_account,train
+397,I don't know what I need to do to report a payment problem,payment_issue,test
+398,"I ain't registered, I want to create a pro account",create_account,train
+399,would you give meinformation about premium account removals?,delete_account,train
+400,I am trying to inform of an issue with registrations,registration_problems,train
+401,assistance to file a customer claim,complaint,train
+402,can uhelp me to get the invoice #12588,get_invoice,train
+403,can you help me know if there are any updates on my refund?,track_refund,test
+404,how do i notify of a problem with online payments,payment_issue,train
+405,problem with creating a gold account,create_account,train
+406,"I expect an refund of ₹1,499 dollars",track_refund,train
+407,check estimated time of arrival of order NM10176,track_order,test
+408,is it possible to speak to someone?,contact_human_agent,train
+409,can you help me to speak with customer service?,contact_customer_service,test
+410,can I place an ordewr from India?,delivery_options,train
+411,opening new premium account,create_account,train
+412,wanna check the status of purchase NM10135 how to do it,track_order,test
+413,I need assistance checking how soon can I expect my delivery,delivery_period,train
+414,modify information on premium acfount,edit_account,train
+415,can you tell me what payment methods you accept?,check_payment_methods,train
+416,look for invoices from Rahul,check_invoice,train
+417,assistance listing the payment methods,check_payment_methods,train
+418,"I have got to purchase an article, how do I do it?",place_order,train
+419,i dont know what i need to do to cancel my premium account,delete_account,test
+420,can you help me to report a problem with signup?,registration_problems,test
+421,deliveries to Pune,delivery_options,test
+422,I do not know how I can open another damn premium account,create_account,train
+423,can ya help me talk with a human agent,contact_human_agent,test
+424,help notifying of an error with payment,payment_issue,train
+425,I need to lodge a consumer claim,complaint,train
+426,what is thecustomer support mail,contact_customer_service,train
+427,i made a mistake i wanna change purchase NM10022,change_order,train
+428,how can I see order NM10235 current status?,track_order,test
+429,can uhelp melocate order NM10274,track_order,train
+430,help me check in which cvases can i ask for my money back,check_refund_policy,train
+431,where do i locate my invoices from Rahul,check_invoice,train
+432,I don't  know how I can find the invoices from Rahul,check_invoice,test
+433,"I expect a refund of ₹1,499 dollars, has it been processed?",track_refund,test
+434,where do I list the available payment options?,check_payment_methods,test
+435,i need help with canceling purchase NM10063,cancel_order,test
+436,I need help to solve errors with payments,payment_issue,train
+437,"I forgot my user profile PIN, could I recover it?",recover_password,train
+438,i dont know what to do to download invoice #37777,get_invoice,train
+439,I need to submit my delivery address,set_up_shipping_address,train
+440,is it possible to earn something?,place_order,test
+441,what do i need to do to use the premium profile,switch_account,train
+442,correcting information on premium account,edit_account,train
+443,where do i check the withdrawal fees,check_cancellation_fee,test
+444,i have to switch some bloody products of order NM10193,change_order,test
+445,i do not know what i need to do to get retsitutions of money,get_refund,train
+446,"I have paid ₹₹1,499 for an order, how oculd I receive a refund?",get_refund,train
+447,i have got to update my shipping address,change_shipping_address,test
+448,need help to see how long it takes for my parcel to arrive,delivery_period,train
+449,want assistance opening a standard account,create_account,train
+450,"I cannot make a payment, I want help to report a problem",payment_issue,train
+451,what do I need to do to change to the premium account?,switch_account,train
+452,want assistance canceling purchase NM10040,cancel_order,train
+453,file customerr claim,complaint,train
+454,help to purchase a few of your item,place_order,test
+455,how do i find my invoice #00108,check_invoice,test
+456,can you help me lodging a claim against your business ?,complaint,train
+457,check current status of purchase NM10282,track_order,test
+458,order  NM10150 status,track_order,train
+459,i do not know what i need to do to inform of signup erors,registration_problems,train
+460,i do not know how to cancel purchasw NM10185,cancel_order,train
+461,where do I see my rebate status?,track_refund,train
+462,i do not know how to see the withdrawal penalties,check_cancellation_fee,train
+463,can you help me lodge a complaint against your organization?,complaint,train
+464,opening new premium account for daughter,create_account,train
+465,"I don't need my damn standard account, I have to remove it",delete_account,train
+466,I do not know how I can see the cancellation fees,check_cancellation_fee,train
+467,can you help me talking with someone?,contact_human_agent,train
+468,where can i get information about the pwd reset,recover_password,train
+469,help to retrieve my profile PIN code,recover_password,train
+470,can ya tell me what payment payment modalities ya accept,check_payment_methods,train
+471,do ya deliver to Pune,delivery_options,train
+472,i have to see how long it takes for my delivery to arrive,delivery_period,train
+473,help seeing the withdrawal fee,check_cancellation_fee,train
+474,I need help signing up to your newsletter,newsletter_subscription,test
+475,how to get the bill from Rahul?,get_invoice,train
+476,what do i have to do to list ur allowed payment options,check_payment_methods,test
+477,need hepl recovering my user profile PIN,recover_password,train
+478,"my address has changed, how could I change it?",change_shipping_address,train
+479,how to check at what time I can call customer service?,contact_customer_service,train
+480,I try to check in which situations can I ask for a refund,check_refund_policy,train
+481,help to swap an item of purchase NM10295,change_order,train
+482,i dont know what to do to get invoice #37777,get_invoice,test
+483,i do not know what to do to purchase several products,place_order,test
+484,i bought some damn item help to cancep order NM10098,cancel_order,test
+485,how can I lodge a customer claim?,complaint,test
+486,i want help retrieving the access key of my account,recover_password,test
+487,I do not know how I can change my delivery address,change_shipping_address,train
+488,update inforemation on premium account,edit_account,test
+489,what do I have to do to recover my user PIN?,recover_password,train
+490,can ya show me at what time customer assistance available is,contact_customer_service,train
+491,i cannot switch to the standard account,switch_account,test
+492,want help notifying of a trouble with payment,payment_issue,test
+493,wanna nusubscribe from the company newsletter,newsletter_subscription,train
+494,i call to write an opinion about an product,review,train
+495,"i expect a refund of ₹1,499 dollars",track_refund,test
+496,i dont know how i can talk with someone,contact_human_agent,test
+497,i nedd supports editing my address,change_shipping_address,test
+498,where do i inform of a trouble with payments,payment_issue,train
+499,need assistance to obtain a refund of my money,get_refund,train
+500,is there an address to send some feedback for your company?,review,train
+501,help me creating a freemium account,create_account,train
+502,I don't know how I can chat with a live agent,contact_human_agent,test
+503,i need assistance downloading the bill from Rahul,get_invoice,test
+504,how to check ur refund policy,check_refund_policy,train
+505,"I don't use my bloody pro account, how do I remove it?",delete_account,test
+506,I do not know what I have to do to make a reclamation,complaint,train
+507,help me to inform of a registration issue,registration_problems,train
+508,report problems creating profile,registration_problems,train
+509,i do not know how i can list the lalowed payment options,check_payment_methods,test
+510,error submitting my shipping address,set_up_shipping_address,train
+511,checking status of rebate,track_refund,train
+512,where can i enter a secondary shipping adcress,set_up_shipping_address,test
+513,I need help solving a troouble with online payments,payment_issue,train
+514,how to demand a compensation of my money?,get_refund,train
+515,want assistance to give a quick look at the invoice #12588,check_invoice,train
+516,I have to acquire a product,place_order,test
+517,help me list your accepted payment methods,check_payment_methods,train
+518,can uhelp me lodgin a reclamation against ur business,complaint,train
+519,help checkinjg the eta of order NM10035,track_order,train
+520,i dont know how to report signup issues,registration_problems,train
+521,where can I see what payment methods are accepted?,check_payment_methods,train
+522,want assistance to lodge a complaint against your business,complaint,train
+523,I want to check in what situations can I request a refund,check_refund_policy,train
+524,can ya tell me about signing up to ur newsletter,newsletter_subscription,train
+525,check cancellation fee,check_cancellation_fee,train
+526,register,create_account,train
+527,want help to speak to someone,contact_human_agent,train
+528,i dont know what i have to do to buy an article,place_order,train
+529,i cannot see tge eta of the purchase NM10023,track_order,train
+530,i need assistance checking my  invoice from Rahul,check_invoice,test
+531,getting billsfrom Rahul,get_invoice,train
+532,help me to lodgea complaint against ur business,complaint,test
+533,how can I get information about my newsletter subscription?,newsletter_subscription,train
+534,modify details on premium account,edit_account,test
+535,I want to see in what cases can I ask to be reimbursed,check_refund_policy,train
+536,find information about my lost PIN,recover_password,train
+537,I have an error updating my address,change_shipping_address,train
+538,assistance checking how soon can I  expect the delivery,delivery_period,test
+539,i want help talking with someone,contact_human_agent,train
+540,I am trying to check the allowed payment methods,check_payment_methods,test
+541,what do I need to do to notify of an issue with a signup?,registration_problems,test
+542,I need help to see the early exit penalties,check_cancellation_fee,train
+543,I have a problem updating the delivery address,change_shipping_address,train
+544,want help ordering several of your product,place_order,train
+545,would it be possible to sign up to the newsletter?,newsletter_subscription,test
+546,do ya deliver to India,delivery_options,train
+547,how to notify of problems with sign-up?,registration_problems,train
+548,"I have to see when my item is going to arrive, help me",delivery_period,train
+549,I don't know how to chat with a human agent,contact_human_agent,test
+550,I can't receive the company newsletter,newsletter_subscription,train
+551,need assistance speaking to a hujan agent,contact_human_agent,test
+552,"I need to send some feedback for a service, how do I do it?",review,test
+553,whag do i need to do to cancel order NM10116,cancel_order,train
+554,how to get my bill #85632,get_invoice,train
+555,"I lost my invoices from Rahul, show them to me",check_invoice,test
+556,where can I take a quick look at the bill #85632?,check_invoice,test
+557,I want help to set a different shipping address up,set_up_shipping_address,test
+558,I need help to contact a person,contact_human_agent,train
+559,"I have entered a wrong delivery address, help me changing it",change_shipping_address,train
+560,I need assistance listing the available payment methods,check_payment_methods,train
+561,I have to change to the premium account,switch_account,test
+562,I don't know what to do to download my invoice #12588,get_invoice,train
+563,I don't know how I can acquire some fucking articles,place_order,train
+564,do you shp to Pune?,delivery_options,train
+565,i do not know how i can speak to someone,contact_human_agent,test
+566,can you help me checking what shipping options I have?,delivery_options,train
+567,delete premium acvount,delete_account,test
+568,I have issues changing my shipping address,change_shipping_address,train
+569,I need assistance leaving an opinion about your services,review,train
+570,could you help me to speak to customer support?,contact_customer_service,train
+571,wanna submita goddamn delivery address how could i do it,set_up_shipping_address,train
+572,what is the early exit penalty,check_cancellation_fee,train
+573,is there a section to submit my feedback for ur products,review,train
+574,uarent helpful can i chat with somebody,contact_human_agent,test
+575,I have got to check your refund policy,check_refund_policy,test
+576,itry to swap several damn products of order NM10148,change_order,train
+577,i do not nkow how to delete the premium account,delete_account,train
+578,i do not kno how to buy some of ur item,place_order,test
+579,"I chose a wrong shipping address, how do I update it?",change_shipping_address,train
+580,I need help to see your reimbursement policy,check_refund_policy,test
+581,i need assistance demanding compensations of my money,get_refund,train
+582,how do i lodge a consumer complaint,complaint,test
+583,i dont know how i can inform of sign-up problems,registration_problems,test
+584,I do not know how I can enter the new delivery address,set_up_shipping_address,test
+585,tell me about the subscription to the corporate newsletter,newsletter_subscription,train
+586,"I want to make a fucking consumer claim, I need help",complaint,train
+587,help me writing a comment for a service,review,train
+588,"I entered a wrong address by mistake, could I update it?",change_shipping_address,test
+589,help checking in what cases can I request a refund,check_refund_policy,train
+590,i dont know what to do to speak with someone,contact_human_agent,train
+591,can you help me setting another delivery addrss up?,set_up_shipping_address,train
+592,can I use the premium profile?,switch_account,train
+593,I try to leave some feedback about your services,review,train
+594,where can I find information about my pro account removal?,delete_account,train
+595,assistance to inform of a damn payment issue,payment_issue,test
+596,I need to reset my damn PIN code,recover_password,train
+597,"I paid ₹₹1,499 for a product, is it possible to get a refund?",get_refund,test
+598,I want help retrieving the password of my account,recover_password,train
+599,I need help downloading the bills from Rahul,get_invoice,train
+600,is it possible to check the status of the rebate?,track_refund,train
+601,is it possible to notify of an error with signup?,registration_problems,train
+602,I have got to check my bills from Rahul,check_invoice,test
+603,opening premium account for wife,create_account,train
+604,need assistance acquiring an item,place_order,train
+605,i canot correct the order i made,change_order,train
+606,help to cancel purchase NM10040,cancel_order,test
+607,"I'm waiting for a restitution of ₹1,499 dollars",track_refund,train
+608,there is a trouble correcting my delivery adxdress,change_shipping_address,train
+609,remove platinum account,delete_account,train
+610,how to send some feedback about your company?,review,test
+611,how to see what methods for delivery I can choose?,delivery_options,train
+612,I try to change to the premium account,switch_account,test
+613,where can I retrieve my user pwd ?,recover_password,train
+614,"I have to correct my address, will you help me?",change_shipping_address,test
+615,i do not know how i acn look for the bills from Rahul,check_invoice,test
+616,checking status of order NM10119,track_order,train
+617,I need help to see how soon can I expect the damn item,delivery_period,train
+618,I need assistance to see the available payment modalities,check_payment_methods,test
+619,I do not kinow how to contact a person,contact_human_agent,train
+620,I do not know what I need to do to create a premium account,create_account,test
+621,I try to track order NM10051,track_order,train
+622,i do not know what to do to acquire some of ur article,place_order,test
+623,I need help earning some articles,place_order,train
+624,trackorder NM10194,track_order,train
+625,assistance opening user account,registration_problems,train
+626,need help filing a reclamation,complaint,train
+627,"I have to see your refund policy, will you help me?",check_refund_policy,train
+628,"I want to list the allowed payment methods, how to do it?",check_payment_methods,train
+629,payment help,payment_issue,train
+630,i dont know what i have to do to submit my delivery address,set_up_shipping_address,test
+631,would ig be possible to order some bloody articles?,place_order,train
+632,is it possible to see how soon can I expect my purchase?,delivery_period,train
+633,can you show me how soon can I expect my purchase?,delivery_period,train
+634,where can I check the current status of my rebate?,track_refund,train
+635,need assistance with opening my premium account,create_account,test
+636,i dont know how to see ur accepted payment modalities,check_payment_methods,train
+637,question about the deletion of my premium account,delete_account,test
+638,how do i check what goddamn payment methods are lalowed,check_payment_methods,train
+639,"I lost my user PIN, what do I have to do to reset it?",recover_password,test
+640,i need assistance seeing my refund current status,track_refund,test
+641,want assistance updating the address,change_shipping_address,test
+642,help me to cancel purchase NM10142,cancel_order,train
+643,want assistance trying to change the shipping address,change_shipping_address,test
+644,could you help me find my invoice from Rahul?,check_invoice,train
+645,"I want to restore my profile PIN code, I need help",recover_password,train
+646,I need hepp requesting compensations,get_refund,test
+647,want assistance to report a trouble with online payments,payment_issue,train
+648,what do i need to do to correct my shipping address,change_shipping_address,train
+649,talking to agent,contact_human_agent,train
+650,can uhelp me locating order NM10232,track_order,train
+651,I need assistance to set the delivery address up,set_up_shipping_address,train
+652,"I want to earn a product, how can I do iut?",place_order,train
+653,can I talk with an operator?,contact_human_agent,train
+654,how to update my  shipping address?,change_shipping_address,train
+655,I  cannot set up my shipping address,set_up_shipping_address,train
+656,can you help me receive refunds of money?,get_refund,test
+657,"I have to check the fucking withdrawal charges, I need help",check_cancellation_fee,test
+658,how can i remove a platinum acclunt,delete_account,train
+659,I try to see in what cases can I request a reimbursement,check_refund_policy,test
+660,I want help listing your allowed payment methods,check_payment_methods,train
+661,is it possible to acquire some of ur product,place_order,train
+662,where can i look for the inovice #12588,check_invoice,test
+663,order  NM10186 status,track_order,test
+664,help to change soe of the details on my profile,edit_account,train
+665,what do i need to do to check the status of the restitution,track_refund,test
+666,check purchase NM10083 status,track_order,train
+667,where could I check the goddamn cancellation charge?,check_cancellation_fee,train
+668,I want assistance earning some of your product,place_order,test
+669,i do not know how to speak with a live agent,contact_human_agent,train
+670,where do i cherck at what time i can call customer service,contact_customer_service,train
+671,i do not know how to create a premium account,create_account,train
+672,"I have to locate order NM10189, could I get some help?",track_order,test
+673,can I change to the premium account?,switch_account,train
+674,I need assistance with canceling purchase NM10181,cancel_order,train
+675,update data on platinum account,edit_account,train
+676,help me make a customer claim against your company,complaint,test
+677,wanna list the payment modalities can ya help me,check_payment_methods,train
+678,want assistance to cancel order NM10107,cancel_order,train
+679,I do not know what to do to see the withdrawal penalties,check_cancellation_fee,test
+680,i want help talking with an assistat,contact_human_agent,train
+681,whre do I inform of problems with sign-up?,registration_problems,train
+682,can you help me to cancel purchase NM10136?,cancel_order,train
+683,i try to talk with a person,contact_human_agent,train
+684,how do I check my bill from Rahul?,check_invoice,train
+685,I need support trying to update my shipping address,change_shipping_address,train
+686,i ahve an issue submitting a new delivery address,set_up_shipping_address,test
+687,I try to see purchase NM10036 current status,track_order,train
+688,"I can't make a transfer, can I notify of payment errors?",payment_issue,test
+689,I want help changing to the premium account,switch_account,train
+690,shipping to Pune,delivery_options,test
+691,I don't know what I have to do to shop a few of your item,place_order,train
+692,what do I have to do to recover the PIN of my account?,recover_password,train
+693,i need help to use the fucking premium profile,switch_account,train
+694,what do I have to do to speak to a live agent?,contact_human_agent,test
+695,"I'm waiting for a refund of ₹1,499 dollars",track_refund,train
+696,i want help to close my premium accouny,delete_account,train
+697,what do I have to do to report a problem with sign-up?,registration_problems,train
+698,how to switch to the premium account,switch_account,test
+699,could I see your reimbursement policy?,check_refund_policy,train
+700,I need assistance seeing what payment options are allowed,check_payment_methods,train
+701,how to lodge a complaint against your organization?,complaint,train
+702,I don't know how to see the allowed payment methods,check_payment_methods,train
+703,send me bills from Rahul,get_invoice,train
+704,need to see what shipment options are there how to do it,delivery_options,test
+705,I don't know what I have to do to download my bill #12588,get_invoice,train
+706,"someone stole my password, help retrieving it",recover_password,train
+707,assistance to file a claim,complaint,train
+708,will you direct to me someone?,contact_human_agent,train
+709,can you help me to talk with an agent?,contact_human_agent,test
+710,can you help me checking your reimbursement policy?,check_refund_policy,train
+711,I have to check what shipment methods you offer,delivery_options,train
+712,"I want to edit my user profile, how could I do it?",edit_account,test
+713,inform of an error with a signup,registration_problems,test
+714,modify data on standard account,edit_account,test
+715,where do i check the termination penalty,check_cancellation_fee,test
+716,help seeing how soon can I expect my product,delivery_period,train
+717,can you help me getting invoice #37777?,get_invoice,train
+718,I can't see the status of my subscription to your newsletter,newsletter_subscription,test
+719,report anissue with payment,payment_issue,test
+720,update purcahse NM10087,change_order,train
+721,can I see in which cases can I request a refund?,check_refund_policy,train
+722,can I contact someone?,contact_human_agent,train
+723,i bought some product help me canceling order NM10273,cancel_order,train
+724,can uhelp me ot check the goddamn early exit penalties,check_cancellation_fee,train
+725,help to retrieve the PIN code of my user profile,recover_password,test
+726,i do not know what i need to do to get my invoice #85632,get_invoice,train
+727,can you tell me what hours customer support available is?,contact_customer_service,test
+728,where do i check how soon can i expect the delivery,delivery_period,test
+729,"I have to see what delivery options you offer, help me",delivery_options,train
+730,is it possible to edit purchase NM10125?,change_order,train
+731,I'd like to use the premium profile i need assistance,switch_account,train
+732,where to check invoice #85632?,check_invoice,train
+733,I want assistance to inform of a sign-up problem,registration_problems,test
+734,what od i have to do to download bill #00108,get_invoice,train
+735,is it possible to place na order from India,delivery_options,train
+736,assistance using the premium profile,switch_account,train
+737,creating premium account,create_account,train
+738,help notifying of issues with payments,payment_issue,train
+739,i do not know how to see the eta of the order NM10083,track_order,train
+740,"my card did not work, I want to report issues with payments",payment_issue,train
+741,what is your customer service phone number?,contact_customer_service,train
+742,help me to check my fucking bill from Rahul,check_invoice,train
+743,how do I retrieve the access key of my user account?,recover_password,test
+744,I need help seeing in which cases can I ask for a reufnd,check_refund_policy,train
+745,how do I create a premium account?,create_account,train
+746,"I do not want this item, cancel order NM10236",cancel_order,train
+747,I don't know what to do to cancel purchase NM10194,cancel_order,train
+748,how can I list your available payment methods?,check_payment_methods,train
+749,what do I have to do to purchase some of your article?,place_order,train
+750,I want help checking when my delivery is going to arrive,delivery_period,test
+751,I do not know what I have to do to remove a premium account,delete_account,train
+752,need assistance seeing in which cases can i request a refund,check_refund_policy,train
+753,"I have to see the status of my rebate, how to do it?",track_refund,train
+754,I wanmt assistance checking the cancellation penalty,check_cancellation_fee,train
+755,where to inform of an issue with a sign-up?,registration_problems,train
+756,need help canceling purchase NM10138,cancel_order,train
+757,"I would like to do a purchase, can you help me?",place_order,train
+758,"I paid ₹₹1,499 for an order, can you help me receive a rebate?",get_refund,test
+759,"I have got to use the gold profile, I need assistance",switch_account,test
+760,i do not kno what to do to locate purchase NM10285,track_order,train
+761,wanna know more about opening a premium account,create_account,train
+762,mldifying premium account,edit_account,train
+763,I don't know how I could delete the standard account,delete_account,test
+764,closing platinum account,delete_account,train
+765,"I'm waiting for a restitution of ₹₹1,499",track_refund,test
+766,can I open a premium account?,create_account,train
+767,I don't know what I need to do to demand a rebate,get_refund,train
+768,I want help to give a quick look at the invoice #00108,check_invoice,train
+769,I do not know how I can cancel purchase NM10112,cancel_order,train
+770,"I need to see your available payment options, how to do it?",check_payment_methods,train
+771,"you are not helpful at all, help me contacting somebody",contact_human_agent,train
+772,can ya help me cancel order NM10166,cancel_order,test
+773,help me adding several rpoducts to order NM10028,change_order,test
+774,i need help to see ur available payment methods,check_payment_methods,test
+775,i dont khow how to cancel order NM10117,cancel_order,test
+776,need help touse the freemium account,switch_account,test
+777,"I cannot find the withdrawal penalty, could you help me?",check_cancellation_fee,train
+778,there is an issue trying to update the address,change_shipping_address,train
+779,"refund ₹1,499 dollars",get_refund,test
+780,update details on premium account,edit_account,train
+781,I can't add an item to order NM10016,change_order,train
+782,is it possible to set the delivery address up?,set_up_shipping_address,test
+783,I want help to modify my account,edit_account,test
+784,i need assistance to inform of problems with payment,payment_issue,train
+785,assistance to cancel purchased NM10161,cancel_order,test
+786,can i write a review about ur products,review,train
+787,help me check what hours i can call customer service,contact_customer_service,test
+788,"I paid ₹₹1,499 for this article, where can I get a rebate?",get_refund,test
+789,how do I purchase several of your product ?,place_order,train
+790,can ya help me obtaining restitutions of my money,get_refund,test
+791,how to get my bills from Rahul,get_invoice,train
+792,help me talking to customer service,contact_customer_service,test
+793,information about a PIN recovery,recover_password,train
+794,i aint registered yet assistance creating a premium account,create_account,train
+795,can you help me making a complaint?,complaint,test
+796,I don't know what I need to do to download my invoice #00108,get_invoice,test
+797,I want to see when will my product arrive,delivery_period,train
+798,can you help me leave a review about your company?,review,test
+799,I want assistance doing a purchase,place_order,train
+800,i dont know how i cqn report bloody sign-up issues,registration_problems,test
+801,I have to delete several items from purchase NM10205,change_order,train
+802,"I have to receive your corporate newsletter, help me",newsletter_subscription,train
+803,need to change order NM10137,change_order,train
+804,is it possible to delete the standard account?,delete_account,train
+805,"I am looking for the shipping periods, I need help",delivery_period,train
+806,can you help me see the withdrawal penalty?,check_cancellation_fee,train
+807,i want assistance to give a quick look at the invoice #37777,check_invoice,test
+808,I do not know what to do to delete the premium account,delete_account,train
+809,can you help me seeing the payment options?,check_payment_methods,test
+810,how to see what hours i can contact customer service,contact_customer_service,train
+811,i have to download the bill from Rahul,get_invoice,train
+812,can you help me reporting problems with online payment?,payment_issue,train
+813,I do not know how to check the cancellation charge,check_cancellation_fee,train
+814,reporting payment issue,payment_issue,train
+815,how can i report problems with online payments,payment_issue,train
+816,"I would like to correct order NM10033, I need help",change_order,test
+817,"I can't remember my bloody user key, how to reset it?",recover_password,test
+818,help to cancel purchase NM10108,cancel_order,test
+819,I have got to see what shipment options I can choose,delivery_options,train
+820,I have a trouble correcing the address,change_shipping_address,train
+821,help to see the withdrawal fee,check_cancellation_fee,train
+822,i dont know what i need to do to download my inovice #00108,get_invoice,test
+823,I have a proble with canceling purchase NM10290,cancel_order,test
+824,I don't know what to do to reset my user PIN code,recover_password,train
+825,assistance contacting a person,contact_human_agent,train
+826,I cannot add a product to purchase NM10161,change_order,train
+827,help me contact customer assistance,contact_customer_service,train
+828,I need to reset the password of my user profile,recover_password,test
+829,is it possible to obtain a damn restitution of my money?,get_refund,train
+830,changing data on premium account,edit_account,train
+831,I want help to see the early exit fees,check_cancellation_fee,train
+832,there are problems trying to edit the delivery address,change_shipping_address,train
+833,want help seeing how long it takes for my order to arrive,delivery_period,train
+834,I want support trying to change my delivery address,change_shipping_address,train
+835,can i delete some products from order NM10108,change_order,train
+836,can you help me to report a problem with a registration?,registration_problems,test
+837,correct purchase NM10255,change_order,test
+838,how can I send some feedback about a product?,review,train
+839,I want help to talk with a human agent,contact_human_agent,train
+840,correcting data on platinum account,edit_account,train
+841,help to check what hours customer assistance available is,contact_customer_service,train
+842,i want information about correcting the address,change_shipping_address,test
+843,check invoices from last purchase,check_invoice,train
+844,can you tell me your allowed payment modalities?,check_payment_methods,train
+845,want assistance to make a consumer reclamation,complaint,train
+846,editting details on standard account,edit_account,train
+847,I don't know how I could list your payment modalities,check_payment_methods,train
+848,can I receive the company newsletter?,newsletter_subscription,train
+849,I'd like to edit the data included on my user i need help,edit_account,train
+850,assistance to remove an article from order NM10202,change_order,train
+851,help me cancel the subscription to ur newsletter,newsletter_subscription,train
+852,I want help to see the status of my refund,track_refund,train
+853,is it possible to check what shipping methods I have?,delivery_options,train
+854,can uhelp me demanding a rebate,get_refund,test
+855,I need help to ask for a rebate of my money,get_refund,train
+856,could you help me file a customer reclamation?,complaint,train
+857,i need help to delete something from order NM10234,change_order,test
+858,I don't know what to do to file a recpamation,complaint,train
+859,how can i change purchase NM10073,change_order,train
+860,i want help to use the premium profile,switch_account,train
+861,need to download my invoice #37777 will ya help me,get_invoice,train
+862,help seeing the ETA of order NM10135,track_order,train
+863,need assistance to change to the gold account,switch_account,train
+864,I don't know how I can list the allowed payment methods,check_payment_methods,train
+865,i dont know how to enter the shipping address,set_up_shipping_address,train
+866,how to write an review?,review,train
+867,I would like to report a fucking registration error,registration_problems,test
+868,I'm trying to check how long the shipping takes,delivery_period,test
+869,i want assistance seeing what shipment methods are there,delivery_options,test
+870,is it possible to place an order from India,delivery_options,train
+871,i have got to ceck ur money back guarantee i need help,check_refund_policy,train
+872,can you show me the early termination fee?,check_cancellation_fee,test
+873,is there an address to leave an opinion ?,review,train
+874,where do I find the invoice from Rahul?,check_invoice,train
+875,assistance to list your paymernt modalities,check_payment_methods,train
+876,mail me my invoices from Rahul,get_invoice,train
+877,how do i swap a product of order NM10071,change_order,test
+878,"I cannot create a user profile, help reporting signup issues",registration_problems,test
+879,i do not know what i need to do to delete a premium acclunt,delete_account,train
+880,wanna find the invoices from Rahul how can i do it,check_invoice,train
+881,i need help to purchase several of ur product,place_order,train
+882,where do I purchase several products?,place_order,train
+883,I have got to delete a damn product from purchase NM10126,change_order,train
+884,i cant change some items of order NM10287,change_order,train
+885,howcan i receive a reimbursement,get_refund,train
+886,I do not know how to cancel purchase NM10275,cancel_order,train
+887,help me checking how long it takes for the article to arrive,delivery_period,train
+888,"I want to track purchase NM10134, I need help",track_order,train
+889,i dont know what to do to write a review for a service,review,train
+890,how do I make a consumer claim against your business?,complaint,train
+891,"I am very unsatisfied with your work, make a fucking claim",complaint,train
+892,want assistance to see the shipping options,delivery_options,test
+893,i do not know what to do to delete the pro account,delete_account,test
+894,can I unsubscribe to your corporate newsletter?,newsletter_subscription,train
+895,help to restore my user password,recover_password,train
+896,I cannot afford purchase NM10299,cancel_order,train
+897,assistance sending some efedback about a product,review,train
+898,I need help shoppimg several items,place_order,train
+899,updating order NM10219,change_order,train
+900,i cant modify order NM10298,change_order,train
+901,where can I see if there are any updates on the restitution?,track_refund,test
+902,can uhelp me swap an item of order NM10204,change_order,train
+903,I call to lodge a consumer reclamation against your company,complaint,train
+904,I don't know what I have to do to sign up to your newsletter,newsletter_subscription,train
+905,where can I find information about my gold account deletion?,delete_account,train
+906,when will purchase NM10185 arrive,track_order,test
+907,I don't know how I can submit some feedback about a product,review,train
+908,help me to make a consumer complaint against your business,complaint,train
+909,help me seeing what goddamn shipping methods are there,delivery_options,test
+910,update data on premium account,edit_account,train
+911,I want assisrance to open a premium account,create_account,test
+912,need to edit my account can ya help me,edit_account,train
+913,I can't set a new delivery address up,set_up_shipping_address,train
+914,help me receive your newsletter,newsletter_subscription,train
+915,could ya help me check the compensation current status,track_refund,test
+916,I am looking for information about a forgotten key,recover_password,train
+917,I need help seeing your reimbursement policy,check_refund_policy,test
+918,errors setting up a secondary shipping address,set_up_shipping_address,train
+919,where to unsubscribe to your bloody newsletter?,newsletter_subscription,train
+920,notifying of problem creating user profile,registration_problems,train
+921,hlw do I add several products to purchase NM10112?,change_order,test
+922,want assistance opening a platinum account for my dad,create_account,train
+923,I try to ask fopr a refund of my money,get_refund,train
+924,close freemium account,delete_account,train
+925,I do not know how I can sign up to the corporate newsletter,newsletter_subscription,train
+926,"I want to see when will my product arrive, help me",delivery_period,test
+927,"I lost my access key, help me retrieving it",recover_password,train
+928,can I use the premium profile?,switch_account,train
+929,update purchase00123842,change_order,train
+930,i need assistance locating invoice #12588,check_invoice,test
+931,changing info on premium account,edit_account,train
+932,can i order frrom India,delivery_options,test
+933,what do I need to do to notify of a payment error?,payment_issue,train
+934,is it possible to check the termination charge?,check_cancellation_fee,test
+935,I do not know how to see the early termination penalty,check_cancellation_fee,test
+936,want supports trying to modify the address,change_shipping_address,train
+937,I want help seeing the status of order NM10070,track_order,train
+938,are the charges of your services refundable?,check_refund_policy,train
+939,how can i submit some feedback forur services,review,test
+940,help to swap an article of purchase NM10260,change_order,test
+941,I want to retrieve the password of my user account,recover_password,train
+942,I try to restore my user profile PIN,recover_password,train
+943,I need help taking a quick look at my bill #37777,check_invoice,train
+944,i need help checking the status or purchase NM10252,track_order,test
+945,need help notifying of issues wiht a sign-up,registration_problems,train
+946,assistance subscribing to your newsletter,newsletter_subscription,test
+947,I need help with cancelling purhase NM10046,cancel_order,train
+948,"I need to file a reclamation, how can I do it?",complaint,train
+949,i do not know how to enter the new shippin address,set_up_shipping_address,train
+950,would it be possible to sign up to the company newsletter?,newsletter_subscription,train
+951,problem with premium account removals,delete_account,test
+952,"I would like to locate my bill #12588, can you help me?",check_invoice,train
+953,updating pro accojnt,edit_account,test
+954,transferring to operator,contact_human_agent,test
+955,I want to see under what circumstances can I request refunds,check_refund_policy,train
+956,help me to informof an issue with a registration,registration_problems,train
+957,there are problems setting up the new delivery address,set_up_shipping_address,train
+958,"you are not helpful at all, help me to chat with somebody",contact_human_agent,train
+959,i dont know what i need to do to download invoice #12588,get_invoice,train
+960,can you help me getting bill #85632?,get_invoice,train
+961,could you help me setting up my new delivery address?,set_up_shipping_address,train
+962,I do not know what to do to track my reimbursement,track_refund,train
+963,"my experience with your work was bad, make a complaint",complaint,test
+964,is it possible to place an order from Pune?,delivery_options,train
+965,help me checking the status of my newsletter subscription,newsletter_subscription,train
+966,use another account,switch_account,test
+967,tell me more about correcting the delivery address,change_shipping_address,train
+968,download invoices from Rahul,get_invoice,test
+969,"I have got to speak with customer support, how can I do it?",contact_customer_service,train
+970,I do not know what I need to do to egt the bill #85632,get_invoice,train
+971,I have got to acquire several of your article,place_order,train
+972,I'm looking for the options for delivery can i get some help,delivery_options,train
+973,what do I ned to do to change to the premium account?,switch_account,test
+974,editing info on pro account,edit_account,train
+975,i need help seeing the delivery methods,delivery_options,train
+976,what time can I get in touch with customer assistance?,contact_customer_service,test
+977,want help trying to edit my addres,change_shipping_address,test
+978,"I am waiting for a restitution of ₹₹1,499",track_refund,train
+979,give me information about the deletion of my Freemiumaccount,delete_account,train
+980,help to see thje ETA of purchase NM10024,track_order,train
+981,payment issues,payment_issue,test
+982,can I send some feedback for a service?,review,train
+983,need help signing up to the newsletter,newsletter_subscription,train
+984,i need assistance to see the refund status,track_refund,test
+985,i cannot pay for my last item cancel order NM10056,cancel_order,train
+986,where can i retrieve my fucking accopunt pass,recover_password,train
+987,how can I delete the standard account?,delete_account,train
+988,I don't know  what to do to retrieve the pwd of my profile,recover_password,test
+989,where to recover the PIN of my user?,recover_password,train
+990,can you help me seeing the accetped payment methods?,check_payment_methods,test
+991,"i have paid ₹₹1,499 for a product where to get my money back",get_refund,train
+992,is it possible to see when my product is going to arrive?,delivery_period,train
+993,information about the options for shipping,delivery_options,train
+994,I am trying to check the accepted payment modalities,check_payment_methods,train
+995,where do I check if there are any news on the reimbursement?,track_refund,test
+996,I don't know how to request a refund of money,get_refund,train
+997,wannadownload the invoice from Rahul,get_invoice,test
+998,I need information about the pwd rertieval,recover_password,train
+999,I need help restoring the PIN of my profile,recover_password,train
+1000,assistance seeing the invoices from Rahul,check_invoice,train
+1001,report payment problems,payment_issue,test
+1002,help to  inform of a problem with a registration,registration_problems,train
+1003,help me see in what cases can i request to be  reimbursed,check_refund_policy,train
+1004,I want assistance placing an order,place_order,test
+1005,help to see in what cases can I ask to be reimbursed,check_refund_policy,test
+1006,i do not know what i nded to do to edit my delivery address,change_shipping_address,train
+1007,need help to see what hours i can contact customer support,contact_customer_service,test
+1008,find information about my access key retrieval,recover_password,train
+1009,help seeing the termination charges,check_cancellation_fee,test
+1010,want assistance to retrieve the pin code of my user profile,recover_password,train
+1011,where is order NM10078?,track_order,train
+1012,I need help to lodge a claim against your organization,complaint,train
+1013,talking to customer support,contact_customer_service,test
+1014,I do not know how I can report an error with registrations,registration_problems,train
+1015,ened assistance to see the termination penalties,check_cancellation_fee,test
+1016,help me inform of a problem with payment,payment_issue,train
+1017,wanna check the termination penalties,check_cancellation_fee,test
+1018,what do I have to do to submit feedback?,review,test
+1019,can uhelp me setting up a shipping address,set_up_shipping_address,test
+1020,help me to check the early exit charge,check_cancellation_fee,train
+1021,need to modify the user info help me,edit_account,test
+1022,need help deleting something from purchase NM10081,change_order,train
+1023,want supports trying to edit my address,change_shipping_address,train
+1024,I need help checking how soon can I expect my shipment,delivery_period,train
+1025,I need assistance seeing the restitution status,track_refund,test
+1026,I don't know what to do to close a pro accoount,delete_account,train
+1027,can you help me restoring the password of my account?,recover_password,test
+1028,"I can't afford order NM10216, how can I cancel it?",cancel_order,test
+1029,correct delivery address,change_shipping_address,train
+1030,I need assistance downloading my invoice #00108,get_invoice,train
+1031,want assistance to send my feedback about a product,review,test
+1032,what do i have to do to see when my order is gonna arrive,delivery_period,test
+1033,"I have to contact customer support, I need assistnace",contact_customer_service,train
+1034,why I can't set the secondary shipping address valid up,set_up_shipping_address,test
+1035,I do not know how I can list the payment modalities,check_payment_methods,test
+1036,I'd like to see ur money back guarantee how to do it,check_refund_policy,train
+1037,I want help receoving the newsletter,newsletter_subscription,train
+1038,updating information on premium account,edit_account,test
+1039,can you give me information about delivery periods?,delivery_period,test
+1040,I try to see purchase 00004587345current status,track_order,train
+1041,make customer claim against your organization,complaint,test
+1042,could you help me to report an error with online payment?,payment_issue,test
+1043,can i create a premium account for my fiance,create_account,test
+1044,can you tell me more about modifying my shipping address?,change_shipping_address,test
+1045,"I purchased some product, cancel order NM10032",cancel_order,train
+1046,i dont know what i need to do to remove the platinum account,delete_account,test
+1047,question about correcting purchase NM10197,change_order,train
+1048,where do I check the reimbursement current status?,track_refund,train
+1049,i try to edit the data on my user account,edit_account,train
+1050,i dont know what i have to do to report issues with payments,payment_issue,train
+1051,can you help me to buy a damn article?,place_order,train
+1052,how could I track the compensation?,track_refund,train
+1053,i want help to see what hours i can call custmer service,contact_customer_service,train
+1054,how to see the allowed payment methods,check_payment_methods,train
+1055,can you help me canceling purchase NM10195?,cancel_order,train
+1056,can I inform of issues with signup?,registration_problems,train
+1057,I want help to use the platinum profile,switch_account,train
+1058,want assistance to get the invoice #00108,get_invoice,test
+1059,I want help to change the delivery address,change_shipping_address,test
+1060,wanna get the invoice from Rahul help me,get_invoice,train
+1061,tell me what hours I can get in touch with customer support,contact_customer_service,train
+1062,howe can I download the invoice #12588?,get_invoice,test
+1063,tell me about cancel the corporate newsletter subscription,newsletter_subscription,train
+1064,can i speak with somebody,contact_human_agent,test
+1065,is it possible to place an order from India?,delivery_options,train
+1066,creating new platinum account,create_account,test
+1067,assistance to check the termination fee,check_cancellation_fee,test
+1068,I don't know how to check what shipment methods you offer,delivery_options,train
+1069,do you have a method to leave a review about a service?,review,train
+1070,I am calling to leave my feedback for your products,review,train
+1071,"I want to downlpad my invoice from Rahul, I need help",get_invoice,train
+1072,help me  subscribe to your newsletter,newsletter_subscription,test
+1073,help with deleting an item from order NM10239,change_order,test
+1074,want help recovering the pass of my profile,recover_password,test
+1075,I need assistance speaking to an assistant,contact_human_agent,train
+1076,modify details on premium account,edit_account,test
+1077,i do not know what i have to do to get my bill #00108,get_invoice,test
+1078,I want to know more about my newsletter subscription,newsletter_subscription,train
+1079,notify of trouble with online payments,payment_issue,train
+1080,modifying info on premium account,edit_account,test
+1081,help to leave damn feedback for ru products,review,test
+1082,update details on freemium account,edit_account,train
+1083,shipping to Pune,delivery_options,train
+1084,i do not know what i need to do to remove a premium account,delete_account,test
+1085,how to file a customer reclamation against ur organization,complaint,train
+1086,I have got to find invoice #37777,check_invoice,train
+1087,want help to deletd a damn article from order NM10270,change_order,train
+1088,I'm extremely unhapp with ur services help to make a claim,complaint,train
+1089,help seeing in which cases can I request to be refunded,check_refund_policy,train
+1090,I have a problem correcting te shipping address,change_shipping_address,test
+1091,i do not know how i can  sign up to ur company newsletter,newsletter_subscription,train
+1092,need to set my fucking shipping address up how do i do it,set_up_shipping_address,train
+1093,how can i inform of problems with payments,payment_issue,test
+1094,how can I notify of an error with online payments?,payment_issue,train
+1095,speak to live agent,contact_human_agent,test
+1096,updating purchase NM10128,change_order,train
+1097,edit info on premium accunt,edit_account,train
+1098,i have to resdet my user pin code,recover_password,train
+1099,checking order NM10283 stagus,track_order,train
+1100,whaty do i need to do to check the invoice #00108,check_invoice,train
+1101,where do i cancel purchase NM10005,cancel_order,train
+1102,could uhelp me close a freemium account,delete_account,train
+1103,wanna use the pro pprofile,switch_account,train
+1104,"someone stole my profile PIN, how can I reset it?",recover_password,train
+1105,canyou help me get a compensation?,get_refund,train
+1106,would it be possible to see what shipping options are there?,delivery_options,train
+1107,will you show me the early exit charges?,check_cancellation_fee,train
+1108,get invoices from December,get_invoice,train
+1109,make customer complaint against ur company,complaint,train
+1110,i dont know what i need to do to cancel a platinum account,delete_account,train
+1111,"I would like to see what shipment methods I have, help me",delivery_options,test
+1112,what do I need to do to switch to  the premium account?,switch_account,train
+1113,I want information about the delivery methods,delivery_options,train
+1114,i dont know how i can see ur reimbursement policy,check_refund_policy,test
+1115,i do not know what to do to report an issue withpayment,payment_issue,train
+1116,i call to check how soon can i expect my bloody item,delivery_period,test
+1117,find information about opening a premium account,create_account,train
+1118,I mised a product in purchase NM10058,change_order,test
+1119,I try to check in what cases can I request my money back,check_refund_policy,test
+1120,how to check the ETA of the order NM10274,track_order,test
+1121,"rebating  ₹₹1,499",get_refund,train
+1122,open pro account for wife,create_account,train
+1123,"I want to locate order NM10136, could I get some help?",track_order,test
+1124,how do I remove several items from purchase NM10174?,change_order,train
+1125,editing freemium  account,edit_account,train
+1126,I have got to restore the password of my account,recover_password,train
+1127,where is ordered NM10057,track_order,test
+1128,is it possible to place an order from India,delivery_options,train
+1129,can you help me to get in touch with customer support?,contact_customer_service,train
+1130,cancel purchase  NM10150,cancel_order,train
+1131,i have to see in what cases can i ask for reimbursements,check_refund_policy,train
+1132,I do not know how I can look for my invoice #37777,check_invoice,test
+1133,how do I subscribe to your newsletter?,newsletter_subscription,test
+1134,I want help cancelling the premium account,delete_account,train
+1135,is there a method to submit a review for ur company,review,train
+1136,I want help to see order NM10222 status,track_order,train
+1137,I need information about a premium account cancellation,delete_account,train
+1138,correct details on premium account,edit_account,train
+1139,I have troubles changing the fucking address,change_shipping_address,train
+1140,can you help me update the data included on my profile?,edit_account,test
+1141,I cannot report a registration  error,registration_problems,train
+1142,find my bilps from Rahul,check_invoice,train
+1143,how could I see the payment methods?,check_payment_methods,train
+1144,showing me estimated time of arrival of order NM10080,track_order,train
+1145,I need to subscribe to your newsletter,newsletter_subscription,train
+1146,wanna see at what time i can reach customer support,contact_customer_service,train
+1147,I need help  to get a refund,get_refund,test
+1148,help me see the methods for shipment,delivery_options,test
+1149,y i cannot set up the secondary shipping address valid,set_up_shipping_address,train
+1150,can i place an order frim India,delivery_options,test
+1151,i want help seeing purchase NM10232 current status,track_order,test
+1152,"I have to see if there is anything new on my refund, help me",track_refund,test
+1153,I don't know what I need to do to speak to customer service,contact_customer_service,test
+1154,help me canceling purchase NM10001,cancel_order,train
+1155,need assistance to check ur available payment options,check_payment_methods,test
+1156,is it possible to send some feedback about your company?,review,test
+1157,"I need to check the payment methods, how can I do it?",check_payment_methods,test
+1158,help to file a complaint against ur company,complaint,train
+1159,I do not know how I can make a reclamation,complaint,test
+1160,i have to sede the cancellation charge,check_cancellation_fee,train
+1161,get invoice #12588,get_invoice,train
+1162,i do not know what i need to do to report errors with signup,registration_problems,train
+1163,I would like to request a refund,get_refund,test
+1164,can uhelp me check if there are any updates on the rebate,track_refund,train
+1165,i need help with swapping something of order NM10134,change_order,train
+1166,I need assistance to get a reimbursement,get_refund,test
+1167,I have got to cancel my company damn newsletter subscription,newsletter_subscription,test
+1168,assistance to report a problem with payments,payment_issue,train
+1169,I want information about my standard account termination,delete_account,train
+1170,I need assistance using the premium profile,switch_account,train
+1171,is it possible to obtaih rebates,get_refund,train
+1172,I have a problem with a delivery address modification,change_shipping_address,train
+1173,I want help to notify of issues with payment,payment_issue,train
+1174,need assistance submitting a shipping address,set_up_shipping_address,train
+1175,I ned help checking the rebate current status,track_refund,test
+1176,where do i check how long it takes for my shipment to arrive,delivery_period,train
+1177,"I don't understand you, help me to chat with an agent",contact_human_agent,test
+1178,problem with premium account cancellations,delete_account,test
+1179,i cant switch to the premium account,switch_account,train
+1180,"I have to speak with customer support, how can I do it?",contact_customer_service,train
+1181,i do not know what i need to do to speak with somebody,contact_human_agent,train
+1182,"I have to shop a few of your product, how could I do it?",place_order,train
+1183,my card was declined i wanna inform of troubles with payment,payment_issue,train
+1184,is it possible to see how soon can i expect my delivery,delivery_period,train
+1185,where can i check what hours i can reach customer assistance,contact_customer_service,train
+1186,create premium account for wife,create_account,train
+1187,I amtrying to shop some products,place_order,test
+1188,I want assistance switching to the premium account,switch_account,train
+1189,what do I need to do to buy several items?,place_order,train
+1190,need assistance seeing how soon can i expect my article,delivery_period,train
+1191,can I modify purchase NM10256?,change_order,test
+1192,is it possible to place na order from India,delivery_options,train
+1193,assistance to notify of issues with online payments,payment_issue,train
+1194,"I want to see how soon can I expect my parcel, how to do it?",delivery_period,test
+1195,help swapping some products of order NM10091,change_order,test
+1196,how to open a premium account?,create_account,test
+1197,see order NM10259 status,track_order,train
+1198,how can i find information about opening premium accounts,create_account,train
+1199,help me to see in which cases can i ask for my money back,check_refund_policy,train
+1200,i do not know how i can find bill #00108,check_invoice,train
+1201,opening new premium account for daughter,create_account,test
+1202,I do not know how I can get my invoice from Rahul,get_invoice,train
+1203,i have got to check how long the shipment takes,delivery_period,test
+1204,change details on standard account,edit_account,train
+1205,i dont know what to do to cancel purchase NM10054,cancel_order,test
+1206,i try to check the status of order NM10152,track_order,test
+1207,i want assistance gettingg reimbursements of my money,get_refund,train
+1208,editdata on premium account,edit_account,train
+1209,need to see the shipment options help me,delivery_options,test
+1210,how could I see if there are any updates on my refund?,track_refund,test
+1211,were can i cancel purchase NM10259,cancel_order,train
+1212,I have got to ask for reimbursements,get_refund,test
+1213,awnna set my shipping address up,set_up_shipping_address,train
+1214,"I want to locate the invoice #85632, I need assistance",check_invoice,train
+1215,I don't know how to inform of sign-up errrors,registration_problems,train
+1216,can you help me to switch to the premium account?,switch_account,train
+1217,help me make a complaint against ur business,complaint,train
+1218,i dont know what i need to do to obtain a refund of my money,get_refund,test
+1219,give me information about signing up to your newsletter,newsletter_subscription,test
+1220,I want assistanc to see when my purchase is going to arrive,delivery_period,test
+1221,help changing to the premium account,switch_account,train
+1222,can you tell me your damn payment methods?,check_payment_methods,train
+1223,need assistance to notify of errors with a registration,registration_problems,train
+1224,how to check what payment payment modalities ya accrpt,check_payment_methods,train
+1225,i dont know what to do to correct the delivery address,change_shipping_address,train
+1226,I want help to earn something,place_order,train
+1227,can you help me to retrieve the PIN of my profile?,recover_password,train
+1228,I do not know how to chat with an assistant,contact_human_agent,train
+1229,what do I have to do to cancel purchase NM10101?,cancel_order,test
+1230,need help retrieving my user account pin code,recover_password,test
+1231,"I need to see what delivery methods you offer, help me",delivery_options,train
+1232,help me check how long it takes for the parcel to arrive,delivery_period,test
+1233,help with payments,payment_issue,train
+1234,I don't know what to do to purchase some of your article,place_order,train
+1235,I do not know what I need to do to file a customer complaint,complaint,test
+1236,i want help to get a rebate of my money,get_refund,train
+1237,I want help creating a new damn standard account,create_account,test
+1238,want help to see in what cases can i ask for reimbursements,check_refund_policy,train
+1239,help me getting in touch with customer assistance,contact_customer_service,train
+1240,I want assistance checking the payment modalities,check_payment_methods,train
+1241,I need assistance canceling purchase NM10078,cancel_order,train
+1242,"I have got to close my damn platinum account, I need help",delete_account,train
+1243,need help canceling purchase NM10191,cancel_order,train
+1244,assistance to get my bills from Rahul,get_invoice,train
+1245,what do i need to do to chcek when will my article arrive,delivery_period,test
+1246,where can I change to the premium account?,switch_account,train
+1247,want help to see ur reimbursement policy,check_refund_policy,test
+1248,where to get my bill #00108?,get_invoice,train
+1249,how could I call customer service?,contact_customer_service,test
+1250,check the available methods for delivery,delivery_options,train
+1251,"I have got to unsubscribe to the newsletter, how do I do it?",newsletter_subscription,test
+1252,help me acquiring a few of your article,place_order,test
+1253,chcek bills from Rahul,check_invoice,train
+1254,is it possible to notify of issues with online payment?,payment_issue,test
+1255,I'm calling to check whenb will my item arrive,delivery_period,train
+1256,where to see what hours I can contact customer support?,contact_customer_service,train
+1257,how to update the address,change_shipping_address,train
+1258,I am trying to receive a compensation,get_refund,train
+1259,can uhelp me modifying the details included on my profile,edit_account,train
+1260,i do not have a premium account want help signing up,create_account,train
+1261,clsoe standard account,delete_account,train
+1262,I do not know what to do to speak with an assistant,contact_human_agent,train
+1263,i have got to locate purchase NM10082 help me,track_order,train
+1264,"I doln't want order NM10276, can you cancel it?",cancel_order,train
+1265,problems with a delivery address modification,change_shipping_address,train
+1266,help me to check the sxtatus of my reimbursement,track_refund,train
+1267,ido not know what i need to do to get the invoice #12588,get_invoice,train
+1268,"I paid ₹₹1,499 for these articles, I have to obtain a rebate",get_refund,train
+1269,"i expect a compensation of ₹₹1,499",track_refund,train
+1270,how do I check the termination charge?,check_cancellation_fee,train
+1271,"I cannot pay, help to inform of problems with payment",payment_issue,test
+1272,demanding rebate of money,get_refund,train
+1273,"I am waiting for an restitution of ₹₹1,499",track_refund,train
+1274,"I have to leave some feedback about a product, help me",review,train
+1275,"I don't have a bloody standard account, can I open one?",create_account,train
+1276,I am tring to see the early exit penalty,check_cancellation_fee,train
+1277,I want assistance to check the goddamn payment methods,check_payment_methods,train
+1278,I need to check at what time I can reach custome assistance,contact_customer_service,train
+1279,I don't know how to submit a delivery address,set_up_shipping_address,train
+1280,want assistance leaving some feedback about a service,review,train
+1281,do you have an address to send a review?,review,train
+1282,do you have a number to contact goddamn customer assistance?,contact_customer_service,train
+1283,I can't subscribe to the newsletter,newsletter_subscription,test
+1284,making complaint against ur company,complaint,test
+1285,i dont know what i have to do to update my shipping address,change_shipping_address,train
+1286,where do I reset my user account key?,recover_password,test
+1287,where can i eanr a few of ur item,place_order,test
+1288,how could I cancel purchase NM10271?,cancel_order,train
+1289,I want help to unsubscribe to your company newsletter,newsletter_subscription,test
+1290,how can i check the current status of my compensation,track_refund,train
+1291,want assistance talking to an operator,contact_human_agent,train
+1292,how to open a freemium account?,create_account,test
+1293,I have errors with the registration,registration_problems,test
+1294,"I paid ₹₹1,499 for this product, help to get a compensation",get_refund,test
+1295,how could I submit feedback?,review,train
+1296,could I get my bill from Rahul?,get_invoice,test
+1297,check order NM10000 current  status,track_order,train
+1298,I'm trying to fgind my bills from Rahul,check_invoice,test
+1299,where to check how long it takes for my article to arrive?,delivery_period,train
+1300,i want help notifying of errors with a signup,registration_problems,test
+1301,can ya help me checking the cancellation charges,check_cancellation_fee,test
+1302,canceling purchase NM10165,cancel_order,train
+1303,could I make a goddamn reclamation?,complaint,train
+1304,I am trying to check the status of the restitution,track_refund,train
+1305,i do not know what i have to do to check the cancellation fe,check_cancellation_fee,test
+1306,"I purchased some item, help canceling one of the orders",cancel_order,train
+1307,need help to check what methods for delivery i have,delivery_options,train
+1308,assistance seeing the status of my newsletter subscription,newsletter_subscription,train
+1309,assistance to lodge a fucking consumer claim,complaint,test
+1310,I do not know how to write a review about your products,review,test
+1311,"I expect a bloody refund of ₹₹1,499, has it been processed?",track_refund,train
+1312,I don't know what I have to do to delete my platinum acount,delete_account,train
+1313,i have got to use the standard profile,switch_account,test
+1314,"I am not registered, I want assistance opening a premium accont",create_account,train
+1315,want help to enter a new delivery address,set_up_shipping_address,train
+1316,can you help me to retrieve my user profile key?,recover_password,train
+1317,help me to earn some of your article,place_order,train
+1318,help me to submit my feedback for your products,review,train
+1319,help to report a problem with a registration,registration_problems,test
+1320,I need assistance to use the premium account,switch_account,train
+1321,I call to see when my parcel is going to arrive,delivery_period,train
+1322,problems with a delivery address update,change_shipping_address,test
+1323,"I cannot find my invoice #12588, will you mail it to me?",get_invoice,test
+1324,where to buy some of your article?,place_order,test
+1325,I don't know what to do to check when will my article arrive,delivery_period,test
+1326,assistance to see order NM10250 current status,track_order,train
+1327,update data on premium cacount,edit_account,train
+1328,can ya send me the goddamn bills from Rahul,get_invoice,train
+1329,i wajt help modifying the shipping address,change_shipping_address,train
+1330,how do I change to the standard account?,switch_account,test
+1331,i have to check what hours customer support available is,contact_customer_service,train
+1332,I don't know what to do to notify of  a payment problem,payment_issue,test
+1333,I do not know how to recover my profile password,recover_password,test
+1334,how to write a comment for your products?,review,train
+1335,cqn i swap several items of purchase NM10009,change_order,test
+1336,can you help me  to speak with somebody?,contact_human_agent,test
+1337,assistance setting up my delivery address,set_up_shipping_address,test
+1338,need assistance purchasing some of ur article,place_order,train
+1339,need help with canceling purchase NM10057,cancel_order,test
+1340,support trying to update mh address,change_shipping_address,train
+1341,i do not know how i can check ur money back guarantee,check_refund_policy,test
+1342,"I am waiting for a compensation of ₹1,499 dollars",track_refund,train
+1343,I need assistance checkng the early exit penalties,check_cancellation_fee,train
+1344,assistance seeing the ETA of order NM10185,track_order,train
+1345,i dont know how to inform of an issue with payments,payment_issue,test
+1346,assistance submitting another delivery address,set_up_shipping_address,test
+1347,I want help to cancel purchase NM10157,cancel_order,train
+1348,I need to ask fot refunds of money,get_refund,test
+1349,I need assistance changing to the premium account,switch_account,train
+1350,I do not know how I can sign up to the goddamn newsletter,newsletter_subscription,test
+1351,I do not know what to do to file a customer reclamtion,complaint,train
+1352,what do i need to do to take a quick look at bill #12588,check_invoice,train
+1353,I have got to submit my feedback,review,train
+1354,update information on premium account,edit_account,test
+1355,want help to enterthe secondary delivery address,set_up_shipping_address,test
+1356,editting details on pro account,edit_account,test
+1357,show me order NM10122 current status,track_order,train
+1358,I don't know how I can create a freemium account,create_account,train
+1359,I want to list the payment methods,check_payment_methods,test
+1360,"I have got to submit the new shipping address, I need help",set_up_shipping_address,train
+1361,help me find bill #12588,check_invoice,train
+1362,want help sending feedback about a service,review,train
+1363,support coprrecting the address,change_shipping_address,train
+1364,help me lodge a consumer claim,complaint,test
+1365,i want help to create a fucking premium account for my mom,create_account,test
+1366,what do I need to do to see the compensation current status?,track_refund,test
+1367,wanna chec order NM10029 status,track_order,train
+1368,helo to contact an assistant,contact_human_agent,train
+1369,need assistance downloading the invoice from Rahul,get_invoice,train
+1370,wannaspeak with customer service can ya help me,contact_customer_service,train
+1371,changkng to premium account,switch_account,train
+1372,what do i have to do to earn a few of ur product,place_order,train
+1373,I can't correct the shipping address,change_shipping_address,train
+1374,can uhelp me checking the eta of order NM10123,track_order,test
+1375,I'm trying to see ur reimbursement policy,check_refund_policy,test
+1376,could you mail me my goddamn invoices rfom Rahul?,get_invoice,test
+1377,ETA of ordr NM10290,track_order,train
+1378,could you help me to open a premium account?,create_account,test
+1379,i have got to send some fedback about ur products,review,test
+1380,how can i lodge a cuxtomer complaint against ur organization,complaint,test
+1381,I call to leave a review,review,train
+1382,I don't know what I have to do to see the termination fees,check_cancellation_fee,train
+1383,I need help acquiringv several of your item,place_order,train
+1384,help recovering my profile access key,recover_password,train
+1385,another premium account for father,create_account,train
+1386,I need information about a delivery address update,change_shipping_address,train
+1387,I need help to check what shipment methods are there,delivery_options,train
+1388,I don't know how to demand a restitution of my money,get_refund,train
+1389,seeing withdrawal penalty,check_cancellation_fee,train
+1390,updating data on premium account,edit_account,test
+1391,assistance giving a quick look at the bill #00108,check_invoice,train
+1392,help me to see the damn bills from Rahul,check_invoice,test
+1393,need assistance switching to the pro account,switch_account,train
+1394,I want help seeing in what situations can I request a refund,check_refund_policy,test
+1395,I want assistance updating my delivery address,change_shipping_address,train
+1396,i need help to reset the pwd of m account,recover_password,train
+1397,want assistance to check the early exit fee,check_cancellation_fee,train
+1398,I want assistance to check how soon can I expect the package,delivery_period,test
+1399,I can't locate my invoices from Rahul,check_invoice,train
+1400,can i see tye eta of purchase NM10040,track_order,train
+1401,will ya shwo me the eta of order NM10043,track_order,train
+1402,I need help to purchase several of your item,place_order,train
+1403,need to see in what situations can i ask for a reimbursement,check_refund_policy,train
+1404,how can I enter my secondary delivery address?,set_up_shipping_address,test
+1405,edit info on premium account,edit_account,train
+1406,help me checking the withdrawal fee,check_cancellation_fee,train
+1407,I don't know how I can open a gold account for my daughter,create_account,test
+1408,"I have bought some item, I have to cancel order NM10248",cancel_order,train
+1409,how can I remove some articles from purchase NM10035?,change_order,test
+1410,find information about the termination of a platinum account,delete_account,train
+1411,I don't know what to do to seeorder NM10272 status,track_order,test
+1412,I want help downloading the invoice #37777,get_invoice,test
+1413,I do not know how I can set up my shipping address,set_up_shipping_address,train
+1414,i try to set up a shipping address,set_up_shipping_address,train
+1415,i cant enter a secondary shipping address,set_up_shipping_address,train
+1416,can you help me notify of errors with sign-up?,registration_problems,train
+1417,i do not know how i can change to the premium account,switch_account,train
+1418,where can I make a consumer claim against your company?,complaint,train
+1419,I need assistance notifying of a trouble with online payment,payment_issue,test
+1420,I am oloking for information about the pass reset,recover_password,test
+1421,i have to set up another shipping address i need help,set_up_shipping_address,train
+1422,I have a question about the deletion of my premium account,delete_account,train
+1423,"I am waiting for a refund of ₹1,499 dollars",track_refund,test
+1424,retrieve my user password,recover_password,test
+1425,"I need to see if there are any news on the refund, help me",track_refund,train
+1426,I want to list your allowed payment modalities,check_payment_methods,train
+1427,create new premium account for daughter,create_account,test
+1428,I don't knwo what I have to do to cancel a premium account,delete_account,test
+1429,there is a trouble setting another delivery address up,set_up_shipping_address,train
+1430,can ya help me to notify of an error with  signup,registration_problems,train
+1431,assistance to request my money back,get_refund,train
+1432,wanna create a premium account,create_account,train
+1433,help me to open a premium account for my daughter,create_account,train
+1434,help me to report damn sign-up erors,registration_problems,test
+1435,would it be possible to enter the new delivery address?,set_up_shipping_address,train
+1436,what do I have to do to set up another delivery address?,set_up_shipping_address,train
+1437,is it possible to reset my user account access key?,recover_password,test
+1438,where do I see if there are any updates on the refund?,track_refund,train
+1439,I need to retrieve the key of my profile,recover_password,test
+1440,is it possible to write a review about ur rpoducts,review,test
+1441,where do I submit feedback about a service?,review,train
+1442,order 732201349959current status,track_order,test
+1443,can you help me using the platinum profile?,switch_account,test
+1444,wanna see how long it usually takes for the order to arrive,delivery_period,train
+1445,I do not know how to create a premium account for my dad,create_account,test
+1446,how can I demand reimbursements of my money?,get_refund,test
+1447,I don't know what to do to speak to someone,contact_human_agent,train
+1448,clsoe premium account,delete_account,train
+1449,I need help to talk with a human agent,contact_human_agent,train
+1450,help me to solve problems with online payment,payment_issue,train
+1451,i cannot sign up i need to report sign-up problems,registration_problems,train
+1452,can uhelp me purcahsing an article,place_order,test
+1453,can ya show me at what time customr service available is,contact_customer_service,test
+1454,can uhelp me cancel the corporate newsetter subscription,newsletter_subscription,train
+1455,I can't speak iwth an operator,contact_human_agent,train
+1456,how to order some products?,place_order,test
+1457,do uship to Pune,delivery_options,train
+1458,switch to standard account,switch_account,test
+1459,I want assistancesubmitting the bloody new shipping address,set_up_shipping_address,test
+1460,could i get in touchwith customer service,contact_customer_service,train
+1461,wamna switch some products of order NM10064,change_order,train
+1462,i want assistance unsubscribing from the newsletter,newsletter_subscription,train
+1463,help to contact a person,contact_human_agent,train
+1464,"I cannot open a user, I have to inform of a signup issue",registration_problems,train
+1465,can i order from India,delivery_options,train
+1466,i have got to correct the personal details,edit_account,train
+1467,i need assistance to edit the personal details,edit_account,test
+1468,I want help unsubscribing from the company newsletter,newsletter_subscription,train
+1469,I want assistance checking the early termination fees,check_cancellation_fee,train
+1470,show me in which situations can i request refunds,check_refund_policy,train
+1471,need help to see when my parcel is going to arrive,delivery_period,train
+1472,edit information on premium account,edit_account,train
+1473,can i check how long refunds usually take,check_refund_policy,train
+1474,is it plssible to order from India?,delivery_options,test
+1475,i dont khow what i need to do to change to the gold account,switch_account,test
+1476,i need assistance to reset the pin code of my account,recover_password,test
+1477,I need to receive thecorporate newsletter,newsletter_subscription,train
+1478,i do not know how to create a premium account for my dad,create_account,test
+1479,where could I create a standard account for my daughter?,create_account,train
+1480,"I paid ₹₹1,499 for this product, I need to get a rebate",get_refund,train
+1481,wanna see what delivery options are there i need help,delivery_options,train
+1482,I would like to delete my premium account,delete_account,train
+1483,i do not know how to change a product of order NM10065,change_order,train
+1484,how can i get information about the delivery period,delivery_period,train
+1485,need to check how long the goddamn refunds take help me,check_refund_policy,test
+1486,help to see at what time i can reach customer support,contact_customer_service,train
+1487,"I want to unsubscribe to your newsletter, I need help",newsletter_subscription,test
+1488,want help receiving your company newsletter,newsletter_subscription,train
+1489,get bill #37777,get_invoice,train
+1490,do ya deliver to Pune,delivery_options,test
+1491,where do I check the termination fees?,check_cancellation_fee,train
+1492,where do I correct the fucking shipping address?,change_shipping_address,train
+1493,tell me about canceling the subscription to the newsletter,newsletter_subscription,train
+1494,I need assistance canceling order NM10243,cancel_order,test
+1495,want help to obtain a compensation of money,get_refund,test
+1496,how to see the cancellation penalty,check_cancellation_fee,test
+1497,are service charges reimbursable?,check_refund_policy,train
+1498,I don't know what to do to check my inovice #00108,check_invoice,test
+1499,i have to check in which cases can i ask for a reimbursement,check_refund_policy,test
+1500,want help seeing in which situations can I ask for a refund,check_refund_policy,train
+1501,what do I need to do to chat with somebody?,contact_human_agent,test
+1502,can you help me toorder a few of your product?,place_order,train
+1503,"the payment did not go through, report an error",payment_issue,train
+1504,assistance using the premium profile,switch_account,test
+1505,create pro account for wife,create_account,test
+1506,help acquiring some items,place_order,train
+1507,do you have a section to send feedback about a service?,review,test
+1508,"I have to talk to customer support, can I get some help?",contact_customer_service,test
+1509,I have to delete an item from order NM10281,change_order,train
+1510,I do not know what to do to cancel purchase NM10084,cancel_order,train
+1511,want assistance to purchase a few of your product,place_order,test
+1512,i want assistance cancelling the newsletter subscription,newsletter_subscription,test
+1513,need to see what hours i can reach customer support,contact_customer_service,train
+1514,is it possible to see in which cases can i ask for refunds,check_refund_policy,train
+1515,I have got to check the early exit fee,check_cancellation_fee,train
+1516,shipnents to India,delivery_options,test
+1517,I need help to check the early termination fee,check_cancellation_fee,train
+1518,assistance checking when my purchase is gonna arrive,delivery_period,train
+1519,I need assistance unsubscribing to the newsletter,newsletter_subscription,test
+1520,I want to correct my user info,edit_account,train
+1521,I want assistance listing your allowed payment methods,check_payment_methods,train
+1522,removing gold acconut,delete_account,test
+1523,checking invoice from September,check_invoice,test
+1524,i want assistance requesting reimbursements,get_refund,test
+1525,"I cannot create a user, help informing of a signup problem",registration_problems,train
+1526,switch to premium account,switch_account,test
+1527,can you help me to lodge a claim against your business?,complaint,train
+1528,"i expect an rebate of ₹1,499 dollars",track_refund,test
+1529,where do I check how long it takes for my item to arrive?,delivery_period,train
+1530,find the bill #37777,check_invoice,train
+1531,"I have paid ₹₹1,499 for these articles, I need to get a rebate",get_refund,train
+1532,I need help to check the early exit penalty,check_cancellation_fee,train
+1533,"I have chosen a wrong shipping address, how do I correct it?",change_shipping_address,test
+1534,I have got to check what delivery methods are there,delivery_options,train
+1535,i cannot check ur money back guarantee,check_refund_policy,test
+1536,i dont know what to do to delete the goddamn standard acount,delete_account,test
+1537,where to see the bloody ETA of the order NM10135,track_order,train
+1538,want help solving a problem with payments,payment_issue,test
+1539,want assitsance to talk with a human agent,contact_human_agent,train
+1540,I have got to enter a delivery address,set_up_shipping_address,train
+1541,"I need to unsubscribe from the newsletter, can yyou help me?",newsletter_subscription,train
+1542,information about receiving your company newsletter,newsletter_subscription,train
+1543,I need help submitting my secondary shipping address,set_up_shipping_address,train
+1544,I have to report troubles with payment,payment_issue,train
+1545,I don't know how I could see the cancellation fees,check_cancellation_fee,train
+1546,I can't afford purchase NM10270,cancel_order,train
+1547,"I want to check the shipping options, I need help",delivery_options,test
+1548,help me to see what hours I can reach customer service,contact_customer_service,train
+1549,i have to use the premium account,switch_account,train
+1550,I want help changing to the premium account,switch_account,train
+1551,I would like to check the compensation status,track_refund,train
+1552,i have problems submitting the secondary shipping address,set_up_shipping_address,train
+1553,I have got to add an article to order NM10216,change_order,train
+1554,do you have a method to leave an opinion for your services?,review,test
+1555,chnge data on pro account,edit_account,test
+1556,I need help talking with a human agent,contact_human_agent,train
+1557,how can I send feedback about a service?,review,test
+1558,I want assistance seeing the methods for shipment,delivery_options,test
+1559,hepp seeing the bill from Rahul,check_invoice,train
+1560,"I bought some item, cancel purchase NM10108",cancel_order,train
+1561,need assistance seeing ur accepted payment methods,check_payment_methods,train
+1562,new premium acount for wife,create_account,train
+1563,I need to see your refund policy,check_refund_policy,train
+1564,how could I inform of errors with a signup?,registration_problems,train
+1565,I need to update the address,change_shipping_address,test
+1566,update information on premium account,edit_account,train
+1567,where culd i cancel order NM10276,cancel_order,train
+1568,open a platinum account for my dad,create_account,test
+1569,see order NM10102 fucking current status,track_order,train
+1570,I need help buying several of your article,place_order,train
+1571,want assistance locating purchase NM10159,track_order,train
+1572,help me to see how long it takes for my delivery to arrive,delivery_period,test
+1573,i want help regarding my sign-up,registration_problems,train
+1574,help me to contact an ooperator,contact_human_agent,train
+1575,what do I need to do to track my reimbursement?,track_refund,train
+1576,"I don't need my platinum account, help cancelling it",delete_account,train
+1577,I don't know what I need to do to downloa the invoice #00108,get_invoice,test
+1578,"I cannot find the termination penalty, can I get some help?",check_cancellation_fee,train
+1579,is it possible to obtain reimbursements of my money,get_refund,train
+1580,"I no longer use the premium account, I want help removing it",delete_account,train
+1581,using another account,switch_account,test
+1582,how do I call customer assistance?,contact_customer_service,train
+1583,i cant make payments how to inform of issues with payment,payment_issue,train
+1584,my experience with uhas been bad i wanna make a bloody claim,complaint,test
+1585,"I'm waiting for a restitution of ₹1,499 dollras",track_refund,train
+1586,correcting details on platinum account,edit_account,train
+1587,is it plssible to order from India?,delivery_options,train
+1588,help to see the invoice #12588,check_invoice,train
+1589,what do I need to do to cancel purchase NM10204?,cancel_order,train
+1590,I want help to send my feedback about your services,review,train
+1591,"the experience with your service was bad, file a reclamation",complaint,train
+1592,I don't know what I need to do to acquire some of your item,place_order,test
+1593,can i look for bill #37777,check_invoice,train
+1594,I need assistance to download the invoices from Rahul,get_invoice,test
+1595,"I have lost my account access key, I need help to reset it",recover_password,train
+1596,"I have got to see your refund policy, how could I do it?",check_refund_policy,train
+1597,"I want to see how long the shipping takes, how can I do it?",delivery_period,train
+1598,can you help me to set up my secondary shipping address?,set_up_shipping_address,test
+1599,i want assistance seeingorder NM10191 current status,track_order,train
+1600,could I see the goddamn available payment methods?,check_payment_methods,test
+1601,I am calling to see what shipment methods are there,delivery_options,test
+1602,I do not know what to do to leave an opinion,review,train
+1603,"I want to correct my delivery address, how do I do it?",change_shipping_address,train
+1604,modify information on gold acfount,edit_account,train
+1605,Iam trying to notify of troubles with online payment,payment_issue,test
+1606,I can't enter my  shipping address,set_up_shipping_address,train
+1607,I can't swap several items of purchase NM10224,change_order,train
+1608,wanna change  to the premium account help me,switch_account,test
+1609,I need assistance to list the available payment options,check_payment_methods,train
+1610,I do not know how to reset my user profile PIN code,recover_password,train
+1611,how can I lodge a customer reclamation against your company?,complaint,test
+1612,I cannot edit my delivery address,change_shipping_address,train
+1613,where could I sign up to your fucking company newslettrer?,newsletter_subscription,train
+1614,how can I inform of an issue with payment?,payment_issue,train
+1615,help me to notify of issues with payments,payment_issue,test
+1616,I do not know what to do to report errors with registrations,registration_problems,train
+1617,modify platinum account,edit_account,train
+1618,I would like to change to the premium account,switch_account,train
+1619,informing of problem with payment,payment_issue,test

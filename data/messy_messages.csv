@@ -1,0 +1,51 @@
+text,true_intent
+"where is my order NM10012?? its been forever",track_order
+"bhai mera order NM10045 kab aayega",track_order
+"wheres my stuf, order no NM10101",track_order
+"tracking for NM10230 pls",track_order
+"order NM10007 still not here, wat is going on",track_order
+"I WANT MY MONEY BACK FOR NM10033. THE EARBUDS STOPPED WORKING AFTER 2 DAYS",get_refund
+"refund chahiye order NM10088 ka, product kharab hai",get_refund
+"can u refund NM10140 the shoes dont fit",get_refund
+"the coffee maker NM10061 leaks, i want a refund",get_refund
+"cancel NM10019 asap i ordered by mistake",cancel_order
+"plz cancel my ordr NM10152",cancel_order
+"dont want NM10077 anymore, cancel it",cancel_order
+"change delivery address for NM10024 to 12 MG Road Bengaluru",change_shipping_address
+"i moved!! send NM10199 to my new flat in Andheri Mumbai",change_shipping_address
+"this is the 3rd time my delivery is late. worst service ever. i want to speak to a manager",contact_human_agent
+"let me talk to a real person not a bot",contact_human_agent
+"human agent pls",contact_human_agent
+"your app charged me twice for the same order!!!",payment_issue
+"payment failed but money got deducted from my account",payment_issue
+"UPI payment stuck on processing, paise kat gaye",payment_issue
+"absolutely terrible product, the box was broken and nobody cares",complaint
+"i am very unhappy with how your delivery guy behaved",complaint
+"this is a scam, never buying from novamart again",complaint
+"how long does delivery take to jaipur",delivery_period
+"kitne din me delivery hoti hai",delivery_period
+"when will stuff arrive if i order today",delivery_period
+"do u have express shipping",delivery_options
+"what delivery options r there",delivery_options
+"can i pay cash on delivery",check_payment_methods
+"do you take upi?",check_payment_methods
+"what payment methods do u accept",check_payment_methods
+"whats ur return policy",check_refund_policy
+"how many days do i have to return something",check_refund_policy
+"is there a fee if i cancel",check_cancellation_fee
+"forgot my password cant log in",recover_password
+"reset pasword plz",recover_password
+"how do i make an account",create_account
+"delete my account and all my data",delete_account
+"unsubscribe me from ur emails",newsletter_subscription
+"stop sending me newsletters!!",newsletter_subscription
+"need the bill for my last order",get_invoice
+"where can i download invoice",get_invoice
+"whats the status of my refund for NM10050",track_refund
+"refund kab milega NM10114",track_refund
+"how do i contact customer care",contact_customer_service
+"want to leave a review for the speaker, it's great",review
+"i want to add one more item to order NM10003",change_order
+"signup page keeps giving error",registration_problems
+"refund NM10033 now and also change my address for NM10045",get_refund
+"my order is late AND you charged me twice, fix this",payment_issue

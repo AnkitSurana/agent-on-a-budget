@@ -18,7 +18,7 @@ from dataclasses import dataclass, field
 
 import requests
 
-from budget_agent import config
+from budget_agent import config, replay
 
 
 @dataclass
@@ -28,6 +28,7 @@ class CallStats:
     output_tokens: int
     seconds: float
     cost_usd: float
+    replayed: bool = False        # True = a saved answer was used: it cost nothing this time
 
 
 @dataclass
@@ -98,7 +99,23 @@ def cost_usd(model, input_tokens, output_tokens):
 #   {"role": "tool_results", "results": [(tool_call_id, output_text), ...]}
 
 
-class OpenAIChat:
+class LLM:
+    """What every provider shares: a saved answer is replayed instead of paid for again (see replay.py)."""
+
+    def chat(self, system, history, tools=None, effort="medium", max_tokens=8000, json_schema=None):
+        key = replay.key_for(self.provider, self.model, system, history, tools, json_schema)
+        saved = replay.find(key)
+        if saved:
+            stats = CallStats(**{**saved["stats"], "replayed": True})
+            return Reply(saved["text"], saved["stop"], stats,
+                         [ToolCall(**call) for call in saved["tool_calls"]], saved["raw"])
+        reply = self._ask(system, history, tools, effort, max_tokens, json_schema)
+        replay.save(key, text=reply.text, stop=reply.stop, stats=vars(reply.stats),
+                    tool_calls=[vars(call) for call in reply.tool_calls], raw=reply.raw)
+        return reply
+
+
+class OpenAIChat(LLM):
     """OpenAI, and anything that speaks the same language: Gemini and Ollama do too.
 
     Same code, just a different web address (base_url) and key.
@@ -115,7 +132,7 @@ class OpenAIChat:
                             max_retries=5)
         self.client = client
 
-    def chat(self, system, history, tools=None, effort="medium", max_tokens=8000, json_schema=None):
+    def _ask(self, system, history, tools, effort, max_tokens, json_schema):
         messages = [{"role": "system", "content": system}]
         for turn in history:
             if turn["role"] == "user":
@@ -168,7 +185,7 @@ class OpenAIChat:
         return Reply((message.content or "").strip(), stop, stats, tool_calls, raw)
 
 
-class Claude:
+class Claude(LLM):
     """Anthropic's Claude."""
 
     provider = "anthropic"
@@ -180,7 +197,7 @@ class Claude:
             client = anthropic.Anthropic(max_retries=5)  # reads ANTHROPIC_API_KEY from the environment
         self.client = client
 
-    def chat(self, system, history, tools=None, effort="medium", max_tokens=8000, json_schema=None):
+    def _ask(self, system, history, tools, effort, max_tokens, json_schema):
         messages = []
         for turn in history:
             if turn["role"] == "user":
@@ -261,6 +278,10 @@ class LocalLLM:
 
     def chat(self, system, user, max_tokens=300):
         """Ask the local model one question. Returns (text, stats)."""
+        key = replay.key_for("local", self.model, system, [{"role": "user", "content": user}])
+        saved = replay.find(key)
+        if saved:
+            return saved["text"], CallStats(**{**saved["stats"], "replayed": True})
         start = time.perf_counter()
         reply = requests.post(
             f"{self.url}/api/chat",
@@ -274,4 +295,6 @@ class LocalLLM:
         ).json()
         seconds = time.perf_counter() - start
         stats = CallStats(self.model, reply.get("prompt_eval_count", 0), reply.get("eval_count", 0), seconds, 0.0)
-        return reply["message"]["content"].strip(), stats
+        text = reply["message"]["content"].strip()
+        replay.save(key, text=text, stats=vars(stats))
+        return text, stats

@@ -226,8 +226,11 @@ Always run commands from inside the project folder.
 | Chapter 2: train the receptionist | `uv run python run.py train` |
 | Chapter 3: the whole support office | `uv run python run.py chat --version 4` |
 | Chapter 3: compare expert-only with the whole office | `uv run python run.py benchmark --n 30` |
+| See every result (free, no LLM called) | `uv run python run.py report`, then open `docs/results.md` |
 
 To stop the app or Jupyter, click the terminal and press `Ctrl + C`.
+
+> **Saved answers save money.** Real LLM answers are saved in `data/saved_llm_answers.jsonl`. When you send exactly the same request again (with the same provider and model), it's answered from there: instantly and for $0. You'll see `♻️ saved answer, $0 this time`.
 
 > Using **VS Code**? Open the project folder, open a notebook, click **Select Kernel** (top right) and pick the `.venv` one.
 

@@ -49,6 +49,7 @@ class RouteResult:
     cost_usd: float
     tool_calls: list = field(default_factory=list)
     escalated: bool = False    # the senior expert handed it to the manager (a human)
+    replayed: bool = False     # a saved answer was used: free this time (see replay.py)
 
 
 class Router:
@@ -94,11 +95,14 @@ class Router:
             system = ("You are NovaMart's support assistant. Answer in 1-3 short sentences, "
                       "using ONLY this policy:\n\n" + self.shop.policy)
             reply, stats = self.local_llm.chat(system, text)
-            return RouteResult(reply, "local_llm", intent, confidence, time.perf_counter() - start, 0.0)
+            # stats.seconds = how long the model took (also correct when a saved answer is replayed)
+            return RouteResult(reply, "local_llm", intent, confidence, stats.seconds, 0.0,
+                               replayed=stats.replayed)
 
         result = self.agent.run(text)
         return RouteResult(result.reply, "cloud_llm", intent, confidence,
-                           time.perf_counter() - start, result.cost_usd, result.tool_calls, result.escalated)
+                           result.seconds, result.cost_usd, result.tool_calls, result.escalated,
+                           result.replayed)
 
     def _template_reply(self, intent, text):
         if intent in ORDER_INTENTS:

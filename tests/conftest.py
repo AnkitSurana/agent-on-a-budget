@@ -10,6 +10,12 @@ from openai.types.chat import ChatCompletionMessage
 from budget_agent.tools import Shop
 
 
+@pytest.fixture(autouse=True)
+def no_saved_answers(monkeypatch):
+    """Tests use fake LLMs, so they must never read or write the real saved-answers file."""
+    monkeypatch.setattr("budget_agent.config.REPLAY", False)
+
+
 @pytest.fixture
 def orders():
     return pd.DataFrame([

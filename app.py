@@ -61,6 +61,8 @@ with chat_tab:
                     r = bot.run(text)
                     tools = ", ".join(name for name, _, _ in r.tool_calls) or "none"
                     info = f"tools used: {tools} · {r.seconds:.2f}s · ${r.cost_usd:.4f}"
+                if r.replayed:
+                    info += " · ♻️ saved answer, $0 this time"
             reply = r.reply
         except LLMSetupError as problem:
             reply, info = f"⚠️ {problem}", "setup problem: see the README's Setup section"

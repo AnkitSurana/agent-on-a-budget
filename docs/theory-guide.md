@@ -262,13 +262,13 @@ They fit on a laptop thanks to **quantization**: storing each of the model's num
 
 ### Other techniques worth knowing
 
-- **Caching:** reuse answers or repeated prompt parts instead of paying for them again.
+- **Caching:** reuse answers or repeated prompt parts instead of paying for them again. This project saves every real LLM answer in `data/saved_llm_answers.jsonl` and replays it when the exact same request comes again (`budget_agent/replay.py`). Re-running the 60-message benchmark that way takes 3 seconds and costs $0.
 - **Batching:** handle many requests together; our labeller sends 25 messages per request.
 - **Smaller or cheaper models** for easy tasks, and **lower reasoning effort** where deep thinking is not needed.
 - **Streaming:** show the answer word by word, so it *feels* faster.
 - **Speculative decoding:** a small model drafts tokens and the big model checks them in one go. Mention only; it happens inside model servers.
 
-In our test run (60 messages, a third of them messy), the whole office was **2.0× cheaper and 1.5× faster** than sending everything to the expert: $0.51 instead of $1.02 per 1,000 messages. 55% of messages were answered for $0: 43% by the receptionist and 12% by the junior assistant.
+In our test run (60 messages, a third of them messy), the whole office was **1.9× cheaper and 1.6× faster** than sending everything to the expert: $0.52 instead of $0.99 per 1,000 messages. 55% of messages were answered for $0: 43% by the receptionist and 12% by the junior assistant.
 
 **In the repo:** `budget_agent/router.py`, `uv run python run.py route`, `uv run python run.py benchmark`, notebooks 04 and 05.
 
@@ -338,7 +338,7 @@ Two more places hold everything together:
 
 ## Where to read
 
-All of these are free. Follow the steps in order, and skip any step you already know. If time is short, steps 1, 3 and 5 cover the minimum for the workshop.
+All of these are free. (For this project's own numbers, see [results.md](results.md).) Follow the steps in order, and skip any step you already know. If time is short, steps 1, 3 and 5 cover the minimum for the workshop.
 
 | Step | Topic | Read or watch | Covers in this guide |
 | --- | --- | --- | --- |

@@ -23,6 +23,11 @@ ORDERS_CSV = DATA_DIR / "orders.csv"              # fake NovaMart orders
 POLICY_MD = DATA_DIR / "policy.md"                # NovaMart refund / shipping policy
 LLM_LABELS_CSV = DATA_DIR / "llm_labels.csv"      # labels written by the LLM (made by `uv run python run.py label`)
 CLASSIFIER_PATH = MODELS_DIR / "intent_classifier.joblib"
+BENCHMARK_CSV = DATA_DIR / "benchmark_results.csv"  # expert only vs the whole office (made by `run.py benchmark`)
+
+# Saved answers (see replay.py): the same request is answered from this file, free and offline.
+REPLAY_LOG = DATA_DIR / "saved_llm_answers.jsonl"
+REPLAY = os.getenv("REPLAY", "on").lower() != "off"     # REPLAY=off in .env = always ask the LLM fresh
 
 # The "today" of our fake shop. Fixed, so results are the same every time.
 TODAY = date(2026, 10, 5)

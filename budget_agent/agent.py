@@ -48,6 +48,11 @@ class AgentResult:
     def cost_usd(self):
         return sum(c.cost_usd for c in self.calls)
 
+    @property
+    def replayed(self):
+        """True if every LLM answer came from the saved answers (so it cost nothing this time)."""
+        return bool(self.calls) and all(c.replayed for c in self.calls)
+
 
 class SupportAgent:
     def __init__(self, use_tools=True, llm=None, shop=None, max_steps=8):

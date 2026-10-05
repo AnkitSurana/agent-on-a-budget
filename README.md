@@ -96,16 +96,29 @@ Real runs with OpenAI `gpt-5.4-mini`, October 2026. Your numbers will vary a lit
 
 | | Expert only | Whole office |
 |---|---|---|
-| Cost for 60 messages | $0.061 | **$0.031** |
-| Cost per 1,000 messages | $1.02 | **$0.51** |
-| Average time per message | 1.64 s | **1.09 s** |
+| Cost for 60 messages | $0.059 | **$0.031** |
+| Cost per 1,000 messages | $0.99 | **$0.52** |
+| Average time per message | 1.70 s | **1.04 s** |
 | Answered for $0 | 0% | **55%** (receptionist 43%, junior assistant 12%) |
 
-The whole office was **2.0× cheaper and 1.5× faster**.
+The whole office was **1.9× cheaper and 1.6× faster**.
 The receptionist's answers were as good as the expert's. The junior assistant (a 3B model on the laptop, about 55 tokens a second) was right on simple policy questions but sometimes made up details, which is why it only gets low-risk questions, and why `LOCAL_LLM_CONFIDENCE` is a dial you can turn up.
 The saving grows as more messages are simple: refunds, cancels and complaints always go to the expert, on purpose.
 
-The LLM's labels (`data/llm_labels.csv`) and the benchmark results (`data/benchmark_results.csv`) are included, so everything works even without an API key. To redo them yourself, delete those files and run `uv run python run.py label`, `uv run python run.py train` and `uv run python run.py benchmark --n 60`.
+**Every number, and every message with both answers, is in [docs/results.md](docs/results.md).** Rebuild that page any time, for free: `uv run python run.py report`.
+
+## Saved answers: run it again for free
+
+Every real LLM answer is saved in `data/saved_llm_answers.jsonl` (128 answers so far, which cost $0.07 to make).
+When the app, a notebook, the chat or the benchmark sends **exactly the same request** again, the saved answer is replayed:
+instantly, for $0, even without internet. Only new questions are sent to the LLM. You'll see `♻️ saved answer, $0 this time`.
+
+- Re-running the whole 60-message benchmark from saved answers takes about 3 seconds and costs $0.
+- The four demo messages, in the app and in every notebook, are all saved. A demo can't fail because of slow Wi-Fi.
+- Want fresh answers? Put `REPLAY=off` in `.env`.
+- Saved answers are matched by provider and model, so they're used when you run with the same LLM (OpenAI `gpt-5.4-mini` here).
+
+The LLM's labels (`data/llm_labels.csv`) and the benchmark results (`data/benchmark_results.csv`) are included too. To redo everything from scratch, delete those files and run `uv run python run.py label`, `uv run python run.py train` and `uv run python run.py benchmark --n 60`.
 
 ---|---|
 | Clean test messages | **98.3%** |
@@ -167,6 +180,7 @@ uv run python run.py route                 # who would answer each messy message
 uv run python run.py chat --version 4      # talk to the whole office
 uv run python run.py benchmark --n 30      # expert only vs the whole office, 30 messages (costs a little)
 uv run streamlit run app.py                # the demo app: one button per helper, plus charts
+uv run python run.py report         # write docs/results.md from the saved results (free)
 ```
 
 ## Notebooks: the step-by-step version
@@ -193,11 +207,14 @@ budget_agent/
   labeler.py      chapter 2: the LLM labels messages
   classifier.py   chapter 2: the small ML model (the receptionist)
   router.py       chapter 3: the whole office (version 4)
+  replay.py       saved answers: replay an LLM answer instead of paying again
+  report.py       writes docs/results.md from the saved results
 run.py            command line for everything
 app.py            Streamlit demo app
 notebooks/        step-by-step notebooks
 tests/            tests (no internet or API key needed)
-docs/             install guide, theory guide, architecture diagram
+docs/             install guide, theory guide, results, architecture diagram
+data/             messages, orders, policy, the LLM's labels, benchmark, saved answers
 pyproject.toml    the project's packages (used by uv)
 uv.lock           exact package versions, the same on every computer
 requirements.txt  the same packages, for people who prefer plain pip

@@ -14,6 +14,7 @@
     uv run python run.py route                # who would answer each messy message (free, no LLM)
     uv run python run.py chat --version 4     # talk to the whole office
     uv run python run.py benchmark --n 30     # expert only vs the whole office (costs a little money)
+    uv run python run.py report               # write docs/results.md from the saved results (free)
 """
 
 import argparse
@@ -27,6 +28,9 @@ from budget_agent.llm import LLMSetupError
 
 def cmd_data(args):
     data.build_all()
+
+
+SAVED = "  ♻️ saved answer: $0 this time"   # shown when replay.py answered instead of the LLM
 
 
 def cmd_chat(args):
@@ -45,11 +49,12 @@ def cmd_chat(args):
                 r = bot.handle(text)
                 who = config.HELPERS[r.layer] + (f" → {config.HELPERS['human']}" if r.escalated else "")
                 print(f"Bot: {r.reply}\n     [{who}  intent={r.intent} ({r.confidence:.0%})  "
-                      f"{r.seconds:.2f}s  ${r.cost_usd:.4f}]\n")
+                      f"{r.seconds:.2f}s  ${r.cost_usd:.4f}{SAVED if r.replayed else ''}]\n")
             else:
                 r = bot.run(text)
                 tools = ", ".join(name for name, _, _ in r.tool_calls) or "none"
-                print(f"Bot: {r.reply}\n     [tools={tools}  {r.seconds:.2f}s  ${r.cost_usd:.4f}]\n")
+                print(f"Bot: {r.reply}\n     [tools={tools}  {r.seconds:.2f}s  ${r.cost_usd:.4f}"
+                      f"{SAVED if r.replayed else ''}]\n")
         except LLMSetupError as problem:
             print(f"⚠️  {problem}\n")
 
@@ -111,10 +116,11 @@ def cmd_benchmark(args):
     messages = demo_messages(args.n)
     agent, router = SupportAgent(use_tools=True), Router()
     print(f"Cloud LLM: {agent.llm.provider} ({agent.llm.model})")
-    rows = []
+    rows, spent_now = [], 0.0
     for i, msg in enumerate(messages.itertuples(), 1):
         v2 = agent.run(msg.text)
         v4 = router.handle(msg.text)
+        spent_now += sum(c.cost_usd for c in v2.calls if not c.replayed) + (0 if v4.replayed else v4.cost_usd)
         rows.append({"message": msg.text, "true_intent": msg.true_intent,
                      "v2_seconds": v2.seconds, "v2_cost": v2.cost_usd,
                      "v4_layer": v4.layer, "v4_seconds": v4.seconds, "v4_cost": v4.cost_usd,
@@ -123,8 +129,9 @@ def cmd_benchmark(args):
               f"v4 [{v4.layer:9}] {v4.seconds:5.2f}s ${v4.cost_usd:.4f}")
 
     results = pd.DataFrame(rows)
-    results.to_csv(config.DATA_DIR / "benchmark_results.csv", index=False)
+    results.to_csv(config.BENCHMARK_CSV, index=False)
     print_summary(results)
+    print(f"\nMoney actually spent on this run: ${spent_now:.3f} (saved answers are free)")
 
 
 def print_summary(results):
@@ -138,6 +145,12 @@ def print_summary(results):
         print(f"The whole office is {results.v2_cost.sum() / results.v4_cost.sum():.1f}x cheaper "
               f"and {results.v2_seconds.mean() / results.v4_seconds.mean():.1f}x faster on average.")
     print("Who answered:\n" + results.v4_layer.map(config.HELPERS).value_counts().to_string())
+
+
+def cmd_report(args):
+    from budget_agent.report import build
+    path = build()
+    print(f"Wrote {path.relative_to(config.ROOT)} (no LLM called, $0)")
 
 
 def main():
@@ -157,6 +170,7 @@ def main():
     bench = sub.add_parser("benchmark", help="compare expert only (version 2) with the whole office (version 4)")
     bench.add_argument("--n", type=int, default=30)
     bench.set_defaults(func=cmd_benchmark)
+    sub.add_parser("report", help="write docs/results.md from the saved results (free)").set_defaults(func=cmd_report)
     args = parser.parse_args()
     try:
         args.func(args)

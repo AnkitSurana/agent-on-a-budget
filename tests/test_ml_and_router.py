@@ -89,7 +89,7 @@ class FakeLocalLLM:
 
 class FakeAgent:
     def run(self, text):
-        return AgentResult(reply="cloud answer", calls=[CallStats("gpt-6.1-sol", 1000, 100, 2.0, 0.006)])
+        return AgentResult(reply="cloud answer", calls=[CallStats("gpt-5.4-mini", 1000, 100, 2.0, 0.006)])
 
 
 def make_router(model, shop, local_ready=True):

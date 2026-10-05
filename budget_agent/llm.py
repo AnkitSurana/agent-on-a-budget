@@ -60,11 +60,18 @@ def explain(provider, model, sdk, error):
     bad_key = isinstance(error, sdk.BadRequestError) and "api key" in str(error).lower()   # how Gemini says it
     if bad_key or isinstance(error, (sdk.AuthenticationError, sdk.PermissionDeniedError)):
         return LLMSetupError(f"Your {provider} API key was not accepted. Check {key} in the .env file.")
+    if isinstance(error, sdk.BadRequestError) and "tools" in str(error).lower() and "not supported" in str(error).lower():
+        return LLMSetupError(f"The model '{model}' can't use tools in this project. "
+                             f"Choose another one with {MODEL_SETTING[provider]}=... in the .env file "
+                             "(for OpenAI, gpt-5.4-mini works well).")
     if isinstance(error, sdk.NotFoundError):
         if provider == "ollama":
             return LLMSetupError(f"Ollama doesn't have the model '{model}' yet. Run: ollama pull {model}")
         return LLMSetupError(f"The model '{model}' is not available on your {provider} account. "
                              f"Choose another one with {MODEL_SETTING[provider]}=... in the .env file.")
+    if isinstance(error, sdk.InternalServerError):
+        return LLMSetupError(f"{provider} is overloaded right now (this is on their side, not yours). "
+                             "Try again in a minute, or switch provider with LLM_PROVIDER in the .env file.")
     if isinstance(error, sdk.RateLimitError):
         return LLMSetupError(f"{provider} says: too many requests, or no credit left. "
                              "Wait a minute, or check your account's billing page.")
@@ -103,7 +110,9 @@ class OpenAIChat:
         self.model = model or settings["model"]
         if client is None:
             from openai import OpenAI
-            client = OpenAI(api_key=os.getenv(settings["key"], "ollama"), base_url=settings.get("base_url"))
+            # max_retries: if the provider is busy, wait and try again a few times before giving up
+            client = OpenAI(api_key=os.getenv(settings["key"], "ollama"), base_url=settings.get("base_url"),
+                            max_retries=5)
         self.client = client
 
     def chat(self, system, history, tools=None, effort="medium", max_tokens=8000, json_schema=None):
@@ -129,7 +138,13 @@ class OpenAIChat:
         import openai
         start = time.perf_counter()
         try:
-            response = self.client.chat.completions.create(**request)
+            try:
+                response = self.client.chat.completions.create(**request)
+            except openai.BadRequestError as error:
+                # Some OpenAI models only use tools here with reasoning switched off. Try once more that way.
+                if not (tools and "reasoning_effort to 'none'" in str(error)):
+                    raise
+                response = self.client.chat.completions.create(**request, reasoning_effort="none")
         except openai.APIError as error:
             raise (explain(self.provider, self.model, openai, error) or error) from error
         seconds = time.perf_counter() - start
@@ -162,7 +177,7 @@ class Claude:
         self.model = model or config.PROVIDERS["anthropic"]["model"]
         if client is None:
             import anthropic
-            client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from the environment
+            client = anthropic.Anthropic(max_retries=5)  # reads ANTHROPIC_API_KEY from the environment
         self.client = client
 
     def chat(self, system, history, tools=None, effort="medium", max_tokens=8000, json_schema=None):

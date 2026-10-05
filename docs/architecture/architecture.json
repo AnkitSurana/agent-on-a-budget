@@ -306,7 +306,7 @@
       "title": "Chapter 2: the LLM teaches a small ML model",
       "items": [
         "The LLM labels 1,080 messages with one of 27 intents",
-        "A small ML model learns from them: 98.3% on clean, 60% on messy messages",
+        "A small ML model learns from them: 92.4% on clean, 58% on messy messages",
         "Run: python run.py label, then python run.py train"
       ]
     },

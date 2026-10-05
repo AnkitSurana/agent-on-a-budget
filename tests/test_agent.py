@@ -60,7 +60,7 @@ def test_v2_runs_a_tool_then_answers(shop):
     # The tool result went back to the LLM in the second request
     last = client.requests[1]["messages"][-1]
     assert last["role"] == "tool" and last["tool_call_id"] == "call_1"
-    assert result.cost_usd == pytest.approx(2 * cost_usd("gpt-6.1-sol", 1000, 100))
+    assert result.cost_usd == pytest.approx(2 * cost_usd("gpt-5.4-mini", 1000, 100))
 
 
 def test_v2_sends_every_tool_result(shop):
@@ -144,3 +144,30 @@ def test_ollama_not_running_gives_a_plain_message():
     llm = OpenAIChat("ollama", client=failing_client(error))
     with pytest.raises(LLMSetupError, match="ollama serve"):
         llm.chat("system", [{"role": "user", "content": "hi"}])
+
+
+def test_models_that_need_reasoning_off_get_a_second_try():
+    import httpx2
+    import openai
+
+    request = httpx2.Request("POST", "https://api.openai.com/v1/chat/completions")
+    needs_off = openai.BadRequestError(
+        "Function tools with reasoning_effort are not supported for this model. "
+        "To use function tools, use /v1/responses or set reasoning_effort to 'none'.",
+        response=httpx2.Response(400, request=request), body=None)
+    answers = [needs_off, openai_text("It shipped!")]
+    requests = []
+
+    def create(**req):
+        requests.append(dict(req))
+        answer = answers.pop(0)
+        if isinstance(answer, Exception):
+            raise answer
+        return answer
+
+    from types import SimpleNamespace
+    client = SimpleNamespace(chat=SimpleNamespace(completions=SimpleNamespace(create=create)))
+    tools = [{"name": "lookup_order", "description": "d", "input_schema": {"type": "object", "properties": {}}}]
+    reply = OpenAIChat("openai", client=client).chat("system", [{"role": "user", "content": "hi"}], tools=tools)
+    assert reply.text == "It shipped!"
+    assert "reasoning_effort" not in requests[0] and requests[1]["reasoning_effort"] == "none"

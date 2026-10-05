@@ -67,12 +67,12 @@ class FakeAnthropicClient:
 
 # ---------- A fake OpenAI (also how Gemini and Ollama talk) ----------
 
-def openai_text(text, model="gpt-6.1-sol", finish_reason="stop"):
+def openai_text(text, model="gpt-5.4-mini", finish_reason="stop"):
     message = ChatCompletionMessage(role="assistant", content=text)
     return _openai_response(message, finish_reason, model)
 
 
-def openai_tools(calls, model="gpt-6.1-sol"):
+def openai_tools(calls, model="gpt-5.4-mini"):
     """calls: [(id, name, arguments_dict), ...]"""
     message = ChatCompletionMessage.model_validate({"role": "assistant", "content": None, "tool_calls": [
         {"id": i, "type": "function", "function": {"name": n, "arguments": json.dumps(a)}} for i, n, a in calls]})

@@ -79,10 +79,34 @@ NovaMart is a pretend online shop in India. The agent works with:
 
 ## Results so far
 
-The ML model (TF-IDF on pieces of words + Logistic Regression), trained on 1,080 messages:
+Real runs with OpenAI `gpt-5.4-mini`, October 2026. Your numbers will vary a little.
 
-| | Accuracy |
+**Chapter 2: the LLM teaches the ML model**
+
+| | Result |
 |---|---|
+| Cost to label 1,080 messages with the LLM | **$0.07** |
+| LLM labels that match the dataset's true labels | **91.5%** (most "mistakes" are close pairs like `check_invoice` vs `get_invoice`) |
+| Receptionist accuracy on clean test messages | **92.4%** (98.3% if trained on perfect labels: the student can't beat its teacher) |
+| Receptionist accuracy on messy messages | 58.0% |
+| When it is at least 80% sure (72% of a mixed inbox) | **98.3%** right |
+| Time per message | about **0.05 milliseconds**, for $0 |
+
+**Chapter 3: expert only vs the whole office** (30 messages, a third of them messy; no junior assistant yet)
+
+| | Expert only | Whole office |
+|---|---|---|
+| Cost for 30 messages | $0.036 | **$0.020** |
+| Cost per 1,000 messages | $1.20 | **$0.66** |
+| Average time per message | 1.86 s | **1.15 s** |
+| Answered by the receptionist for $0 | 0% | **40%** |
+
+The whole office was **1.8× cheaper and 1.6× faster**, with answers of similar quality.
+The saving grows as more messages are simple: refunds, cancels and complaints always go to the expert, on purpose.
+
+The LLM's labels (`data/llm_labels.csv`) and the benchmark results (`data/benchmark_results.csv`) are included, so everything works even without an API key. To redo them yourself, delete those files and run `uv run python run.py label`, `uv run python run.py train` and `uv run python run.py benchmark --n 30`.
+
+---|---|
 | Clean test messages | **98.3%** |
 | Messy messages | 60.0% |
 | Messages where it is ≥ 80% sure (79% of a mixed inbox) | **100%** |
@@ -114,7 +138,7 @@ Then copy `.env.example` to `.env` and paste **one** API key, whichever you have
 
 | Provider | Default model | Get a key |
 |---|---|---|
-| OpenAI | `gpt-6.1-sol` | [platform.openai.com](https://platform.openai.com/api-keys) |
+| OpenAI | `gpt-5.4-mini` | [platform.openai.com](https://platform.openai.com/api-keys) |
 | Anthropic | `claude-opus-5-5` | [console.anthropic.com](https://console.anthropic.com/) |
 | Gemini | `gemini-3.8-flash` | [aistudio.google.com](https://aistudio.google.com/apikey) (has a **free tier**) |
 | No key | `llama3.2:3b` on your laptop via [Ollama](https://ollama.com/download) | free |
@@ -195,7 +219,7 @@ The project explains common setup problems in one line instead of a long error:
 |---|---|
 | "Your ... API key was not accepted" | Check the key in `.env` (no spaces or quotes) |
 | "Could not reach Ollama" | No key was found, so it tried the free local model. Open the Ollama app (Linux: `ollama serve`), or add a key to `.env` |
-| "The model ... is not available" | Pick another model in `.env`, for example `OPENAI_MODEL=gpt-5-mini` |
+| "The model ... is not available" or "can't use tools" | Pick another model in `.env`, for example `OPENAI_MODEL=gpt-5.4-mini` |
 | "too many requests, or no credit left" | Wait a minute, or add credit on your provider's billing page |
 
 Only the project's own `.env` file is read, never one from a parent folder.

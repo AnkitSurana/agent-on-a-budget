@@ -150,7 +150,7 @@ The "senior expert" needs a big cloud LLM. You need **one** key, from any one of
 
 | Provider | Where to get a key | Cost |
 |---|---|---|
-| Gemini (Google) | https://aistudio.google.com/apikey | **Free tier available** |
+| Gemini (Google) | https://aistudio.google.com/apikey | **Free tier available** (about 5 requests a minute: fine for chatting, slow for labelling and the benchmark) |
 | OpenAI | https://platform.openai.com/api-keys | Paid, a few dollars is plenty |
 | Anthropic (Claude) | https://console.anthropic.com/ | Paid, a few dollars is plenty |
 
@@ -243,8 +243,9 @@ To stop the app or Jupyter, click the terminal and press `Ctrl + C`.
 | Windows on ARM: error about `httptools` | Use the ARM command in Step 4. |
 | "Your ... API key was not accepted" | Check the key in `.env`: the right line, no spaces, no quotes. |
 | "Could not reach Ollama" | No API key was found, so it tried the free local model. Open the Ollama app (Linux: `ollama serve`), or add a key in Step 6. |
-| "The model ... is not available" | Your account can't use that model. Pick another one in `.env`, for example `OPENAI_MODEL=gpt-5-mini`. |
-| "too many requests, or no credit left" | Wait a minute, or add credit on your provider's billing page. |
+| "The model ... is not available" or "can't use tools" | Pick another model in `.env`, for example `OPENAI_MODEL=gpt-5.4-mini`. |
+| "too many requests, or no credit left" | Wait a minute, or add credit on your provider's billing page. Gemini's free tier allows about 5 requests a minute. |
+| "... is overloaded right now" | The provider is busy (not your fault). Try again in a minute. |
 | The app says "port 8501 is already in use" | It's already running in another terminal. Use that one, or run `uv run streamlit run app.py --server.port 8502`. |
 | Office or university network blocks downloads | Try a phone hotspot for the install (Steps 2, 4 and 7). |
 

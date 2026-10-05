@@ -66,7 +66,7 @@ One idea connects the whole workshop: **an LLM is also an ML model, just a very 
 
 ## Part 2: Machine learning basics
 
-Our ML model reads a customer message and guesses its **intent** (what the customer wants) out of 27 options. It gets 98.3% right on clean messages, in about 0.05 milliseconds, for free.
+Our ML model reads a customer message and guesses its **intent** (what the customer wants) out of 27 options. Trained on the LLM's labels, it gets 92.4% right on clean messages, in about 0.05 milliseconds, for free.
 
 ### Supervised learning
 
@@ -84,7 +84,7 @@ Models only understand numbers, so every message must become a list of numbers f
 
 Despite its name, logistic regression is a **classifier**. It learns a weight for each feature and each intent. For a new message it adds up the weights and turns the totals into **probabilities** that sum to 1, one per intent.
 
-The setting `C` controls how much the model holds back. A small `C` gives careful, flat probabilities. A larger `C` (we use 20) gives sharper, more confident ones. In notebook 03, raising `C` lifted average confidence from 47% to 88%.
+The setting `C` controls how much the model holds back. A small `C` gives careful, flat probabilities. A larger `C` (we use 20) gives sharper, more confident ones. In notebook 03, raising `C` lifted average confidence from 46% to 86%.
 
 ### Train and test split
 
@@ -92,13 +92,13 @@ We never test a model on the examples it learned from: that is like marking a st
 
 ### Measuring it
 
-- **Accuracy** = correct predictions ÷ all predictions. Ours: 98.3% on clean test messages, 60% on messy ones.
+- **Accuracy** = correct predictions ÷ all predictions. Ours: 92.4% on clean test messages, 58% on messy ones.
 - **Confusion matrix** = a table of which intents get mixed up with which. It shows *where* the model fails.
 - **Precision and recall** = for one intent, how many of its predictions were right, and how many of the real cases it found.
 
 ### Confidence: the key idea for the router
 
-The highest probability is the model's **confidence**. Wrong answers usually come with low confidence. On our mixed inbox, when the model is at least 80% sure, it answers 79% of messages and gets all of those right. So we trust it only above that line.
+The highest probability is the model's **confidence**. Wrong answers usually come with low confidence. On our mixed inbox, when the model is at least 80% sure, it answers 72% of messages and gets 98.3% of those right. So we trust it only above that line.
 
 ### Overfitting
 
@@ -131,7 +131,7 @@ LLMs are **stateless**: they remember nothing between calls. To continue a conve
 
 ### Cost and speed
 
-You pay for **input tokens** (what you send) and **output tokens** (what it writes). Output usually costs about 5 times more. For example, `gpt-6.1-sol` costs $2 per million input tokens and $10 per million output tokens:
+You pay for **input tokens** (what you send) and **output tokens** (what it writes). Output usually costs 5 to 6 times more. For example, `gpt-5.4-mini` (our default OpenAI model) costs $0.75 per million input tokens and $4.50 per million output tokens:
 
 ```
 cost = (input tokens × input price + output tokens × output price) / 1,000,000
@@ -213,7 +213,7 @@ Supervised learning needs examples with answers. A real company has thousands of
 
 We hide the dataset's true labels and ask the LLM to label 1,080 training messages, 25 per request to save money (`budget_agent/labeler.py`). Because the dataset also has true labels, we can measure how good the LLM's labels are, and how good the ML model becomes when it learns from them.
 
-LLM labels are not perfect, but neither are human labels. Some "mistakes" are honestly debatable, such as `check_invoice` versus `get_invoice`.
+LLM labels are not perfect, but neither are human labels. Some "mistakes" are honestly debatable, such as `check_invoice` versus `get_invoice`. In our run, labelling all 1,080 messages cost $0.07, and the LLM's labels matched the true ones 91.5% of the time.
 
 ### Distillation
 
@@ -224,7 +224,8 @@ Our student is not even a neural network. It is TF-IDF plus logistic regression,
 ### What the student cannot do
 
 - It only knows the 27 intents it was trained on.
-- It does well on clean messages (98.3%) but poorly on messy ones (60%): Hinglish, slang, two requests in one.
+- It does well on clean messages (92.4%) but poorly on messy ones (58%): Hinglish, slang, two requests in one.
+- It can't be better than its teacher. Trained on perfect labels it would get 98.3%; trained on the LLM's labels it gets 92.4%.
 - It cannot take actions or reason.
 
 That is fine, because it **knows when it is unsure** (low confidence). Unsure messages go to a smarter helper. The student becomes the receptionist of the support office in Part 6.
@@ -264,6 +265,8 @@ They fit on a laptop thanks to **quantization**: storing each of the model's num
 - **Smaller or cheaper models** for easy tasks, and **lower reasoning effort** where deep thinking is not needed.
 - **Streaming:** show the answer word by word, so it *feels* faster.
 - **Speculative decoding:** a small model drafts tokens and the big model checks them in one go. Mention only; it happens inside model servers.
+
+In our test run (30 messages, a third of them messy, no junior assistant yet), the whole office was **1.8× cheaper and 1.6× faster** than sending everything to the expert: $0.66 instead of $1.20 per 1,000 messages. The receptionist answered 40% of messages for $0.
 
 **In the repo:** `budget_agent/router.py`, `uv run python run.py route`, `uv run python run.py benchmark`, notebooks 04 and 05.
 

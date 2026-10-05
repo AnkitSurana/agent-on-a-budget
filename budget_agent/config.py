@@ -31,7 +31,7 @@ TODAY = date(2026, 10, 5)
 # Which LLM provider to use for the agent and for labelling.
 # Leave LLM_PROVIDER empty and the project uses the first API key it finds in .env.
 PROVIDERS = {
-    "openai":    {"key": "OPENAI_API_KEY",    "model": os.getenv("OPENAI_MODEL", "gpt-6.1-sol")},
+    "openai":    {"key": "OPENAI_API_KEY",    "model": os.getenv("OPENAI_MODEL", "gpt-5.4-mini")},
     "anthropic": {"key": "ANTHROPIC_API_KEY", "model": os.getenv("ANTHROPIC_MODEL", "claude-opus-5-5")},
     "gemini":    {"key": "GEMINI_API_KEY",    "model": os.getenv("GEMINI_MODEL", "gemini-3.8-flash"),
                   "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/"},

@@ -76,4 +76,7 @@ def label_messages(messages, llm=None, batch_size=25, save_to=config.LLM_LABELS_
               f"({stats.seconds:.1f}s, ${stats.cost_usd:.4f})")
 
     print(f"Done. Cost of this run: ${total_cost:.4f}")
+    skipped = len(set(messages["id"]) - set(done["id"]))
+    if skipped:
+        print(f"The LLM skipped {skipped} message(s). Run the same command again to label just those.")
     return done

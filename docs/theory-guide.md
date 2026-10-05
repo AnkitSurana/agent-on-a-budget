@@ -15,10 +15,10 @@ You do not need a maths degree or ML experience. You do need these basics:
 
 | Prerequisite | Level needed | Why it matters here |
 | --- | --- | --- |
-| Python | Comfortable: functions, lists, dictionaries, classes, `pip install` | All the code is Python |
+| Python | Comfortable: functions, lists, dictionaries, classes. No need to install Python: uv does it | All the code is Python |
 | pandas | Basic: load a CSV, filter rows, count values | Every notebook uses DataFrames |
 | Jupyter notebooks | Can run cells in order | The step-by-step version of the project |
-| Command line | `cd`, run a script, activate a virtual environment | `python run.py ...` and `streamlit run app.py` |
+| Command line | `cd`, run a command (the [install guide](install-guide.md) shows every step) | `uv run python run.py ...` and `uv run streamlit run app.py` |
 | Git and GitHub | Clone, commit, push | Sharing the repo with attendees |
 | JSON and APIs | Know what a JSON object and an API key are | LLMs are called over an API and reply in JSON |
 | Basic maths | Percentages, averages, what a probability between 0 and 1 means | Accuracy and confidence |
@@ -229,7 +229,7 @@ Our student is not even a neural network. It is TF-IDF plus logistic regression,
 
 That is fine, because it **knows when it is unsure** (low confidence). Unsure messages go to a smarter helper. The student becomes the receptionist of the support office in Part 6.
 
-**In the repo:** `budget_agent/labeler.py`, `budget_agent/classifier.py`, `python run.py label`, `python run.py train`, notebook 03.
+**In the repo:** `budget_agent/labeler.py`, `budget_agent/classifier.py`, `uv run python run.py label`, `uv run python run.py train`, notebook 03.
 
 ## Part 6: Inference engineering
 
@@ -265,7 +265,7 @@ They fit on a laptop thanks to **quantization**: storing each of the model's num
 - **Streaming:** show the answer word by word, so it *feels* faster.
 - **Speculative decoding:** a small model drafts tokens and the big model checks them in one go. Mention only; it happens inside model servers.
 
-**In the repo:** `budget_agent/router.py`, `python run.py route`, `python run.py benchmark`, notebooks 04 and 05.
+**In the repo:** `budget_agent/router.py`, `uv run python run.py route`, `uv run python run.py benchmark`, notebooks 04 and 05.
 
 ## Part 7: How the theory maps to the repo
 
@@ -273,15 +273,15 @@ Each chapter adds one idea from this guide. Read the files in this order.
 
 | Chapter | Idea | Files | Command | Notebook |
 | --- | --- | --- | --- | --- |
-| Setup | The data | `budget_agent/data.py`, `data/` | `python run.py data` | 01 |
-| 1. Give an LLM hands | LLM basics, then tools, the loop and guardrails: the senior expert | `budget_agent/llm.py`, `budget_agent/tools.py`, `budget_agent/agent.py` | `python run.py chat --version 1`, then `--version 2` | 02 |
-| 2. The LLM teaches ML | The LLM labels data; the receptionist learns from it | `budget_agent/labeler.py`, `budget_agent/classifier.py` | `python run.py label`, then `python run.py train` | 03 |
-| 3. The whole support office | Junior assistant, routing, cost and speed | `budget_agent/router.py`, `run.py`, `app.py` | `python run.py chat --version 4`, `python run.py benchmark --n 30`, `streamlit run app.py` | 04, 05 |
+| Setup | The data | `budget_agent/data.py`, `data/` | `uv run python run.py data` | 01 |
+| 1. Give an LLM hands | LLM basics, then tools, the loop and guardrails: the senior expert | `budget_agent/llm.py`, `budget_agent/tools.py`, `budget_agent/agent.py` | `uv run python run.py chat --version 1`, then `--version 2` | 02 |
+| 2. The LLM teaches ML | The LLM labels data; the receptionist learns from it | `budget_agent/labeler.py`, `budget_agent/classifier.py` | `uv run python run.py label`, then `uv run python run.py train` | 03 |
+| 3. The whole support office | Junior assistant, routing, cost and speed | `budget_agent/router.py`, `run.py`, `app.py` | `uv run python run.py chat --version 4`, `uv run python run.py benchmark --n 30`, `uv run streamlit run app.py` | 04, 05 |
 
 Two more places hold everything together:
 
 - `budget_agent/config.py`: every setting in one place: providers, model names, prices, confidence thresholds, which intents count as actions, the helper names and the demo messages.
-- `tests/`: 35 tests that use fake LLMs, so they are free and run offline. Run them with `pytest`.
+- `tests/`: 35 tests that use fake LLMs, so they are free and run offline. Run them with `uv run pytest`.
 
 ## Glossary
 

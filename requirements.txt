@@ -1,8 +1,11 @@
+# Using uv? You don't need this file: run `uv sync` instead (see docs/install-guide.md).
+# This list is for people who prefer plain pip: pip install -r requirements.txt
 anthropic>=1.0
-openai>=1.50
+openai>=3.0
 datasets>=3.0
-ipykernel>=6.29
 joblib>=1.4
+jupyterlab>=4.0
+ipykernel>=6.29
 matplotlib>=3.8
 nbconvert>=7.10
 pandas>=2.2

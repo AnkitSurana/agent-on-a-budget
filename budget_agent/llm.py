@@ -70,8 +70,9 @@ def explain(provider, model, sdk, error):
                              "Wait a minute, or check your account's billing page.")
     if isinstance(error, sdk.APIConnectionError):
         if provider == "ollama":
-            return LLMSetupError("Could not reach Ollama, the free local model. Start it with: ollama serve "
-                                 "(and once: ollama pull llama3.2:3b). Or put an API key in the .env file.")
+            return LLMSetupError("Could not reach Ollama, the free local model. Open the Ollama app "
+                                 "(on Linux: ollama serve), and once run: ollama pull llama3.2:3b. "
+                                 "Or put an API key in the .env file.")
         return LLMSetupError(f"Could not reach {provider}. Check your internet connection.")
     return None
 

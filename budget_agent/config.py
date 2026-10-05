@@ -21,7 +21,7 @@ MESSAGES_CSV = DATA_DIR / "messages.csv"          # customer messages (from the 
 MESSY_CSV = DATA_DIR / "messy_messages.csv"       # hand-written messy messages (typos, slang, anger)
 ORDERS_CSV = DATA_DIR / "orders.csv"              # fake NovaMart orders
 POLICY_MD = DATA_DIR / "policy.md"                # NovaMart refund / shipping policy
-LLM_LABELS_CSV = DATA_DIR / "llm_labels.csv"      # labels written by the LLM (made by `python run.py label`)
+LLM_LABELS_CSV = DATA_DIR / "llm_labels.csv"      # labels written by the LLM (made by `uv run python run.py label`)
 CLASSIFIER_PATH = MODELS_DIR / "intent_classifier.joblib"
 
 # The "today" of our fake shop. Fixed, so results are the same every time.

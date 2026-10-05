@@ -1,19 +1,19 @@
-"""One command line for the whole project. Run `python run.py --help` to see everything.
+"""One command line for the whole project. Run `uv run python run.py --help` to see everything.
 
-    python run.py data                 # make the data files
+    uv run python run.py data                 # make the data files
 
     Chapter 1 - Build your first AI agent
-    python run.py chat --version 1     # the LLM alone: it can only talk
-    python run.py chat --version 2     # the LLM with tools: the senior expert
+    uv run python run.py chat --version 1     # the LLM alone: it can only talk
+    uv run python run.py chat --version 2     # the LLM with tools: the senior expert
 
     Chapter 2 - From Machine Learning & LLMs: the LLM teaches a small ML model
-    python run.py label                # the LLM labels the training messages
-    python run.py train                # the ML model (the receptionist) learns from those labels
+    uv run python run.py label                # the LLM labels the training messages
+    uv run python run.py train                # the ML model (the receptionist) learns from those labels
 
     Chapter 3 - To real-world workflows: the whole support office
-    python run.py route                # who would answer each messy message (free, no LLM)
-    python run.py chat --version 4     # talk to the whole office
-    python run.py benchmark --n 30     # expert only vs the whole office (costs a little money)
+    uv run python run.py route                # who would answer each messy message (free, no LLM)
+    uv run python run.py chat --version 4     # talk to the whole office
+    uv run python run.py benchmark --n 30     # expert only vs the whole office (costs a little money)
 """
 
 import argparse
@@ -67,7 +67,7 @@ def training_data():
         labels = pd.read_csv(config.LLM_LABELS_CSV)
         train = train.merge(labels, on="id")
         return train["text"], train["llm_intent"], "the LLM's labels"
-    return train["text"], train["true_intent"], "the TRUE labels (run `python run.py label` to use the LLM's)"
+    return train["text"], train["true_intent"], "the TRUE labels (run `uv run python run.py label` to use the LLM's)"
 
 
 def cmd_train(args):
@@ -141,6 +141,8 @@ def print_summary(results):
 
 
 def main():
+    # Windows terminals sometimes can't print ₹ or emoji. UTF-8 output fixes that on every system.
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description="agent-on-a-budget")
     sub = parser.add_subparsers(required=True)
     sub.add_parser("data", help="make the data files").set_defaults(func=cmd_data)

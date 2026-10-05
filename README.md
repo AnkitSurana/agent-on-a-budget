@@ -62,9 +62,9 @@ The code calls the steps "versions". This is how they line up with the chapters:
 
 | Chapter | Code | Command |
 |---|---|---|
-| 1. Give an LLM hands | Version 1 (LLM only), Version 2 (LLM + tools = the senior expert) | `python run.py chat --version 1` / `--version 2` |
-| 2. The LLM teaches ML | Version 3 (label, then train the receptionist) | `python run.py label`, then `python run.py train` |
-| 3. The whole office | Version 4 (the router) | `python run.py chat --version 4` |
+| 1. Give an LLM hands | Version 1 (LLM only), Version 2 (LLM + tools = the senior expert) | `uv run python run.py chat --version 1` / `--version 2` |
+| 2. The LLM teaches ML | Version 3 (label, then train the receptionist) | `uv run python run.py label`, then `uv run python run.py train` |
+| 3. The whole office | Version 4 (the router) | `uv run python run.py chat --version 4` |
 
 ## The shop: NovaMart
 
@@ -74,7 +74,7 @@ NovaMart is a pretend online shop in India. The agent works with:
 |---|---|
 | `data/messages.csv` | 1,620 customer messages (27 intents × 60) from the [Bitext customer support dataset](https://huggingface.co/datasets/bitext/Bitext-customer-support-llm-chatbot-training-dataset), split into train and test |
 | `data/messy_messages.csv` | 50 hand-written hard messages: typos, Hinglish, anger, two requests in one |
-| `data/orders.csv` | 300 fake orders (made by `python run.py data`) |
+| `data/orders.csv` | 300 fake orders (made by `uv run python run.py data`) |
 | `data/policy.md` | The shop's refund, delivery and payment rules |
 
 ## Results so far
@@ -90,66 +90,58 @@ The ML model (TF-IDF on pieces of words + Logistic Regression), trained on 1,080
 It takes about **0.05 milliseconds** per message and costs nothing.
 When the receptionist is unsure, the message goes to a smarter helper instead.
 
-> These numbers use the dataset's own labels. After you run `python run.py label`, the model learns from the **LLM's** labels instead.
-> Cost and speed for the expert alone vs the whole office come from `python run.py benchmark`.
+> These numbers use the dataset's own labels. After you run `uv run python run.py label`, the model learns from the **LLM's** labels instead.
+> Cost and speed for the expert alone vs the whole office come from `uv run python run.py benchmark`.
 
 ---
 
 ## Setup
 
-You need a Mac or Linux computer and Python 3.10+.
+Works on **Mac, Windows and Linux**. You don't even need Python installed: [uv](https://docs.astral.sh/uv/) installs the right version for you.
 
-**Use whichever LLM you have.** Put ONE key in `.env` and the project uses it automatically:
+📘 **New to this? Follow the [step-by-step install guide](docs/install-guide.md)** (about 10 minutes, every command for every system).
+
+Quick version, if you've done this before:
+
+```bash
+git clone https://github.com/AnkitSurana/agent-on-a-budget.git
+cd agent-on-a-budget
+uv sync                     # installs Python 3.12 and every package
+uv run pytest               # check: "35 passed"
+```
+
+Then copy `.env.example` to `.env` and paste **one** API key, whichever you have:
 
 | Provider | Default model | Get a key |
 |---|---|---|
 | OpenAI | `gpt-6.1-sol` | [platform.openai.com](https://platform.openai.com/api-keys) |
 | Anthropic | `claude-opus-5-5` | [console.anthropic.com](https://console.anthropic.com/) |
 | Gemini | `gemini-3.8-flash` | [aistudio.google.com](https://aistudio.google.com/apikey) (has a **free tier**) |
-| No key | `llama3.2:3b` on your laptop via Ollama | free, see below |
+| No key | `llama3.2:3b` on your laptop via [Ollama](https://ollama.com/download) | free |
 
 Have more than one key? Set `LLM_PROVIDER=openai` (or `anthropic`, `gemini`, `ollama`) in `.env`.
 You can change any model name in `.env` too.
-
-```bash
-git clone git@github.com:AnkitSurana/agent-on-a-budget.git
-cd agent-on-a-budget
-
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-
-cp .env.example .env        # then open .env and paste ONE API key
-```
-
-**Optional: Ollama, the free local LLM** (the junior assistant, or every helper if you have no key):
-
-```bash
-brew install ollama
-ollama serve                 # leave this running in its own terminal
-ollama pull llama3.2:3b      # about 2 GB
-```
 
 Without Ollama the project still works. The office simply has no junior assistant.
 
 ## How to run it
 
 ```bash
-python run.py data                  # make the data files
+uv run python run.py data                  # make the data files
 
 # Chapter 1: build your first AI agent
-python run.py chat --version 1      # the LLM alone: it can only talk
-python run.py chat --version 2      # the LLM with tools: the senior expert
+uv run python run.py chat --version 1      # the LLM alone: it can only talk
+uv run python run.py chat --version 2      # the LLM with tools: the senior expert
 
 # Chapter 2: the LLM teaches a small ML model
-python run.py label                 # the LLM labels the training messages (a few minutes, under $1)
-python run.py train                 # the receptionist (ML model) learns from those labels
+uv run python run.py label                 # the LLM labels the training messages (a few minutes, under $1)
+uv run python run.py train                 # the receptionist (ML model) learns from those labels
 
 # Chapter 3: the whole support office
-python run.py route                 # who would answer each messy message (free)
-python run.py chat --version 4      # talk to the whole office
-python run.py benchmark --n 30      # expert only vs the whole office, 30 messages (costs a little)
-streamlit run app.py                # the demo app: one button per helper, plus charts
+uv run python run.py route                 # who would answer each messy message (free)
+uv run python run.py chat --version 4      # talk to the whole office
+uv run python run.py benchmark --n 30      # expert only vs the whole office, 30 messages (costs a little)
+uv run streamlit run app.py                # the demo app: one button per helper, plus charts
 ```
 
 ## Notebooks: the step-by-step version
@@ -180,12 +172,16 @@ run.py            command line for everything
 app.py            Streamlit demo app
 notebooks/        step-by-step notebooks
 tests/            tests (no internet or API key needed)
+docs/             install guide, theory guide, architecture diagram
+pyproject.toml    the project's packages (used by uv)
+uv.lock           exact package versions, the same on every computer
+requirements.txt  the same packages, for people who prefer plain pip
 ```
 
 ## Tests
 
 ```bash
-pytest
+uv run pytest
 ```
 
 The tests use fake LLMs, so they're free and run offline. They check the tools and their rules,
@@ -198,11 +194,12 @@ The project explains common setup problems in one line instead of a long error:
 | Message starts with | What to do |
 |---|---|
 | "Your ... API key was not accepted" | Check the key in `.env` (no spaces or quotes) |
-| "Could not reach Ollama" | No key was found, so it tried the free local model. Run `ollama serve`, or add a key to `.env` |
+| "Could not reach Ollama" | No key was found, so it tried the free local model. Open the Ollama app (Linux: `ollama serve`), or add a key to `.env` |
 | "The model ... is not available" | Pick another model in `.env`, for example `OPENAI_MODEL=gpt-5-mini` |
 | "too many requests, or no credit left" | Wait a minute, or add credit on your provider's billing page |
 
 Only the project's own `.env` file is read, never one from a parent folder.
+Install problems (uv, Windows, Ollama)? See the troubleshooting table in the [install guide](docs/install-guide.md#if-something-goes-wrong).
 
 ## Safety rules built in
 

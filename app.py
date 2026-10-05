@@ -1,4 +1,4 @@
-"""The demo app for the workshop. Start it with:  streamlit run app.py"""
+"""The demo app for the workshop. Start it with:  uv run streamlit run app.py"""
 
 import pandas as pd
 import streamlit as st
@@ -70,7 +70,7 @@ with chat_tab:
 with compare_tab:
     results_file = config.DATA_DIR / "benchmark_results.csv"
     if not results_file.exists():
-        st.info("No results yet. Run `python run.py benchmark --n 30` in the terminal first.")
+        st.info("No results yet. Run `uv run python run.py benchmark --n 30` in the terminal first.")
     else:
         results = pd.read_csv(results_file)
         cost_v2, cost_v4 = results.v2_cost.sum(), results.v4_cost.sum()

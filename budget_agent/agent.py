@@ -35,7 +35,6 @@ NO_TOOLS_PROMPT = SYSTEM_PROMPT.split("How to work:")[0] + (
 @dataclass
 class AgentResult:
     reply: str
-    layer: str = "llm"
     tool_calls: list = field(default_factory=list)   # [(tool name, input, result), ...]
     calls: list = field(default_factory=list)        # one CallStats per LLM request
     escalated: bool = False                          # True if a human (the manager) was asked to take over

@@ -189,6 +189,7 @@ The notebooks show every step as a beginner would try it, mistakes included. The
 
 | Notebook | Chapter | What happens | Needs |
 |---|---|---|---|
+| **`00_the_whole_story`** | **All** | **Start here: the complete flow in one notebook, from data to the final savings** | **nothing (replays saved answers, $0)** |
 | `01_look_at_the_data` | Setup | Explore the messages and orders | nothing |
 | `02_first_chat_with_an_llm` | 1 | First API call, cost per message, then the agent loop written by hand (same as `agent.py`) | API key (or Ollama) |
 | `03_llm_labels_ml_learns` | 2 | The LLM labels, 3 ML models compared, picking the receptionist's 80% rule | nothing (API key for the LLM's labels) |

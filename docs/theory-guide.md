@@ -274,7 +274,7 @@ In our test run (60 messages, a third of them messy), the whole office was **1.9
 
 ## Part 7: How the theory maps to the repo
 
-Each chapter adds one idea from this guide. Read the files in this order.
+Each chapter adds one idea from this guide. Read the files in this order. To see the whole flow in one place first, open `notebooks/00_the_whole_story.ipynb`.
 
 | Chapter | Idea | Files | Command | Notebook |
 | --- | --- | --- | --- | --- |

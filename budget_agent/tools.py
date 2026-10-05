@@ -97,7 +97,7 @@ class Shop:
         if name not in tools:
             return json.dumps({"error": f"Unknown tool {name}"})
         try:
-            return json.dumps(tools[name](**tool_input), default=str)
+            return json.dumps(tools[name](**tool_input), default=str, ensure_ascii=False)
         except TypeError as e:  # the LLM sent the wrong arguments
             return json.dumps({"error": f"Bad arguments for {name}: {e}"})
 

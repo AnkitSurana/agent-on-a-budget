@@ -6,3 +6,8 @@ __pycache__/
 .DS_Store
 models/
 data/benchmark_results.csv
+
+# Archify check files (made when the diagram is rendered)
+docs/architecture/*.browser-check.json
+docs/architecture/*.delivery.json
+docs/architecture/*.finalize*.json

@@ -1,8 +1,9 @@
-"""Version 4: the router. Send every message to the CHEAPEST model that can handle it.
+"""Chapter 3 (version 4): the whole support office. Each message goes to the CHEAPEST helper that can handle it.
 
-    Layer 1 - ML model      : very sure + simple question  -> ready-made answer   (~1 ms, free)
-    Layer 2 - local LLM     : fairly sure + simple question -> small model writes (~1 s, free)
-    Layer 3 - cloud LLM agent: actions, angry customers, or unsure -> full agent with tools (paid)
+    Receptionist  (ML model, "ml")               : at least 80% sure + simple       -> ready-made answer  (free)
+    Junior        (local LLM, "local_llm")       : 40-80% sure + policy question    -> short answer       (free)
+    Senior expert (cloud LLM agent, "cloud_llm") : actions, complaints, or unsure   -> agent with tools   (paid)
+    Manager       (human)                        : called by the expert for big refunds and angry customers
 
 Picking the right model for each request is a big part of "inference engineering".
 """
@@ -47,6 +48,7 @@ class RouteResult:
     seconds: float
     cost_usd: float
     tool_calls: list = field(default_factory=list)
+    escalated: bool = False    # the senior expert handed it to the manager (a human)
 
 
 class Router:
@@ -74,7 +76,9 @@ class Router:
         simple = intent not in config.ACTION_INTENTS
         if simple and confidence >= config.ML_CONFIDENCE:
             return "ml", intent, confidence
-        if simple and confidence >= config.LOCAL_LLM_CONFIDENCE and self.local_ready():
+        # The local LLM has no tools, so it only answers policy questions, never "where is my order?"
+        policy_question = simple and intent not in ORDER_INTENTS
+        if policy_question and confidence >= config.LOCAL_LLM_CONFIDENCE and self.local_ready():
             return "local_llm", intent, confidence
         return "cloud_llm", intent, confidence
 
@@ -94,7 +98,7 @@ class Router:
 
         result = self.agent.run(text)
         return RouteResult(result.reply, "cloud_llm", intent, confidence,
-                           time.perf_counter() - start, result.cost_usd, result.tool_calls)
+                           time.perf_counter() - start, result.cost_usd, result.tool_calls, result.escalated)
 
     def _template_reply(self, intent, text):
         if intent in ORDER_INTENTS:

@@ -8,7 +8,8 @@ from budget_agent import config
 st.set_page_config(page_title="Agent on a Budget", page_icon="🛒", layout="wide")
 st.title("🛒 NovaMart support: agent on a budget")
 
-LAYER_LABEL = {"ml": "🟢 ML model", "local_llm": "🟡 Local LLM", "cloud_llm": "🔵 Cloud LLM agent"}
+ICONS = {"ml": "🟢", "local_llm": "🟡", "cloud_llm": "🔵", "human": "🔴"}
+LAYER_LABEL = {layer: f"{ICONS[layer]} {name}" for layer, name in config.HELPERS.items()}
 
 
 @st.cache_resource
@@ -20,11 +21,19 @@ def get_bot(version):
     return SupportAgent(use_tools=(version == 2))
 
 
-chat_tab, compare_tab = st.tabs(["💬 Chat", "📊 Version 2 vs Version 4"])
+chat_tab, compare_tab = st.tabs(["💬 Chat", "📊 Expert only vs the whole office"])
 
 with chat_tab:
-    version = st.radio("Which version?", [1, 2, 4], horizontal=True, index=2, format_func=lambda v: {
-        1: "V1: LLM only", 2: "V2: LLM + tools", 4: "V4: router (ML → local LLM → cloud LLM)"}[v])
+    version = st.radio("Which step?", [1, 2, 4], horizontal=True, index=2, format_func=lambda v: {
+        1: "Chapter 1a: LLM only (can talk)",
+        2: "Chapter 1b: LLM + tools (the expert)",
+        4: "Chapter 3: the whole support office"}[v])
+
+    st.caption("Try one example per helper:")
+    clicked = None
+    for column, (layer, message) in zip(st.columns(4), config.DEMO_MESSAGES.items()):
+        if column.button(LAYER_LABEL[layer], help=message, use_container_width=True):
+            clicked = message
 
     if "history" not in st.session_state:
         st.session_state.history = []
@@ -34,18 +43,22 @@ with chat_tab:
             if "info" in turn:
                 st.caption(turn["info"])
 
-    if text := st.chat_input("Write a customer message, e.g. 'where is my order NM10005?'"):
+    text = st.chat_input("Write a customer message, e.g. 'track my order NM10009'") or clicked
+    if text:
         st.session_state.history.append({"role": "user", "text": text})
         bot = get_bot(version)
         with st.spinner("Thinking..."):
             if version == 4:
                 r = bot.handle(text)
-                info = (f"{LAYER_LABEL[r.layer]} · intent: {r.intent} ({r.confidence:.0%}) · "
+                helper = LAYER_LABEL[r.layer]
+                if r.escalated:
+                    helper += f" → {LAYER_LABEL['human']}"
+                info = (f"{helper} · intent: {r.intent} ({r.confidence:.0%}) · "
                         f"{r.seconds:.2f}s · ${r.cost_usd:.4f}")
             else:
                 r = bot.run(text)
                 tools = ", ".join(name for name, _, _ in r.tool_calls) or "none"
-                info = f"V{version} · tools: {tools} · {r.seconds:.2f}s · ${r.cost_usd:.4f}"
+                info = f"tools used: {tools} · {r.seconds:.2f}s · ${r.cost_usd:.4f}"
         st.session_state.history.append({"role": "assistant", "text": r.reply, "info": info})
         st.rerun()
 
@@ -58,15 +71,15 @@ with compare_tab:
         cost_v2, cost_v4 = results.v2_cost.sum(), results.v4_cost.sum()
         a, b, c = st.columns(3)
         a.metric("Messages", len(results))
-        b.metric("Cost: V2 → V4", f"${cost_v4:.3f}", f"{cost_v4 - cost_v2:+.3f} vs V2", delta_color="inverse")
-        c.metric("Average time: V2 → V4", f"{results.v4_seconds.mean():.2f}s",
-                 f"{results.v4_seconds.mean() - results.v2_seconds.mean():+.2f}s", delta_color="inverse")
+        b.metric("Cost: whole office", f"${cost_v4:.3f}", f"{cost_v4 - cost_v2:+.3f} vs expert only", delta_color="inverse")
+        c.metric("Average time: whole office", f"{results.v4_seconds.mean():.2f}s",
+                 f"{results.v4_seconds.mean() - results.v2_seconds.mean():+.2f}s vs expert only", delta_color="inverse")
 
         left, right = st.columns(2)
-        left.subheader("Who answered in V4?")
+        left.subheader("Who answered?")
         left.bar_chart(results.v4_layer.map(LAYER_LABEL).value_counts())
         right.subheader("Seconds per message")
-        right.bar_chart(pd.DataFrame({"V2": results.v2_seconds, "V4": results.v4_seconds}))
+        right.bar_chart(pd.DataFrame({"Expert only": results.v2_seconds, "Whole office": results.v4_seconds}))
 
         st.subheader("Every message")
         st.dataframe(results[["message", "v4_layer", "v2_seconds", "v4_seconds", "v2_cost", "v4_cost",

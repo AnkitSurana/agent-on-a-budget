@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Build Your First AI Agent: from ML & LLMs to a real-world support office",
+    "output": "docs/architecture/agent-on-a-budget.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    {
+      "id": "raw",
+      "type": "database",
+      "label": "Customer messages",
+      "sublabel": "1,080 with no labels",
+      "pos": [
+        30,
+        80
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "labeller",
+      "type": "cloud",
+      "label": "LLM labeller (teacher)",
+      "sublabel": "OpenAI / Claude / Gemini",
+      "pos": [
+        30,
+        210
+      ],
+      "size": [
+        170,
+        64
+      ],
+      "tag": "Chapter 2"
+    },
+    {
+      "id": "labels",
+      "type": "database",
+      "label": "LLM-labelled dataset",
+      "sublabel": "llm_labels.csv",
+      "pos": [
+        30,
+        340
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "trainer",
+      "type": "backend",
+      "label": "ML training",
+      "sublabel": "TF-IDF + logistic regression",
+      "pos": [
+        30,
+        470
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "model",
+      "type": "database",
+      "label": "Intent classifier",
+      "sublabel": "becomes the receptionist",
+      "pos": [
+        30,
+        600
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "customer",
+      "type": "external",
+      "label": "Customer",
+      "sublabel": "new support message",
+      "pos": [
+        330,
+        420
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "router",
+      "type": "backend",
+      "label": "Receptionist",
+      "sublabel": "ML model: intent + how sure",
+      "pos": [
+        330,
+        600
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "tag": "Chapter 3"
+    },
+    {
+      "id": "layer1",
+      "type": "frontend",
+      "label": "Ready-made answer",
+      "sublabel": "the receptionist answers, $0",
+      "pos": [
+        700,
+        420
+      ],
+      "size": [
+        200,
+        64
+      ]
+    },
+    {
+      "id": "layer2",
+      "type": "backend",
+      "label": "Junior assistant",
+      "sublabel": "local LLM (Ollama), $0",
+      "pos": [
+        700,
+        600
+      ],
+      "size": [
+        200,
+        64
+      ]
+    },
+    {
+      "id": "layer3",
+      "type": "cloud",
+      "label": "Senior expert",
+      "sublabel": "cloud LLM agent + tools, paid",
+      "pos": [
+        700,
+        780
+      ],
+      "size": [
+        200,
+        64
+      ],
+      "tag": "Chapter 1"
+    },
+    {
+      "id": "shop",
+      "type": "database",
+      "label": "NovaMart orders",
+      "sublabel": "orders, refunds, cancels",
+      "pos": [
+        990,
+        780
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "human",
+      "type": "external",
+      "label": "Manager",
+      "sublabel": "a human: refunds over ₹10,000",
+      "pos": [
+        700,
+        940
+      ],
+      "size": [
+        200,
+        64
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Chapter 2: LLM teaches ML (offline)",
+      "wraps": [
+        "raw",
+        "labeller",
+        "labels",
+        "trainer",
+        "model"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Chapter 3: the support office (every message)",
+      "wraps": [
+        "customer",
+        "router",
+        "layer1",
+        "layer2",
+        "layer3",
+        "shop",
+        "human"
+      ]
+    },
+    {
+      "kind": "security-group",
+      "label": "Guardrails in Python code",
+      "wraps": [
+        "shop"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "raw-to-labeller",
+      "from": "raw",
+      "to": "labeller",
+      "label": "25 per request"
+    },
+    {
+      "id": "labeller-to-labels",
+      "from": "labeller",
+      "to": "labels",
+      "label": "intent as JSON"
+    },
+    {
+      "id": "labels-to-trainer",
+      "from": "labels",
+      "to": "trainer",
+      "label": "train"
+    },
+    {
+      "id": "trainer-to-model",
+      "from": "trainer",
+      "to": "model",
+      "label": "save"
+    },
+    {
+      "id": "model-to-router",
+      "from": "model",
+      "to": "router",
+      "label": "loaded at start",
+      "variant": "dashed"
+    },
+    {
+      "id": "customer-to-router",
+      "from": "customer",
+      "to": "router",
+      "label": "message",
+      "variant": "emphasis"
+    },
+    {
+      "id": "router-to-layer1",
+      "from": "router",
+      "to": "layer1",
+      "label": "at least 80% sure",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "router-to-layer2",
+      "from": "router",
+      "to": "layer2",
+      "label": "40% to 80% sure, policy",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "straight"
+    },
+    {
+      "id": "router-to-layer3",
+      "from": "router",
+      "to": "layer3",
+      "label": "action, order or unsure",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "layer3-to-shop",
+      "from": "layer3",
+      "to": "shop",
+      "label": "tool calls"
+    },
+    {
+      "id": "layer3-to-human",
+      "from": "layer3",
+      "to": "human",
+      "label": "big refund or upset",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "Chapter 1: Build your first AI agent",
+      "items": [
+        "An agent = an LLM + tools + a loop",
+        "The LLM with tools is the senior expert",
+        "Example: my order NM10002 arrived broken, I want a refund"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Chapter 2: the LLM teaches a small ML model",
+      "items": [
+        "The LLM labels 1,080 messages with one of 27 intents",
+        "A small ML model learns from them: 98.3% on clean, 60% on messy messages",
+        "Run: python run.py label, then python run.py train"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Chapter 3: the whole support office",
+      "items": [
+        "Each message goes to the cheapest helper that can answer",
+        "Example: track my order NM10009 is answered by the receptionist for $0",
+        "Refunds over ₹10,000 go to the manager, a human"
+      ]
+    }
+  ]
+}

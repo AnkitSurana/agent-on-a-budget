@@ -103,3 +103,12 @@ def test_claude_runs_a_tool_then_answers(shop):
 def test_claude_refusal_is_handled(shop):
     agent, _ = claude_agent([fake_response([], "refusal")], shop)
     assert "human" in agent.run("something unsafe").reply
+
+
+def test_big_refund_is_marked_as_escalated(shop):
+    # NM10003 in the test shop is a ₹12,999 chair: the refund tool itself hands it to a human
+    agent, _ = openai_agent([
+        openai_tools([("call_1", "start_refund", {"order_id": "NM10003", "reason": "broke"})]),
+        openai_text("A manager will approve this refund."),
+    ], shop)
+    assert agent.run("refund NM10003").escalated is True

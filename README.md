@@ -2,44 +2,69 @@
 
 **An AI support agent that gets cheaper and faster by teaching a small Machine Learning model to do most of its work.**
 
-Most AI agents send *every* request to a big, expensive LLM. This project starts there and then improves it step by step:
-an LLM labels data, a small ML model learns from those labels, and a router sends each message to the **cheapest model that can handle it**.
+Most AI agents send *every* message to a big, expensive LLM. That's like sending every question in a support office to your most expensive expert.
+This project builds the agent, lets the LLM **teach a small ML model** to handle the easy questions, and then routes each message to the **cheapest helper that can answer it**.
 
 > Built for the workshop **"Build Your First AI Agent: From Machine Learning & LLMs to Real-World Workflows"**.
 
 ---
 
-## The idea in one picture
+## The story in three chapters
+
+The workshop follows its title, one chapter per part:
+
+| Title | Chapter | What we build | The one idea |
+|---|---|---|---|
+| **Build Your First AI Agent** | 1. Give an LLM hands | An LLM that can only talk, then the same LLM with tools: look up orders, refund, cancel, hand over to a human | An agent = an LLM + tools + a loop |
+| **From Machine Learning & LLMs** | 2. The LLM teaches a small ML model | The LLM labels 1,080 messages; a small ML model learns from those labels | The big model teaches, the small model does the easy work |
+| **To Real-World Workflows** | 3. The whole support office | Each message goes to the cheapest helper that can answer it | Real systems use the right tool for each job |
+
+## The support office
+
+Every message goes to the cheapest helper that can handle it:
+
+| Helper | What it is | Takes | Example message | Cost |
+|---|---|---|---|---|
+| 🟢 **Receptionist** | The small ML model | Simple questions it is at least 80% sure about | "track my order NM10009" → running shoes, shipped, arriving 8 Oct | $0, about 0.05 ms |
+| 🟡 **Junior assistant** | A small LLM on the laptop (Ollama) | Policy questions it is 40% to 80% sure about | "kitne din me delivery hoti hai" | $0 |
+| 🔵 **Senior expert** | The cloud LLM agent with tools | Refunds, cancels, address changes, complaints, anything unclear | "my order NM10002 arrived broken, I want a refund" → ₹5,999 refund started | Paid per token |
+| 🔴 **Manager** | A human | Refunds above ₹10,000 and very upset customers, passed on by the expert | "refund NM10018, I don't like the chair" → ₹12,999, so a human must approve | Staff time |
 
 ```
-Customer message
-      │
-      ▼
-┌──────────────────┐  very sure + simple question
-│ 1. ML model      │ ─────────────────────────────▶ ready-made answer      ~0.05 ms · $0
-└────────┬─────────┘
-         │ fairly sure + simple question
-         ▼
-┌──────────────────┐
-│ 2. Local LLM     │ ─────────────────────────────▶ short answer           ~1 s · $0
-│    (Ollama)      │
-└────────┬─────────┘
-         │ action, angry customer, or unsure
-         ▼
-┌──────────────────┐
-│ 3. Cloud LLM     │ ─────────────────────────────▶ looks up orders,       a few s · paid
-│    agent + tools │                                 refunds, escalates…
-└──────────────────┘
+                          Customer message
+                                 │
+                                 ▼
+                 ┌──────────────────────────────┐
+                 │ Receptionist (ML model)       │  at least 80% sure + simple → answers itself
+                 └──────────────┬───────────────┘
+                                │ less sure, policy question
+                                ▼
+                 ┌──────────────────────────────┐
+                 │ Junior assistant (local LLM)  │  answers from the policy
+                 └──────────────┬───────────────┘
+                                │ action, complaint, or unsure
+                                ▼
+                 ┌──────────────────────────────┐
+                 │ Senior expert (cloud LLM)     │  uses tools: orders, refunds, cancels
+                 └──────────────┬───────────────┘
+                                │ big refund or very upset customer
+                                ▼
+                         Manager (a human)
 ```
 
-## The story: four versions of one agent
+**New to these ideas?** Read the [theory guide](docs/theory-guide.md): every concept in plain English, a glossary, and a free reading list for the prerequisites.
 
-| Version | What it is | What you learn |
+**Full architecture diagram:** open [`docs/architecture/agent-on-a-budget.html`](docs/architecture/agent-on-a-budget.html) in a browser (interactive, light/dark, export to PNG). Made with [Archify](https://github.com/tt-a1i/archify) from `docs/architecture/architecture.json`.
+
+### Chapters and code versions
+
+The code calls the steps "versions". This is how they line up with the chapters:
+
+| Chapter | Code | Command |
 |---|---|---|
-| **V1** | A cloud LLM answers customers. No tools. | What an LLM is, prompts, tokens, cost |
-| **V2** | The LLM **with tools**: look up orders, refund, cancel, change address, hand over to a human | What makes an *agent*: the tool loop, guardrails |
-| **V3** | The LLM **labels** messages, a small **ML model** learns from them | ML basics: features, training, accuracy, confidence, *distillation* |
-| **V4** | A **router**: ML model → local LLM → cloud LLM | *Inference engineering*: cost, speed, and picking the right model |
+| 1. Give an LLM hands | Version 1 (LLM only), Version 2 (LLM + tools = the senior expert) | `python run.py chat --version 1` / `--version 2` |
+| 2. The LLM teaches ML | Version 3 (label, then train the receptionist) | `python run.py label`, then `python run.py train` |
+| 3. The whole office | Version 4 (the router) | `python run.py chat --version 4` |
 
 ## The shop: NovaMart
 
@@ -63,10 +88,10 @@ The ML model (TF-IDF on pieces of words + Logistic Regression), trained on 1,080
 | Messages where it is ≥ 80% sure (79% of a mixed inbox) | **100%** |
 
 It takes about **0.05 milliseconds** per message and costs nothing.
-When it's unsure, the router sends the message to a smarter model instead.
+When the receptionist is unsure, the message goes to a smarter helper instead.
 
 > These numbers use the dataset's own labels. After you run `python run.py label`, the model learns from the **LLM's** labels instead.
-> Cost and speed for V2 vs V4 come from `python run.py benchmark`.
+> Cost and speed for the expert alone vs the whole office come from `python run.py benchmark`.
 
 ---
 
@@ -97,7 +122,7 @@ pip install -r requirements.txt
 cp .env.example .env        # then open .env and paste ONE API key
 ```
 
-**Optional: Ollama, the free local LLM** (layer 2 of the router, or everything if you have no key):
+**Optional: Ollama, the free local LLM** (the junior assistant, or every helper if you have no key):
 
 ```bash
 brew install ollama
@@ -105,46 +130,52 @@ ollama serve                 # leave this running in its own terminal
 ollama pull llama3.2:3b      # about 2 GB
 ```
 
-Without Ollama the project still works. The router simply skips layer 2.
+Without Ollama the project still works. The office simply has no junior assistant.
 
 ## How to run it
 
 ```bash
-python run.py data                  # 1. make the data files
-python run.py chat --version 1      #    talk to V1 (no tools)
-python run.py chat --version 2      #    talk to V2 (with tools)
-python run.py label                 # 2. the LLM labels the training messages (a few minutes, under $1)
-python run.py train                 # 3. train the ML model
-python run.py route                 #    see which layer answers each messy message (free)
-python run.py chat --version 4      #    talk to V4 (the router)
-python run.py benchmark --n 30      # 4. compare V2 and V4 on 30 messages (costs a little)
-streamlit run app.py                #    the demo app: chat + charts
+python run.py data                  # make the data files
+
+# Chapter 1: build your first AI agent
+python run.py chat --version 1      # the LLM alone: it can only talk
+python run.py chat --version 2      # the LLM with tools: the senior expert
+
+# Chapter 2: the LLM teaches a small ML model
+python run.py label                 # the LLM labels the training messages (a few minutes, under $1)
+python run.py train                 # the receptionist (ML model) learns from those labels
+
+# Chapter 3: the whole support office
+python run.py route                 # who would answer each messy message (free)
+python run.py chat --version 4      # talk to the whole office
+python run.py benchmark --n 30      # expert only vs the whole office, 30 messages (costs a little)
+streamlit run app.py                # the demo app: one button per helper, plus charts
 ```
 
 ## Notebooks: the step-by-step version
 
-The notebooks show every step as a beginner would try it, mistakes included.
+The notebooks show every step as a beginner would try it, mistakes included. They use the same code as `budget_agent/`, written out by hand first where it matters, and the same example messages as the app.
 
-| Notebook | What happens | Needs |
-|---|---|---|
-| `01_look_at_the_data` | Explore the messages and orders | nothing |
-| `02_first_chat_with_an_llm` | First API call, cost per message, V1 → V2 | API key (or Ollama) |
-| `03_llm_labels_ml_learns` | The LLM labels, 3 ML models compared, picking a confidence threshold | nothing (API key for the LLM's labels) |
-| `04_hello_ollama` | Run a free LLM on your laptop, quantization | Ollama |
-| `05_the_router` | V4 router, V2 vs V4 comparison | API key or Ollama |
+| Notebook | Chapter | What happens | Needs |
+|---|---|---|---|
+| `01_look_at_the_data` | Setup | Explore the messages and orders | nothing |
+| `02_first_chat_with_an_llm` | 1 | First API call, cost per message, then the agent loop written by hand (same as `agent.py`) | API key (or Ollama) |
+| `03_llm_labels_ml_learns` | 2 | The LLM labels, 3 ML models compared, picking the receptionist's 80% rule | nothing (API key for the LLM's labels) |
+| `04_hello_ollama` | 3 | Meet the junior assistant: a free LLM on your laptop | Ollama |
+| `05_the_router` | 3 | The routing rule written by hand (checked against `router.py`), then expert only vs the whole office | API key or Ollama |
 
 ## Project layout
 
 ```
 budget_agent/
-  config.py       all settings: models, prices, thresholds
+  config.py       all settings: models, prices, thresholds, helper names, demo messages
   data.py         make and load the data
   tools.py        the shop "database" and the agent's tools
   llm.py          talk to OpenAI / Claude / Gemini / Ollama, measure time and cost
-  agent.py        V1 and V2: the agent loop
-  labeler.py      V3: the LLM labels messages
-  classifier.py   V3: the small ML model
-  router.py       V4: ML → local LLM → cloud LLM
+  agent.py        chapter 1: the agent loop (versions 1 and 2)
+  labeler.py      chapter 2: the LLM labels messages
+  classifier.py   chapter 2: the small ML model (the receptionist)
+  router.py       chapter 3: the whole office (version 4)
 run.py            command line for everything
 app.py            Streamlit demo app
 notebooks/        step-by-step notebooks
@@ -165,7 +196,8 @@ the agent loop, labelling, the ML model, and the router's decisions.
 - The LLM can only *ask* for tools. Our Python code decides what really happens.
 - Refunds above ₹10,000 always go to a human, no matter what the LLM says.
 - Orders can only be cancelled or changed while they are "Processing".
-- Anything that changes money or orders always goes to the big cloud LLM, never to the small models.
+- Anything that changes money or orders always goes to the senior expert, never to the receptionist or the junior.
+- The junior assistant never answers order questions, because it can't look orders up.
 
 ## What I'd add next
 

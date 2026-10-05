@@ -1,7 +1,8 @@
-"""Version 1 and Version 2 of our agent.
+"""Chapter 1: Build your first AI agent.
 
-V1 (use_tools=False): the LLM just reads the message and writes a reply. It can talk, but it cannot DO anything.
-V2 (use_tools=True):  the LLM can call tools (look up orders, start refunds, ...). Now it is a real agent.
+Version 1 (use_tools=False): the LLM alone reads the message and writes a reply. It can talk, but it cannot DO anything.
+Version 2 (use_tools=True):  the LLM can call tools (look up orders, start refunds, ...). Now it is a real agent:
+                             the "senior expert" of the support office in chapter 3.
 
 The agent loop is the heart of every AI agent:
     1. Send the conversation to the LLM.
@@ -37,6 +38,7 @@ class AgentResult:
     layer: str = "llm"
     tool_calls: list = field(default_factory=list)   # [(tool name, input, result), ...]
     calls: list = field(default_factory=list)        # one CallStats per LLM request
+    escalated: bool = False                          # True if a human (the manager) was asked to take over
 
     @property
     def seconds(self):
@@ -59,6 +61,7 @@ class SupportAgent:
         tools = TOOL_DEFINITIONS if self.use_tools else None
         history = [{"role": "user", "content": user_message}]
         result = AgentResult(reply="")
+        actions_before = len(self.shop.actions)
 
         for _ in range(self.max_steps):
             reply = self.llm.chat(system, history, tools=tools)
@@ -80,6 +83,7 @@ class SupportAgent:
                 result.tool_calls.append((call.name, call.input, output))
                 outputs.append((call.id, output))
             history.append({"role": "tool_results", "results": outputs})
+            result.escalated = any(a["action"] == "escalate_to_human" for a in self.shop.actions[actions_before:])
 
         result.reply = "Sorry, this is taking too long. A human agent will follow up with you."
         return result

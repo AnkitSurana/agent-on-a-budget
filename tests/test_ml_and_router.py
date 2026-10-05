@@ -128,3 +128,23 @@ def test_actions_always_go_to_cloud_llm(model, shop, monkeypatch):
     result = make_router(model, shop).handle("i want a refund")
     assert result.layer == "cloud_llm"
     assert result.cost_usd == pytest.approx(0.006)
+
+
+def test_order_questions_never_go_to_the_local_llm(model, shop, monkeypatch):
+    # The local LLM can't look up orders, so it would make up an answer.
+    monkeypatch.setattr("budget_agent.config.ML_CONFIDENCE", 1.01)
+    monkeypatch.setattr("budget_agent.config.LOCAL_LLM_CONFIDENCE", 0.0)
+    assert make_router(model, shop).handle("where is my order NM10005").layer == "cloud_llm"
+
+
+def test_demo_examples_match_the_real_orders():
+    """The demo messages in config.DEMO_MESSAGES must do what the README and notebooks say."""
+    from budget_agent import config
+    from budget_agent.tools import Shop, find_order_id
+
+    shop = Shop()   # the real data/orders.csv
+    shipped = shop.lookup_order(find_order_id(config.DEMO_MESSAGES["ml"]))
+    assert (shipped["product"], shipped["status"]) == ("Running Shoes", "Shipped")
+    assert shop.start_refund(find_order_id(config.DEMO_MESSAGES["cloud_llm"]), "broken")["ok"] is True
+    big = shop.start_refund(find_order_id(config.DEMO_MESSAGES["human"]), "don't like it")
+    assert big["ok"] is False and shop.actions[-1]["action"] == "escalate_to_human"

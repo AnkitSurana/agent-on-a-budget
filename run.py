@@ -1,11 +1,19 @@
 """One command line for the whole project. Run `python run.py --help` to see everything.
 
-    python run.py data                 # 1. make the data files
-    python run.py chat --version 2     # talk to the agent (version 1, 2 or 4)
-    python run.py label                # 2. the LLM labels the training messages
-    python run.py train                # 3. train the ML model on the LLM's labels
-    python run.py route                # see which layer would answer each message (free, no LLM)
-    python run.py benchmark --n 30     # 4. compare version 2 vs version 4 (costs a little money)
+    python run.py data                 # make the data files
+
+    Chapter 1 - Build your first AI agent
+    python run.py chat --version 1     # the LLM alone: it can only talk
+    python run.py chat --version 2     # the LLM with tools: the senior expert
+
+    Chapter 2 - From Machine Learning & LLMs: the LLM teaches a small ML model
+    python run.py label                # the LLM labels the training messages
+    python run.py train                # the ML model (the receptionist) learns from those labels
+
+    Chapter 3 - To real-world workflows: the whole support office
+    python run.py route                # who would answer each messy message (free, no LLM)
+    python run.py chat --version 4     # talk to the whole office
+    python run.py benchmark --n 30     # expert only vs the whole office (costs a little money)
 """
 
 import argparse
@@ -32,7 +40,8 @@ def cmd_chat(args):
     while (text := input("You: ").strip()).lower() not in {"quit", "exit", "q"}:
         if args.version == 4:
             r = bot.handle(text)
-            print(f"Bot: {r.reply}\n     [layer={r.layer}  intent={r.intent} ({r.confidence:.0%})  "
+            who = config.HELPERS[r.layer] + (f" → {config.HELPERS['human']}" if r.escalated else "")
+            print(f"Bot: {r.reply}\n     [{who}  intent={r.intent} ({r.confidence:.0%})  "
                   f"{r.seconds:.2f}s  ${r.cost_usd:.4f}]\n")
         else:
             r = bot.run(text)
@@ -75,6 +84,7 @@ def cmd_route(args):
     messy = data.load_messy()
     rows = [(text, *router.choose_layer(text)) for text in messy.text]
     table = pd.DataFrame(rows, columns=["message", "layer", "intent", "confidence"])
+    table["layer"] = table["layer"].map(config.HELPERS)
     pd.set_option("display.width", 160, "display.max_colwidth", 60)
     print(table.to_string(index=False, formatters={"confidence": "{:.0%}".format}))
     print("\n" + table.layer.value_counts(normalize=True).map("{:.0%}".format).to_string())
@@ -115,29 +125,29 @@ def cmd_benchmark(args):
 def print_summary(results):
     n = len(results)
     print(f"\n--- {n} messages ---")
-    print(f"Version 2 (LLM for everything):     ${results.v2_cost.sum():.3f} total, "
+    print(f"Expert only (LLM for everything): ${results.v2_cost.sum():.3f} total, "
           f"{results.v2_seconds.mean():.2f}s average")
-    print(f"Version 4 (router):                 ${results.v4_cost.sum():.3f} total, "
+    print(f"Whole office (router):             ${results.v4_cost.sum():.3f} total, "
           f"{results.v4_seconds.mean():.2f}s average")
     if results.v4_cost.sum() > 0:
-        print(f"Version 4 is {results.v2_cost.sum() / results.v4_cost.sum():.1f}x cheaper "
+        print(f"The whole office is {results.v2_cost.sum() / results.v4_cost.sum():.1f}x cheaper "
               f"and {results.v2_seconds.mean() / results.v4_seconds.mean():.1f}x faster on average.")
-    print("Who answered in version 4:\n" + results.v4_layer.value_counts().to_string())
+    print("Who answered:\n" + results.v4_layer.map(config.HELPERS).value_counts().to_string())
 
 
 def main():
     parser = argparse.ArgumentParser(description="agent-on-a-budget")
     sub = parser.add_subparsers(required=True)
     sub.add_parser("data", help="make the data files").set_defaults(func=cmd_data)
-    chat = sub.add_parser("chat", help="talk to the agent")
+    chat = sub.add_parser("chat", help="talk to the agent: 1 = LLM only, 2 = LLM + tools, 4 = whole office")
     chat.add_argument("--version", type=int, choices=[1, 2, 4], default=2)
     chat.set_defaults(func=cmd_chat)
     label = sub.add_parser("label", help="the LLM labels the training messages")
     label.add_argument("--n", type=int, default=1080)
     label.set_defaults(func=cmd_label)
     sub.add_parser("train", help="train the ML model").set_defaults(func=cmd_train)
-    sub.add_parser("route", help="show which layer answers each messy message").set_defaults(func=cmd_route)
-    bench = sub.add_parser("benchmark", help="compare version 2 and version 4")
+    sub.add_parser("route", help="show which helper answers each messy message").set_defaults(func=cmd_route)
+    bench = sub.add_parser("benchmark", help="compare expert only (version 2) with the whole office (version 4)")
     bench.add_argument("--n", type=int, default=30)
     bench.set_defaults(func=cmd_benchmark)
     args = parser.parse_args()

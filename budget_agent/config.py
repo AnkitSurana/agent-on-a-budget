@@ -86,3 +86,21 @@ INTENTS = [
     "recover_password", "registration_problems", "review", "set_up_shipping_address",
     "switch_account", "track_order", "track_refund",
 ]
+
+# ---------- The "support office" story, used the same way everywhere ----------
+# Each router layer is a member of a support office. The code says "ml", "local_llm", "cloud_llm";
+# the README, notebooks, app and diagram use these names.
+HELPERS = {
+    "ml": "Receptionist (ML model)",
+    "local_llm": "Junior assistant (local LLM)",
+    "cloud_llm": "Senior expert (cloud LLM agent)",
+    "human": "Manager (human)",
+}
+
+# One example message per helper, checked against data/orders.csv. Used in every demo.
+DEMO_MESSAGES = {
+    "ml": "track my order NM10009",                                  # shipped running shoes
+    "local_llm": "kitne din me delivery hoti hai",                   # delivery time, in Hinglish
+    "cloud_llm": "my order NM10002 arrived broken, I want a refund",  # ₹5,999 watch: refund allowed
+    "human": "refund NM10018, I don't like the chair",               # ₹12,999 chair: needs a human
+}

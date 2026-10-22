@@ -1,0 +1,14 @@
+# Your settings and API key: never upload
+.env
+
+# Made on your laptop by uv, Python, Jupyter, macOS and the trained model: rebuilt automatically
+.venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+models/
+
+# Made by the tensorbox Docker container when it uses this folder as /workspace
+logs/
+projects/

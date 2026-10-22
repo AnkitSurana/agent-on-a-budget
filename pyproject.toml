@@ -1,0 +1,33 @@
+[project]
+name = "agent-on-a-budget"
+version = "0.1.0"
+description = "An AI support agent that sends each message to the cheapest helper that can answer it."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"   # Python 3.12, downloaded by uv if needed
+# What `uv sync` installs: enough for the app, the chat, the tests and the hands-on exercises (about 500 MB)
+dependencies = [
+    "anthropic>=1.0",
+    "joblib>=1.4",
+    "openai>=3.0",
+    "pandas>=2.2",
+    "python-dotenv>=1.0",
+    "requests>=2.31",
+    "scikit-learn>=1.5",
+    "streamlit>=1.50",
+]
+
+# Optional extras: `uv run --group notebooks jupyter lab` adds the notebook tools; `uv sync --all-groups` adds everything
+[dependency-groups]
+dev = ["pytest>=8.0"]                                           # the tests (installed by default)
+notebooks = ["jupyterlab>=4.0", "ipykernel>=6.29", "matplotlib>=3.8"]
+data = ["datasets>=3.0"]                                        # only to rebuild data/ from the internet
+
+[tool.uv]
+package = false   # this is a project you run, not a library you install
+default-groups = ["dev"]
+python-preference = "only-managed"   # always uv's own Python (downloaded if needed), never Anaconda's or the system one: the same on every laptop
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "tests"]
+addopts = "-p no:cacheprovider"   # no .pytest_cache folder left behind

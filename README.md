@@ -1,6 +1,6 @@
 # Agent on a Budget
 
-An AI support agent that gets 10× cheaper by teaching a small ML model to handle most of its work, so the frontier LLM only sees the hard questions.
+An AI support agent that teaches a small ML model to handle most of its work, so the frontier LLM only sees the hard questions. On 60 test messages: 1.9× cheaper and 1.6× faster than sending everything to the big model.
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![Ollama](https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white) ![Workshop](https://img.shields.io/badge/type-workshop-6366F1?style=flat-square) ![License: MIT](https://img.shields.io/badge/License-MIT-22C55E?style=flat-square)
 

@@ -1,11 +1,13 @@
-# 🛒 Agent on a Budget
+# Agent on a Budget
 
-**An AI support agent that gets cheaper and faster by teaching a small Machine Learning model to do most of its work.**
+An AI support agent that gets 10× cheaper by teaching a small ML model to handle most of its work, so the frontier LLM only sees the hard questions.
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![Ollama](https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white) ![Workshop](https://img.shields.io/badge/type-workshop-6366F1?style=flat-square) ![License: MIT](https://img.shields.io/badge/License-MIT-22C55E?style=flat-square)
+
+> Companion repo for my upGrad masterclass **"Build Your First AI Agent: From Machine Learning & LLMs to Real-World Workflows"** (October 2026).
 
 Most AI agents (AIs that can act, like looking up an order or starting a refund, not just write text) send *every* customer message to a big, expensive AI model (an LLM, a large language model like the one behind ChatGPT). That is like a support office where the most expensive expert also answers every phone call.
 This project builds an AI agent, lets the big model **teach a small ML model** to take the easy questions, and then sends each message to the **cheapest helper that can answer it**.
-
-> Built for the workshop **"Build Your First AI Agent: From Machine Learning & LLMs to Real-World Workflows"**.
 
 ## Contents
 
@@ -534,3 +536,13 @@ uv.lock             the exact package versions, the same on every computer
 .env.example        the settings template: copy it to .env (step 6)
 .gitignore          keeps .env, .venv and models/ out of git
 ```
+
+---
+
+## License
+
+MIT. See [LICENSE](LICENSE).
+
+## Author
+
+**Ankit Surana** · Data & AI Engineer · [ankitsurana.dev](https://ankitsurana.dev) · [LinkedIn](https://www.linkedin.com/in/ankitsurana002/) · [GitHub](https://github.com/AnkitSurana)
